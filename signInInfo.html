@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="css/bootstrapv5.3.1.css" rel="stylesheet">
+    <link href="css/bootstrapv3.1.4.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/toaster.css" rel="stylesheet">
+    <script src="js/jquery.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script src="js/toaster.js"></script>
+    <script src="js/common.js"></script>
+
+    <style>
+   
+
+      .infoIconCls{
+       color: #fff;
+       font-size: 50px;
+       position: absolute;
+       top: 10px;
+       left: 10px;
+       cursor: pointer;
+      }
+   
+      .selectLanguageCls{
+       position: absolute;
+       top: 10px;
+       right: 10px ;
+       border-radius: 30px;
+       height: 45px;
+       
+      }
+   
+      .topBarCls{
+       display: flex;
+       justify-content: space-evenly;
+      }
+   
+      .paraTopCLs{
+       font-size: 16px;
+       color: #fff;
+       margin-top: 25px;
+      }
+   
+   
+      .vectorImgCls1{
+       position: absolute;
+       left: 1em;
+       top: 6em;
+      }
+      .vectorImgCls2{
+       position: absolute;
+       right: 1em;
+       top: 6em;
+      }
+      .vectorImgCls3{
+       position: absolute;
+       left: 1em;
+       bottom: 15em;
+      }
+      .vectorImgCls4{
+       position: absolute;
+       right: 1em;
+       bottom: 15em;
+      }
+     
+      .bottomBtnsCls{
+       position: absolute;
+       bottom: 5em;
+   }
+      
+   .card {
+     background: transparent;
+         border-radius: 8px;
+         padding: 50px;
+         /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
+         /* position: absolute; */
+       top: 10%;
+       display: block;
+       border: none;
+       top: 0;
+       left: 0;
+       right: 0;
+       bottom: 0;
+       background: #fff;
+       }
+       /* Styles for icons */
+       .icon {
+         display: inline-block;
+         width: 20px;
+         height: 20px;
+         margin-right: 8px;
+         vertical-align: middle;
+       }
+       .cancel-icon i {
+         cursor: pointer;
+         font-size: 28px;
+       color: #fff;
+       float: right;
+       }
+       .card .mb-4 {
+         margin-bottom: 1.5rem!important;
+       background: #fff;
+       border-radius: 8px;
+       padding: 20px 30px;
+       
+       }
+   
+       .data {
+         margin-top: 40px;
+         font-weight: 700;
+       }
+       .centerParaCLsInfo{
+         text-align: center;
+       font-size: 40px;
+       padding: 8px;
+       background: #000000c9;
+       margin: 2 auto;
+       margin: 44px 29px;
+       color: #fff;
+       /* display: flex; */
+       font-weight: 700;
+       }
+       .backCls{
+         background-repeat: round;
+       height: 100vh;
+       }
+       </style>
+  </head>
+  <body>
+    <div class="data">
+      <div>
+       
+        <div class="card" id="viewAfterSeconds" style="padding:20px;">
+        
+      
+        <p class="centerParaCLsInfo">Subscribe Here</p>
+      </div>
+       
+  
+      </div>
+      <!-- Add more data as needed -->
+    </div>
+    <div class="px-2 pt-4">
+    <!-- <div class="text-center" style="margin-top: 10em;">
+      <div class="container-fluid text-center bottomBtnsCls">
+        <button type="button" onclick="signIn()" class="border-btn-blank-red btn btn-default my-2 p-3 mb-2 signInInforSignInBtn"> Sign In</button>
+        <p class="mt-2 signInInforParaLine">--  or sign in with  --</p>
+  </div>
+    </div> -->
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    
+    <div id="g_id_onload"
+    data-client_id="1021558277012-3gi8r28679ihucp4qu115b7dtjjh55kl.apps.googleusercontent.com"
+    data-callback="handleCredentialResponse">
+</div>
+<div class="g_id_signin"></div>
+    <!-- <div class="text-center" style="margin-top: 5em;">
+      <img class="vectorImgCls1" src="images/google.png">
+      <img class="vectorImgCls2" src="images/twitter.png">
+      <img class="vectorImgCls3" src="images/facebook.png">
+
+    </div> -->
+    <!-- <p class="text-center mt-3 signInInforDontaccnt">Don't have an account</p>
+    <div class="text-center mt-5">
+      <div class="container-fluid text-center bottomBtnsCls">
+        <button type="button" onclick="signUp()" class="border-btn-blank-white btn btn-default my-2 p-3 mb-2 signInInforSignUp"> Sign Up</button>
+  </div>
+    </div> -->
+      
+
+</div>
+<div class="bottomBtns">
+  <div class="row">
+    <div class="col-xs-4">
+<div class="text-center mb-2" >
+  <a href="signUp.html" class="fz-12 colorBlack">
+  <img src="images/profileRed.png"  class="w-20px" alt="Image 1" /><br>
+Profile</a>
+</div>
+</div>
+<div class="col-xs-4">
+<div class="text-center mb-2" >
+  <a href="./" class="fz-12 colorBlack">
+  <img src="images/scanBlack.png"  class="w-20px" alt="Image 1" /><br>
+ Home</a>
+</div>
+</div>
+<div class="col-xs-4">
+<div class="text-center mb-2" >
+  <a href="viewMap.html" class="fz-12 colorBlack">
+  <img src="images/map.png"  class="w-20px" alt="Image 1" /><br>
+ Map</a>
+</div>
+</div>
+</div>
+</div>
+
+</div>  
+   
+  </body>
+  <script>
+$( document ).ready(function() {
+  changeLanguage();
+})
+  function signIn() {
+       window.location.href = "signIn.html";
+     }
+ 
+
+     function signUp() {
+       window.location.href = "signUp.html";
+     }
+
+
+     function handleCredentialResponse(response) {
+      var base64 = response.credential;
+      var decodedData = JSON.parse(atob(base64.split('.')[1]));
+      var req = {
+            
+              "email": decodedData?.email,
+              "name": decodedData?.name,
+              "token":decodedData?.jti,
+            }
+        $.ajax({
+        url:'https://apilove.icons4good.com/getSocialData',
+        data:JSON.stringify(req),
+        async:false,
+        contentType: "application/json",
+        type:'post',
+        success: function (res) {
+          if(res?.statusCode === 0 ){
+            toastr["error"](res?.message); 
+          }else{
+          submit('google',req);
+          
+                      }
+        },
+        error: function (err) {
+          toastr["error"](err?.responseJSON?.message);
+        },
+      })
+     
+    
+  }
+
+
+  var storedData = JSON.parse(localStorage.getItem('storedData'));
+
+function submit(type,data) {
+  var req= {};
+  if(type==='new'){
+    var userName = $('#userName').val();
+  var password = $('#password').val();
+
+   if(userName == "" || userName == "undefined"){
+         toastr["error"]("Please enter first User Name.");
+         $("#userName").focus();
+         return false;
+       }
+
+       if(password == "" || password == "undefined"){
+         toastr["error"]("Please enter password.");
+         $("#password").focus();
+         return false;
+       }
+   req = {
+        
+          "username": userName,
+          "password": password
+        }
+  }
+
+  if(type==='google'){
+  
+   req = {
+        
+          "username": data?.email,
+          "password": data?.token
+        }
+  }
+ 
+    $.ajax({
+    url:'https://apilove.icons4good.com/userlogin',
+    data:JSON.stringify(req),
+    async:false,
+    contentType: "application/json",
+    type:'post',
+    success: function (res) {
+      if(res?.statusCode === 0 ){          
+        toastr["error"](res?.message); 
+      }else{
+        localStorage.setItem("userId",res?.result[0]?.userid)
+        if(storedData?.ispaid==='N'){
+          setTimeout(function() {
+                        window.location.replace("/mosiac_second.html");
+                    }, 2000);
+        }
+        if(storedData?.ispaid==='Y'){
+          var paymentFlag = res?.result.find((e) =>e.location==storedData?.id);
+          if(paymentFlag){
+            setTimeout(function() {
+                        window.location.replace("/mosiac_second.html");
+                    }, 2000);
+          }else{
+            setTimeout(function() {
+                        window.location.replace("/payment.html");
+                    }, 2000);
+          }
+         
+        }
+      toastr["success"](res?.message);
+      
+                  }
+    },
+    error: function (err) {
+      toastr["error"](err?.responseJSON?.message);
+    },
+  })
+ 
+}
+</script>
+</html>

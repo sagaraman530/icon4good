@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Profile</title>
+  <link href="css/bootstrapv5.3.1.css" rel="stylesheet">
+  <link href="css/bootstrapv3.1.4.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+  <link href="css/toaster.css" rel="stylesheet">
+  <script src="js/jquery.js"></script>
+  <script src="js/toaster.js"></script>
+  <script src="js/common.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
+    integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+</head>
+<style>
+  .profile-wrapper {
+    width: 375px;
+    height: fit-content;
+    margin: 0 auto;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .profile-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+    border-bottom: 1px solid gainsboro;
+  }
+
+  .avatar {
+    border-radius: 50%;
+    width: 45%;
+    height: 100%;
+  }
+
+  .profile-info {
+    margin-top: 0.5rem;
+  }
+
+  .display-name {
+    font-size: 1.7rem;
+  }
+
+  .profile-stats {
+    margin-top: 1rem;
+    display: flex;
+    gap: 5rem;
+  }
+
+  .profile-stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 70px;
+    cursor: pointer;
+  }
+
+  .profile-stat:hover strong {
+    color: royalblue;
+  }
+
+  .profile-controls {
+    margin-top: 1rem;
+  }
+
+  .like-button-main {
+    display: flex;
+    align-items: center;
+    border-radius: 35px;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    color: #333;
+    cursor: pointer;
+    outline: none;
+
+  }
+
+
+  /* Heart icon styles */
+  .heart-icon-main {
+    font-size: 16px;
+    /* Adjust size as needed */
+    margin-right: 5px;
+    background-color: #c2c2c1;
+    border-radius: 30px;
+    padding: 7px;
+    margin-left: -5px;
+  }
+
+  .heart-icon-main i {
+    color: #fff;
+    font-size: 22px;
+    padding: 5px;
+  }
+
+  /* Likes count styles */
+  .likes-count-main {
+    font-weight: bold;
+    color: #000;
+  }
+
+  /* Button hover and focus effects */
+  .like-button-main:hover,
+  .like-button-main:focus {
+    background-color: #d82b2b;
+    border-color: #ccc;
+  }
+
+  /* Button active (clicked) effect */
+  .like-button-main:active {
+    background-color: #c41919;
+    border-color: #bbb;
+  }
+
+  /* Optional: Change color of the heart icon and text on hover */
+  .like-button-main:hover .heart-icon,
+  .like-button-main:hover .likes-count {
+    color: #fff;
+  }
+
+  #customersCats {
+    margin-top: 0.2rem;
+    height: 50px;
+  }
+
+  .nav-link.active,
+  .nav-link:focus,
+  .nav-link:hover {
+    background-color: transparent;
+    border-color: transparent;
+    border-bottom: 3px solid #1aafff;
+  }
+
+  a.nav-link {
+    color: #333;
+    font-size: 16px;
+    padding: 6px 15px;
+  }
+
+  /* Basic styles */
+
+  .image-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0px;
+    padding: 4px;
+  }
+
+  .image-block {
+    position: relative;
+    overflow: hidden;
+    border-radius: 0px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .image-block img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.3s ease;
+  }
+
+  .image-block:hover img {
+    transform: scale(1.1);
+  }
+
+  .headerClsBlock {
+    background-color: #ddd;
+    padding: 3px;
+    font-weight: bold;
+    font-size: 16px;
+    border-radius: 0px 0px 6px 6px;
+    margin-top: -1px;
+  }
+
+
+  .like-button {
+    display: flex;
+    align-items: center;
+    padding: 5px 10px;
+    border-radius: 35px;
+    background-color: #000000a1;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    color: #333;
+    cursor: pointer;
+    transition: background-color 0.3s, border-color 0.3s;
+    outline: none;
+
+  }
+
+  .button-left {
+    position: absolute;
+    bottom: 9em;
+    left: 5px;
+  }
+
+  .button-right {
+    position: absolute;
+    bottom: 9em;
+    right: 5px;
+  }
+
+  /* Heart icon styles */
+  .heart-icon {
+    font-size: 16px;
+    /* Adjust size as needed */
+    margin-right: 5px;
+    background-color: #F3F0E6;
+    border-radius: 30px;
+    padding: 7px;
+    margin-left: -5px;
+  }
+
+  /* Likes count styles */
+  .likes-count {
+    font-weight: bold;
+    color: #fff;
+  }
+
+  /* Button hover and focus effects */
+  .like-button:hover,
+  .like-button:focus {
+    background-color: #d82b2b;
+    border-color: #ccc;
+  }
+
+  /* Button active (clicked) effect */
+  .like-button:active {
+    background-color: #c41919;
+    border-color: #bbb;
+  }
+
+  /* Optional: Change color of the heart icon and text on hover */
+  .like-button:hover .heart-icon,
+  .like-button:hover .likes-count {
+    color: #fff;
+  }
+</style>
+
+<body>
+  <div><i class="fa fa-chevron-left mt-4 ms-4" onclick="back()" style="font-size: 25px;" aria-hidden="true"></i>
+  </div>
+  <div class="profile-wrapper">
+    <div class="profile-header">
+      <img src="images/johnDeo.jpg" width="60" height="60" class="avatar" />
+      <div class="profile-info">
+        <h1 class="display-name">John Doe</h1>
+      </div>
+      <div class="profile-stats">
+        <a class="like-button-main ">
+          <span class="heart-icon"><i class="fa fa-heart-o" aria-hidden="true"></i>
+          </span>
+          <span class="likes-count-main">120</span>
+        </a>
+        <a class="like-button-main  ">
+          <span class="heart-icon-main"><i class="fa fa-user-o" aria-hidden="true"></i></span>
+          <span class="likes-count-main">76</span>
+        </a>
+      </div>
+
+
+      <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" rel="stylesheet">
+      <link href="bootstrap-tabs-portfolio.css" rel="stylesheet">
+      <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+      <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
+
+      <style type="text/css">
+        @import url('https://fonts.googleapis.com/css?family=Roboto');
+
+        h1 {
+          font-family: 'Roboto', sans-serif;
+          font-weight: 100;
+          font-size: 40px;
+          text-align: center;
+        }
+      </style>
+
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-12">
+            <ul class="nav justify-content-center" role="tablist" id="customersCats">
+              <li class="nav-item">
+                <a class="nav-link active show" href="#featuredSection" id="featured" data-toggle="tab" role="tab"
+                  aria-controls="featuredSection" aria-selected="true">Uploded Images</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#educationSection" id="education" data-toggle="tab" role="tab"
+                  aria-controls="educationSection" aria-selected="false">Saved Carousels</a>
+              </li>
+
+            </ul>
+          </div>
+        </div><!-- row-->
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="tab-content" id="catsContent">
+              <div class="tab-pane fade show active" id="featuredSection" role="tabpanel" aria-lRobotoledby="feature">
+
+                <div class="row">
+                  <div class="col-xs-12">
+                    <div class="image-grid">
+                      <div class="image-block" onclick="openImagePop()">
+                        <img src="images/johnDeo.jpg" alt="Image 1">
+
+                      </div>
+                      <div class="image-block">
+                        <img src="images/johnDeo.jpg" alt="Image 2">
+                      </div>
+                      <div class="image-block">
+                        <img src="images/johnDeo.jpg" alt="Image 3">
+                      </div>
+                      <div class="image-block">
+                        <img src="images/johnDeo.jpg" alt="Image 4">
+                      </div>
+                      <div class="image-block">
+                        <img src="images/johnDeo.jpg" alt="Image 5">
+                      </div>
+                      <div class="image-block">
+                        <img src="images/johnDeo.jpg" alt="Image 6">
+                      </div>
+                      <div class="image-block">
+                        <img src="images/johnDeo.jpg" alt="Image 7">
+                      </div>
+                      <div class="image-block">
+                        <img src="images/johnDeo.jpg" alt="Image 8">
+                      </div>
+                      <div class="image-block">
+                        <img src="images/johnDeo.jpg" alt="Image 9">
+                      </div>
+                      <div class="image-block">
+                        <img src="images/johnDeo.jpg" alt="Image 9">
+                      </div>
+                      <div class="image-block">
+                        <img src="images/johnDeo.jpg" alt="Image 9">
+                      </div>
+                      <div class="image-block">
+                        <img src="images/johnDeo.jpg" alt="Image 9">
+                      </div>
+                      <div class="image-block">
+                        <img src="images/johnDeo.jpg" alt="Image 9">
+                      </div>
+                      <div class="image-block">
+                        <img src="images/johnDeo.jpg" alt="Image 9">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+
+              </div>
+              <div class="tab-pane fade " id="educationSection" role="tabpanel" aria-lRobotoledby="education">
+                <div class="row">
+                  <div class="image-grid col-xs-6">
+                    <div class="image-block">
+                      <img src="images/johnDeo.jpg" alt="Image 1">
+                    </div>
+                    <div class="image-block">
+                      <img src="images/johnDeo.jpg" alt="Image 2">
+                    </div>
+                    <div class="image-block">
+                      <img src="images/johnDeo.jpg" alt="Image 3">
+                    </div>
+                    <div class="image-block">
+                      <img src="images/johnDeo.jpg" alt="Image 4">
+                    </div>
+                    <div class="image-block">
+                      <img src="images/johnDeo.jpg" alt="Image 5">
+                    </div>
+                    <div class="image-block">
+                      <img src="images/johnDeo.jpg" alt="Image 6">
+                    </div>
+                    <div class="image-block">
+                      <img src="images/johnDeo.jpg" alt="Image 7">
+                    </div>
+                    <div class="image-block">
+                      <img src="images/johnDeo.jpg" alt="Image 8">
+                    </div>
+                    <div class="image-block">
+                      <img src="images/johnDeo.jpg" alt="Image 9">
+                    </div>
+
+                  </div>
+                  <div class="image-grid col-xs-6">
+                    <div class="image-block">
+                      <img src="images/johnDeo.jpg" alt="Image 1">
+                    </div>
+                    <div class="image-block">
+                      <img src="images/johnDeo.jpg" alt="Image 2">
+                    </div>
+                    <div class="image-block">
+                      <img src="images/johnDeo.jpg" alt="Image 3">
+                    </div>
+                    <div class="image-block">
+                      <img src="images/johnDeo.jpg" alt="Image 4">
+                    </div>
+                    <div class="image-block">
+                      <img src="images/johnDeo.jpg" alt="Image 5">
+                    </div>
+                    <div class="image-block">
+                      <img src="images/johnDeo.jpg" alt="Image 6">
+                    </div>
+                    <div class="image-block">
+                      <img src="images/johnDeo.jpg" alt="Image 7">
+                    </div>
+                    <div class="image-block">
+                      <img src="images/johnDeo.jpg" alt="Image 8">
+                    </div>
+                    <div class="image-block">
+                      <img src="images/johnDeo.jpg" alt="Image 9">
+                    </div>
+
+                  </div>
+                </div>
+
+                <div class="  " style="display: flex;
+        gap: 8px;
+    text-align: center;">
+                  <div class="col-xs-6 headerClsBlock">
+                    <div>David</div>
+                  </div>
+                  <div class="col-xs-6 headerClsBlock">
+                    <div>Charles</div>
+                  </div>
+                </div>
+                <br>
+                <div class="row">
+                  <div class="image-grid col-xs-6">
+                    <div class="image-block">
+                      <img src="images/johnDeo.jpg" alt="Image 1">
+                    </div>
+                    <div class="image-block">
+                      <img src="images/johnDeo.jpg" alt="Image 2">
+                    </div>
+                    <div class="image-block">
+                      <img src="images/johnDeo.jpg" alt="Image 3">
+                    </div>
+                    <div class="image-block">
+                      <img src="images/johnDeo.jpg" alt="Image 4">
+                    </div>
+                    <div class="image-block">
+                      <img src="images/johnDeo.jpg" alt="Image 5">
+                    </div>
+                    <div class="image-block">
+                      <img src="images/johnDeo.jpg" alt="Image 6">
+                    </div>
+                    <div class="image-block">
+                      <img src="images/johnDeo.jpg" alt="Image 7">
+                    </div>
+                    <div class="image-block">
+                      <img src="images/johnDeo.jpg" alt="Image 8">
+                    </div>
+                    <div class="image-block">
+                      <img src="images/johnDeo.jpg" alt="Image 9">
+                    </div>
+
+                  </div>
+                  <div class="image-grid col-xs-6">
+                    <div class="image-block">
+                      <img src="images/johnDeo.jpg" alt="Image 1">
+                    </div>
+                    <div class="image-block">
+                      <img src="images/johnDeo.jpg" alt="Image 2">
+                    </div>
+                    <div class="image-block">
+                      <img src="images/johnDeo.jpg" alt="Image 3">
+                    </div>
+                    <div class="image-block">
+                      <img src="images/johnDeo.jpg" alt="Image 4">
+                    </div>
+                    <div class="image-block">
+                      <img src="images/johnDeo.jpg" alt="Image 5">
+                    </div>
+                    <div class="image-block">
+                      <img src="images/johnDeo.jpg" alt="Image 6">
+                    </div>
+                    <div class="image-block">
+                      <img src="images/johnDeo.jpg" alt="Image 7">
+                    </div>
+                    <div class="image-block">
+                      <img src="images/johnDeo.jpg" alt="Image 8">
+                    </div>
+                    <div class="image-block">
+                      <img src="images/johnDeo.jpg" alt="Image 9">
+                    </div>
+
+                  </div>
+                </div>
+
+                <div class="" style="display: flex;
+      gap: 8px;
+  text-align: center;">
+                  <div class="col-xs-6 headerClsBlock">
+                    <div>#Paris</div>
+                  </div>
+                  <div class="col-xs-6 headerClsBlock">
+                    <div>Elina</div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div><!--row-->
+        </div><!-- container-->
+        <div class="modal" id="fullScreenModal" style="background-color: #000000a1;">
+          <div class="modal-dialog " style="margin: 2em;">
+            <div class="modal-content" style="background-color: #d0d9da;">
+              <div class="" style="position: absolute;top: 1em;right: 1em;z-index: 2;">
+                <img src="images/crossImgPop.png" onclick="closePop()" alt="Image 1" />
+
+              </div>
+              <div class="modal-body p-0">
+                <div class="text-center">
+                  <div id="pushMosiacImage" style="max-height: 70vh;overflow: auto;"><img style="  width:100%" src=""></a></div>
+                  <button class="like-button button-left">
+                    <span class="heart-icon"><img src="images/HeartBlank.png"></span>
+                    <span class="likes-count">120</span>
+                  </button>
+                  <button class="like-button button-right ">
+                    <span class="heart-icon"><img src="images/Follow.png"></span>
+                    <span class="likes-count">76</span>
+                  </button>
+                  <p class="p1Class">Anna</p>
+                  <p class="p2Class">Hey, I was here Too</p>
+                  <p class="p3Class">#love,#paris</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <script type="text/javascript">
+          var storedData = JSON.parse(localStorage.getItem('storedData'));
+          var userId = JSON.parse(localStorage.getItem('userId'));
+          console.log("storedData");
+          console.log(storedData);
+          console.log("userId");
+          console.log(userId);
+
+          function getUserData() {
+            var req = {
+              "xcordinate": 1,
+              "ycordinate": 1,
+              "mosiacid": storedData?.mosiacid
+            }
+            $.ajax({
+              url: 'https://2024api.icons4good.com/getImageForMosiac',
+              data: JSON.stringify(req),
+              async: false,
+              contentType: "application/json",
+              type: 'post',
+              success: function (res) {
+                var data = res?.result[0]
+                $("#pushMosiacImage img").attr("src", data?.imagepath);
+                $(".p1Class").empty().append(data?.imagename);
+                $(".p2Class").empty().append(data?.caption);
+                $(".p3Class").empty().append(data?.tags);
+                $("#fullScreenModal").fadeIn()
+              },
+              error: function (err) {
+                toastr["error"](err?.responseJSON?.message);
+              },
+            })
+          }
+
+          $(document).ready(function () {
+            $('.image-popup-vertical-fit').magnificPopup({
+              type: 'image',
+              mainClass: 'mfp-with-zoom',
+              gallery: {
+                enabled: true
+              },
+              image: {
+                verticalFit: false
+              },
+              zoom: {
+                enabled: true,
+                duration: 300, // duration of the effect, in milliseconds
+                easing: 'ease-in-out', // CSS transition easing function
+                opener: function (openerElement) {
+                  return openerElement.is('img') ? openerElement : openerElement.find('img');
+                }
+              }
+            });
+          });
+          function back() {
+            window.location.href = "./";
+          }
+
+          function openImagePop() {
+            var req = {
+              "xcordinate": 1,
+              "ycordinate": 1,
+              "mosiacid": storedData?.mosiacid
+            }
+            $.ajax({
+              url: 'https://2024api.icons4good.com/getImageForMosiac',
+              data: JSON.stringify(req),
+              async: false,
+              contentType: "application/json",
+              type: 'post',
+              success: function (res) {
+                var data = res?.result[0]
+                $("#pushMosiacImage img").attr("src", data?.imagepath);
+                $(".p1Class").empty().append(data?.imagename);
+                $(".p2Class").empty().append(data?.caption);
+                $(".p3Class").empty().append(data?.tags);
+                $("#fullScreenModal").fadeIn()
+              },
+              error: function (err) {
+                toastr["error"](err?.responseJSON?.message);
+              },
+            })
+          }
+
+          function closePop() {
+            $("#zoomPopView").fadeOut()
+            $("#infoBlock,#fullScreenModal,#carouselDiv").fadeOut()
+            $("#pushMosiacImage img").attr("src", "")
+            $("#searchInput").val('');
+          }
+        </script>
+      </div>
+    </div>
+    <script>
+    </script> <!-- If needed for dynamic functionality -->
+</body>
+
+</html>

@@ -1,0 +1,404 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- <title>Bootstrap demo</title> -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <link rel="stylesheet" href="./css/style.css">
+  <link href="css/toaster.css" rel="stylesheet" />
+  <script src="https://kit.fontawesome.com/61e466f6b8.js" crossorigin="anonymous"></script>
+  <script src="js/jquery.js"></script>
+  <script src="js/toaster.js"></script>
+
+  <style>
+    body {
+      overflow-x: hidden;
+    }
+
+    .square-image {
+      width: 100%;
+      height: 0;
+      padding-top: 100%;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .square-image img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .post-like {
+      bottom: 10px;
+      left: 10px;
+    }
+
+    /* Optional: Adding some hover effects */
+    .square-image:hover .post-like {
+      opacity: 1;
+    }
+
+    .bd-placeholder-wrapper {
+      position: relative;
+      width: 150px;
+      height: 150px;
+    }
+
+    .bd-placeholder-wrapper input {
+      position: absolute;
+      top: 0px;
+      left: 0px;
+      width: 150px;
+      height: 150px;
+      opacity: 0;
+
+    }
+
+    .bd-placeholder-img {
+      position: absolute;
+      width: 150px;
+      height: 150px;
+    }
+
+    .bd-placeholder-wrapper .image-edit-icon {
+      position: absolute;
+      width: 150px;
+      height: 150px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 35px;
+      border-radius: 50%;
+      background-color: rgba(0, 0, 0, 0.6);
+      color: #fff;
+      opacity: 0;
+      z-index: 1;
+    }
+
+    .bd-placeholder-wrapper .image-edit-icon:hover {
+      opacity: 1;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="w-100">
+    <i class="fa-solid fa-chevron-left pt-3 px-3" onclick="back()" style="font-size: 25px;" aria-hidden="true"></i>
+  </div>
+  <div class="row p-3">
+    <div class="col-lg-12 d-flex flex-column align-items-center">
+      <div class="bd-placeholder-wrapper">
+        <img class="bd-placeholder-img rounded-circle" id="profile-img" src="images/user.png" width="150" height="150"
+          class="avatar">
+        <div class="image-edit-icon">
+          <i class="fa-solid fa-pen-to-square"></i>
+          <input type="file" id="imageInput" accept="image/*">
+        </div>
+      </div>
+      <h2 class="h5 my-2 fw-bolder" id="profile-name">User</h2>
+      <div class="d-flex gap-2 profile-details">
+        <button class="border-0 bg-transparent d-flex gap-1 align-items-center" id="like-btn">
+          <i class="fa-regular fa-heart p-1" style="font-size: 20px;"></i>
+          <p class="fw-semibold mb-0 px-1" id="profile-like">0</p>
+        </button>
+        <button class="border-0 bg-transparent d-flex gap-1 align-items-center" id="profile-btn"
+          onclick="openCommunity()">
+          <i class="fa-regular fa-user p-1" style="font-size: 20px;"></i>
+          <p class="fw-semibold mb-0 px-1" id="profile-follow">0</p>
+        </button>
+      </div>
+
+      <!-- Ṭabs -->
+      <div class="container mt-4">
+        <ul class="nav nav-tabs row profile-tabs" id="myTab" role="tablist">
+          <li class="col-6 nav-item px-0" role="presentation">
+            <a class="nav-link text-center border-0 active" id="posts" data-bs-toggle="tab" href="#home" role="tab"
+              aria-controls="home" aria-selected="true">Uploaded Images</a>
+          </li>
+          <li class="col-6 nav-item px-0" role="presentation">
+            <a class="nav-link text-center border-0" id="carousals" data-bs-toggle="tab" href="#profile" role="tab"
+              aria-controls="profile" aria-selected="false">Saved Carousels</a>
+          </li>
+        </ul>
+        <div class="tab-content" id="myTabContent">
+          <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="posts">
+            <div class="row g-2" id="posts-wrapper">
+              <div class="col-12 d-flex justify-content-center align-items-center flex-column fw-bolder"
+                style="height: 300px;font-size: 24px;">
+                <i class="fa-regular fa-image" style="font-size: 70px;margin-bottom: 20px;"></i>
+                <p>No images uploaded yet.</p>
+              </div>
+            </div>
+          </div>
+          <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="carousals">
+            <div class="row carousal-grid" id="carousal-wrapper">
+              <div class="col-12 d-flex justify-content-center align-items-center flex-column fw-bolder"
+                style="height: 300px;font-size: 24px;">
+                <i class="fa-regular fa-image" style="font-size: 70px;margin-bottom: 20px;"></i>
+                <p>No carousals uploaded yet.</p>
+              </div>
+              <!-- <div class="col-6 position-relative">
+                <div class="row">
+                  <div class="col-4 px-0 position-relative">
+                    <img class="w-100" src="images/johnDeo.jpg" alt="Image 1">
+                  </div>
+                  <div class="col-4 px-0 position-relative">
+                    <img class="w-100" src="images/johnDeo.jpg" alt="Image 1">
+                  </div>
+                  <div class="col-4 px-0 position-relative">
+                    <img class="w-100" src="images/johnDeo.jpg" alt="Image 1">
+                  </div>
+                  <div class="col-4 px-0 position-relative">
+                    <img class="w-100" src="images/johnDeo.jpg" alt="Image 1">
+                  </div>
+                  <div class="col-4 px-0 position-relative">
+                    <img class="w-100" src="images/johnDeo.jpg" alt="Image 1">
+                  </div>
+                  <div class="col-4 px-0 position-relative">
+                    <img class="w-100" src="images/johnDeo.jpg" alt="Image 1">
+                  </div>
+                  <div class="col-4 px-0 position-relative">
+                    <img class="w-100" src="images/johnDeo.jpg" alt="Image 1">
+                  </div>
+                  <div class="col-4 px-0 position-relative">
+                    <img class="w-100" src="images/johnDeo.jpg" alt="Image 1">
+                  </div>
+                  <div class="col-4 px-0 position-relative">
+                    <img class="w-100" src="images/johnDeo.jpg" alt="Image 1">
+                  </div>
+                </div>
+                <div class="border-0 bg-transparent d-flex align-items-center position-absolute carousal-like">
+                  <i class="fa-regular fa-heart p-1"></i>
+                  <p class="fw-semibold mb-0 px-1">76</p>
+                </div>
+                <div class="row">
+                  <div class="col-12 px-0">
+                    <p class="text-center p-1 carousal-name">Devid</p>
+                  </div>
+                </div>
+              </div> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div><!-- /.col-lg-4 -->
+  </div>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+    crossorigin="anonymous"></script>
+
+  <script>
+    let userId = localStorage.getItem("userId");
+    if (userId != null) {
+      document.getElementById("profile-btn").disabled = false;
+      document.getElementById("like-btn").disabled = false;
+    } else {
+      window.location.href = "./signIn.html";
+      document.getElementById("profile-btn").disabled = true;
+      document.getElementById("like-btn").disabled = true;
+    }
+
+    function openImagePop() {
+      let userId = localStorage.getItem("userId");
+
+      if (userId != null) {
+
+        var req = {
+          "userid": userId
+        }
+
+        $.ajax({
+          url: 'https://2024api.icons4good.com/getUserDetails',
+          data: JSON.stringify(req),
+          async: false,
+          contentType: "application/json",
+          type: 'post',
+          success: function (res) {
+            if (res.statusCode) {
+              // Safely extract properties using optional chaining and destructuring
+              const { details, detailsResponses } = res?.result || {};
+
+              if (details) {
+                // Update profile elements with default values in case of null or undefined
+                $("#profile-img").attr("src", details?.userimage || "images/johnDeo.jpg");
+                $("#profile-name").text(details?.name || "Anonymous");
+                $("#profile-like").text(details?.likecnt || 0);
+                $("#profile-follow").text(details?.followercnt || 0);
+
+                // Initialize imageText using map and join for better readability and efficiency
+                const imageText = (detailsResponses || []).map(element => {
+                  const { imagename, imagepath, likecnt } = element || {};
+                  const imageId = imagename?.imageid || 0; // Use 0 or any fallback value
+                  const imageAlt = imagename || "Image";
+
+                  return `
+                    <div class="col-4 px-0 position-relative" onclick="openImagePop(${imageId})">
+                      <div class="square-image">
+                        <img src="${imagepath || 'images/johnDeo.jpg'}" alt="${imageAlt}">
+                        <div class="border-0 bg-transparent d-flex align-items-center position-absolute post-like">
+                          <i class="fa-regular fa-heart p-1" aria-hidden="true"></i>
+                          <p class="fw-semibold mb-0 px-1">${likecnt}</p>
+                        </div>
+                      </div>
+                    </div>
+                  `;
+                }).join('');
+
+                // Append generated HTML to the DOM
+                $("#posts-wrapper").html(imageText);
+              }
+            }
+          },
+          error: function (err) {
+            toastr["error"](err?.responseJSON?.message);
+          },
+        });
+
+        $.ajax({
+          url: 'https://2024api.icons4good.com/getCarousel',
+          data: JSON.stringify(req),
+          async: false,
+          contentType: "application/json",
+          type: 'post',
+          success: function (res) {
+
+            if (res?.statusCode) {
+              // Safely extract properties using optional chaining and destructuring
+              const result = res?.result || [];
+
+              if (result.length > 0) {
+                // Using template literals for better readability
+                let carousalHtml = ``;
+
+                // Loop through the result array
+                result.forEach((element) => {
+                  if (element.status === "Active") {
+                    // Improved JSON parsing with error handling
+                    let carousalData;
+                    try {
+                      carousalData = JSON.parse(JSON.parse(element.searchresponse));
+                    } catch (error) {
+                      console.error("Error parsing search response:", error);
+                      return; // Skip this iteration if parsing fails
+                    }
+
+                    if (carousalData?.statusCode && Array.isArray(carousalData.result)) {
+
+                      // Using map and join to construct HTML for carousal images
+                      const carousalImages = carousalData.result
+                        .slice(0, 9) // Take only the first 9 elements
+                        .map(
+                          (imgElement) => `
+                              <div class="col-4 px-0 position-relative">
+                                <div class="square-image">
+                                  <img class="w-100" src="${imgElement.imagepath}" alt="Image">
+                                </div>
+                              </div>`
+                        )
+                        .join("");
+
+                      // Concatenate the carousal HTML
+                      carousalHtml += `
+                          <div class="col-6 position-relative" onclick="openCarousal(${element.id})">
+                            <div class="row">
+                              ${carousalImages}
+                            </div>
+                            <div class="row">
+                              <div class="col-12 px-0">
+                                <p class="text-center p-1 carousal-name">${element.carouselname}</p>
+                              </div>
+                            </div>
+                          </div>`;
+                    }
+                  }
+                });
+
+                // Update the DOM outside of the loop for performance
+                $("#carousal-wrapper").html(carousalHtml);
+              }
+            }
+          },
+          error: function (err) {
+            toastr["error"](err?.responseJSON?.message);
+          },
+        });
+      }
+    }
+
+    openImagePop();
+
+    function openCarousal(id) {
+      window.location.href = `mosiac.html?caraousal=${id}`;
+    }
+
+    function back() {
+      window.location.href = "./";
+    }
+
+    function openCommunity() {
+      window.location.href = "community.html";
+    }
+
+    document.getElementById('imageInput').onchange = function (event) {
+      // Get the selected file
+      var file = event.target.files[0];
+
+      // Call the function to handle the selected file
+      handleImageFile(file);
+    };
+
+    function handleImageFile(file) {
+      // Perform operations with the selected file
+      console.log('Selected file:', file);
+
+      // Display the selected image
+      var reader = new FileReader();
+      reader.onload = function (e) {
+        document.getElementById("profile-img").src = e.target.result;
+      };
+      reader.readAsDataURL(file);
+
+      // Prepare the form data to send
+      var formData = new FormData();
+      formData.append('image', file);
+
+      // Send the image to the server using AJAX
+      $.ajax({
+        url: `http://3.79.249.97:8081/addUserImage?userid=${userId}`,
+        data: formData,
+        async: false,
+        contentType: false, // Important to set contentType to false for FormData
+        processData: false, // Don't process the files
+        type: 'post',
+        success: function (res) {
+          // console.log("res");
+          // console.log(res);
+
+          if (res.statusCode) {
+            toastr["success"]("Image uploaded successfully.");
+          } else {
+            toastr["error"](res.message);
+          }
+
+        },
+        error: function (err) {
+          toastr["error"](err?.responseJSON?.message || "Image upload failed.");
+        },
+      });
+    }
+
+
+  </script>
+</body>
+
+</html>

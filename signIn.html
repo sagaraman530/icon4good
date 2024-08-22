@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="css/bootstrapv5.3.1.css" rel="stylesheet" />
+    <link href="css/bootstrapv3.1.4.css" rel="stylesheet" />
+    <link href="css/style.css" rel="stylesheet" />
+    <link href="css/toaster.css" rel="stylesheet" />
+    <script src="js/jquery.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script src="js/toaster.js"></script>
+
+    <script src="js/common.js"></script>
+    <style>
+      .social-login-btns {
+        display: flex;
+        justify-content: space-around;
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .social-login-btns button {
+        width: 100%;
+        color: white;
+        padding: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 6px;
+        height: 42px;
+        border: none;
+        border-radius: 5px;
+      }
+
+      .social-login-btns button img {
+        width: 20px;
+      }
+
+      .apple-btn {
+        background-color: black;
+      }
+
+      .google-btn {
+        background-color: #4285f5;
+      }
+
+      .facebook-btn {
+        background-color: #3c5a95;
+      }
+
+      .social-login-btns button.google-btn img {
+        background: #ffffff;
+        padding: 3px;
+        border-radius: 10px;
+      }
+    </style>
+
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-firestore.js"></script>
+  </head>
+
+  <body>
+    <div class="px-2 pt-4">
+      <div class="px-4 pb-2">
+        <h4 class="fw-medium text-center mt-5 signUpsubsLabel">Subscription</h4>
+        <div class="social-login-btns">
+          <!-- <button onclick="appleSignIn()" class="apple-btn">
+          <img src="./images/apple-white.png" alt="Apple Img">
+          <span>Continue with Apple</span>
+        </button> -->
+          <button onclick="googleSignIn()" class="google-btn">
+            <img src="./images/google-logo.png" alt="Google Img" />
+            <span>Continue with Google</span>
+          </button>
+          <button onclick="facebookSignIn()" class="facebook-btn">
+            <img src="./images/facebook-logo.png" alt="Facebook Img" />
+            <span>Continue with Facebook</span>
+          </button>
+        </div>
+      </div>
+    </div>
+    <script>
+      $(document).ready(function () {
+        changeLanguage();
+      });
+      var storedData = JSON.parse(localStorage.getItem("storedData"));
+      function submit(type, data) {
+        var req = {};
+        if (type === "new") {
+          var userName = $("#userName").val();
+          var password = $("#password").val();
+
+          if (userName == "" || userName == "undefined") {
+            toastr["error"]("Please enter first User Name.");
+            $("#userName").focus();
+            return false;
+          }
+
+          if (password == "" || password == "undefined") {
+            toastr["error"]("Please enter password.");
+            $("#password").focus();
+            return false;
+          }
+          req = {
+            username: userName,
+            password: password,
+          };
+        }
+
+        if (type === "google.com" || type === "facebook.com") {
+          req = {
+            username: data?.email,
+            password: data?.token,
+          };
+        }
+
+        $.ajax({
+          url: "https://apilove.icons4good.com/userlogin",
+          data: JSON.stringify(req),
+          async: false,
+          contentType: "application/json",
+          type: "post",
+          success: function (res) {
+            if (res?.statusCode === 0) {
+              toastr["error"](res?.message);
+            } else {
+              var storedData = JSON.parse(localStorage.getItem("storedData"));
+              localStorage.setItem("userId", res?.result[0]?.userid);
+              if (storedData?.ispaid === "0") {
+                setTimeout(function () {
+                  window.location.replace("/mosiac_second.html");
+                }, 2000);
+              }
+              if (storedData?.ispaid === "1") {
+                var paymentFlag = res?.result.find(
+                  (e) => e.location == storedData?.id
+                );
+                if (paymentFlag) {
+                  setTimeout(function () {
+                    window.location.replace("/mosiac_second.html");
+                  }, 2000);
+                } else {
+                  setTimeout(function () {
+                    window.location.replace("/payment.html");
+                  }, 2000);
+                }
+              }
+              toastr["success"](res?.message);
+            }
+          },
+          error: function (err) {
+            window.location.replace("/mosiac_second.html");
+            // toastr["error"](err?.responseJSON?.message);
+          },
+        });
+      }
+
+      function closePop() {
+        window.location.href = "mosiac.html";
+      }
+    </script>
+
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-app.js";
+      import {
+        getFirestore,
+        doc,
+        setDoc,
+      } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-firestore.js";
+      import {
+        getAuth,
+        GoogleAuthProvider,
+        signInWithPopup,
+        OAuthProvider,
+        FacebookAuthProvider,
+      } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-auth.js";
+
+      var storedData = JSON.parse(localStorage.getItem("storedData"));
+
+      // Firebase configuration
+      const firebaseConfig = {
+        // apiKey: "AIzaSyBz7Aa49DHgYU1YTXCjCkT8R31V5Ypx9go",
+        // authDomain: "mosaicprc-bd05b.firebaseapp.com",
+        // projectId: "mosaicprc-bd05b",
+        // storageBucket: "mosaicprc-bd05b.appspot.com",
+        // messagingSenderId: "324205703135",
+        // appId: "1:324205703135:web:e57e3f60bd97f22d3b9e6a",
+        // measurementId: "G-EFDN5ZJ8QV"
+
+        apiKey: "AIzaSyA7JO9A6aVxHFdeya7vRKe9O0jkW60Hw-Y",
+        authDomain: "icon4good.firebaseapp.com",
+        projectId: "icon4good",
+        storageBucket: "icon4good.appspot.com",
+        messagingSenderId: "385203692054",
+        appId: "1:385203692054:web:362d29fd1819b05f9e8b37",
+        measurementId: "G-055FXV5W1B",
+      };
+
+      //........................Firebase initiliazation begains from here .............
+      const app = initializeApp(firebaseConfig);
+      const db = getFirestore(app);
+      const auth = getAuth(app);
+
+      window.googleSignIn = function () {
+        const provider = new GoogleAuthProvider();
+        signInWithPopup(auth, provider)
+          .then((result) => {
+            handleSignIn(result);
+          })
+          .catch((error) => {
+            console.error("Google Sign-In Error: ", error.message);
+          });
+      };
+
+      window.appleSignIn = function () {
+        const provider = new OAuthProvider("apple.com");
+        signInWithPopup(auth, provider)
+          .then((result) => {
+            handleSignIn(result);
+          })
+          .catch((error) => {
+            console.error("Apple Sign-In Error: ", error.message);
+          });
+      };
+
+      window.facebookSignIn = function () {
+        const provider = new FacebookAuthProvider();
+        signInWithPopup(auth, provider)
+          .then((result) => {
+            handleSignIn(result);
+          })
+          .catch((error) => {
+            console.error("Facebook Sign-In Error: ", error.message);
+          });
+      };
+
+      function handleSignIn(result) {
+        const user = result.user;
+        const userData = {
+          name: user.displayName,
+          email: user.email,
+          uid: user.uid,
+          provider: result.providerId,
+        };
+        // storeUserData(userData);
+        handleCredentialResponse2(userData);
+      }
+
+      function handleCredentialResponse2(response) {
+        var req = {
+          email: response?.email,
+          name: response?.name,
+          token: response?.uid,
+        };
+
+        $.ajax({
+          url: "https://apilove.icons4good.com/getSocialData",
+          data: JSON.stringify(req),
+          async: false,
+          contentType: "application/json",
+          type: "post",
+          success: function (res) {
+            if (res?.statusCode === 0) {
+              toastr["error"](res?.message);
+            } else {
+              // submit('google', req);
+              submit(response?.provider, req);
+            }
+          },
+          error: function (err) {
+            toastr["error"](err?.responseJSON?.message);
+          },
+        });
+      }
+
+      // function storeUserData(userData) {
+      //   let { email, name, uid } = userData;
+
+      //   var req = {
+      //     "email": email,
+      //     "name": name,
+      //     "password": uid
+      //   }
+
+      //   $.ajax({
+      //     url: 'https://2024api.icons4good.com/signup',
+      //     data: JSON.stringify(req),
+      //     async: false,
+      //     contentType: "application/json",
+      //     type: 'post',
+      //     success: function (res) {
+      //       toastr["success"]("Data Submited Successfully.");
+      //       setTimeout(function () {
+      //         login(email, uid);
+      //       }, 2000);
+      //     },
+      //     error: function (err) {
+      //       toastr["error"](err?.responseJSON?.message);
+      //     },
+      //   })
+
+      //   const userDoc = doc(db, "users", userData.uid);
+      //   setDoc(userDoc, userData)
+      //     .then(() => {
+      //       console.log("User data stored successfully");
+      //       // window.location.href = "index.html";
+      //     })
+      //     .catch((error) => {
+      //       console.error("Error storing user data: ", error);
+      //     });
+
+      // }
+
+      function login(userName, password) {
+        var req = {
+          username: userName,
+          password: password,
+        };
+
+        $.ajax({
+          url: "https://apilove.icons4good.com/userlogin",
+          data: JSON.stringify(req),
+          async: false,
+          contentType: "application/json",
+          type: "post",
+          success: function (res) {
+            if (res?.statusCode === 0) {
+              toastr["error"](res?.message);
+            } else {
+              localStorage.setItem("userId", res?.result[0]?.userid);
+              if (storedData?.ispaid === "N") {
+                setTimeout(function () {
+                  // window.location.replace("/mosiac_second.html");
+                }, 2000);
+              }
+              if (storedData?.ispaid === "Y") {
+                var paymentFlag = res?.result.find(
+                  (e) => e.location == storedData?.id
+                );
+                if (paymentFlag) {
+                  setTimeout(function () {
+                    // window.location.replace("/mosiac_second.html");
+                  }, 2000);
+                } else {
+                  setTimeout(function () {
+                    // window.location.replace("/payment.html");
+                  }, 2000);
+                }
+              }
+              toastr["success"](res?.message);
+              window.location.replace("/thank.html");
+            }
+          },
+          error: function (err) {
+            toastr["error"](err?.responseJSON?.message);
+          },
+        });
+      }
+    </script>
+  </body>
+</html>

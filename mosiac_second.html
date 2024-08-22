@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="css/bootstrapv5.3.1.css" rel="stylesheet">
+  <link href="css/bootstrapv3.1.4.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+  <link href="css/toaster.css" rel="stylesheet">
+  <script src="js/jquery.js"></script>
+  <script src="js/bootstrap.js"></script>
+  <script src="js/toaster.js"></script>
+  <script src="js/LZ4.js"></script>
+  <script src="js/common.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
+    integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <style>
+    .bottomBtns {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      background-color: #fff;
+    }
+
+    .btn-default {
+      border-color: #FA3737;
+      width: 100%;
+      background-color: #FA3737;
+      color: #fff;
+      font-size: 14px;
+
+    }
+
+    .w-20px {
+      width: 20px;
+    }
+
+
+    .thing {
+      width: unset !important;
+    }
+
+
+    #otherthing {
+      text-align: center;
+      background-color: #fff;
+      border: 2px solid #222;
+      padding: 20px;
+      display: none;
+      position: absolute;
+      bottom: 0;
+    }
+
+
+
+    .crossThing {
+      position: absolute;
+      right: 0;
+      top: 0;
+      left: 0;
+      width: 100% !important;
+      background: #fa3737;
+      border-radius: 0;
+      color: #fff;
+    }
+
+    .uploadBlock {
+      background-color: #d2e1e4;
+      border-radius: 5px;
+      padding: 3em;
+      margin-top: 3em;
+
+    }
+
+    .bottomBtns {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      background-color: #fff;
+    }
+
+    .btn-default {
+      border-color: #FA3737;
+      width: 100%;
+      background-color: #FA3737;
+      color: #fff;
+      font-size: 14px;
+    }
+
+    .w-30px {
+      width: 30px;
+    }
+
+    .card {
+      background: transparent;
+      border-radius: 8px;
+      padding: 0px !important;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      position: absolute;
+      top: 10%;
+      display: none;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: #000000c9;
+    }
+
+    /* Styles for icons */
+    .icon {
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      margin-right: 8px;
+      vertical-align: middle;
+    }
+
+    .cancel-icon {
+      cursor: pointer;
+    }
+
+    /* Styles for data */
+    .data {
+      margin-top: 0px !important;
+      background: #fff;
+      padding: 4em;
+    }
+
+
+    .thing {
+      width: unset !important;
+    }
+
+    #otherthing {
+      text-align: center;
+      background-color: #fff;
+      border: 2px solid #222;
+      padding: 20px;
+      display: none;
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+    }
+
+
+
+    .crossThing {
+      position: absolute;
+      right: 0;
+      top: 0;
+      left: 0;
+      width: 100% !important;
+      background: #fa3737;
+      border-radius: 0;
+      color: #fff;
+    }
+
+    .icon {
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      margin-right: 8px;
+      vertical-align: middle;
+    }
+
+    .cancel-icon i {
+      cursor: pointer;
+      font-size: 28px;
+      color: #000 !important;
+      float: right;
+      right: 6px !important;
+      top: 0 !important;
+    }
+
+    .card .mb-4 {
+      margin-bottom: 1.5rem !important;
+      background: #fff;
+      border-radius: 8px;
+      padding: 20px 30px;
+    }
+
+    .data,
+    .data2 {
+      margin-top: 40px;
+      font-weight: 700;
+    }
+
+    .cancel-icon i {
+      cursor: pointer;
+      font-size: 28px;
+      color: #fff;
+      float: right;
+      cursor: pointer;
+    }
+
+    .backCls {
+      background-repeat: round;
+      height: 100vh;
+    }
+
+    .drop-zone {
+      max-width: 200px;
+      height: 150px;
+      padding: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      font-family: "Quicksand", sans-serif;
+      font-weight: 500;
+      font-size: 20px;
+      cursor: pointer;
+      color: #000000;
+      border: 2px dashed #000000;
+      border-radius: 10px;
+      background: #f3f1f1;
+      margin: 15px;
+      height: 8em;
+      width: 39%;
+    }
+
+    .drop-zone--over {
+      border-style: solid;
+    }
+
+    .drop-zone__input {
+      display: none !important;
+    }
+
+    .drop-zone__thumb {
+      width: 100%;
+      height: 100%;
+      border-radius: 10px;
+      overflow: hidden;
+      background-color: #cccccc;
+      background-size: cover;
+      position: relative;
+    }
+
+    .drop-zone__thumb::after {
+      content: attr(data-label);
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      padding: 5px 0;
+      color: #ffffff;
+      background: rgba(0, 0, 0, 0.75);
+      font-size: 14px;
+      text-align: center;
+    }
+
+
+
+    hr {
+      border-top: 1px solid #cccccc;
+    }
+
+    .example-container {
+      width: 50%;
+      margin: 30px auto;
+      font-family: "Source Sans Pro";
+    }
+
+    .chip-container {
+      border: 1px solid #cccccc;
+      width: 100%;
+      padding: 10px;
+      background: #ffffff;
+      font-family: "Roboto";
+    }
+
+    .chip-container .basic-chip a {
+      color: inherit;
+    }
+
+    .chip-title {
+      padding: 20px 10px;
+      font-size: 14px;
+    }
+
+    .basic-chip {
+      padding: 5px 10px;
+      border-radius: 50px;
+      display: inline-flex;
+      margin: 5px;
+    }
+
+    .click-chip,
+    .click-chip-hover {
+      padding: 5px 10px;
+      border-radius: 50px;
+      display: inline-flex;
+      margin: 5px;
+      cursor: pointer;
+    }
+
+    .click-chip-hover:hover {
+      filter: brightness(85%);
+    }
+
+    .outline {
+      border: 1.5px solid #000;
+      color: #000;
+      outline: none;
+    }
+
+    .icon {
+      /*background: #bdbdbd;*/
+      color: #616161;
+      margin: 0px 5px 0px -5px;
+      background: #bbbbbb;
+      padding: 2px;
+      border-radius: 50px;
+    }
+
+    .fa-times,
+    .fa-times-circle {
+      margin: 0px -5px 0px 5px;
+    }
+
+    .backClsWhite {
+      background-color: #fff;
+      border-radius: 10px;
+      padding: 10px;
+      margin-top: 10px;
+    }
+
+    .textAreaCls {
+      padding: 8px;
+      background-color: #ddd;
+      border-radius: 12px 12px 0px 0px;
+      font-weight: bold;
+
+    }
+
+    .btn-cancel {
+      margin-top: 10px;
+      color: #000;
+      background-color: #fff;
+      border-color: #ccc;
+      border-radius: 20px;
+      float: left;
+      width: 40%;
+    }
+
+    .btn-submit {
+      margin-top: 10px;
+      color: #000;
+      background-color: #FFD600;
+      border-color: #FFD600;
+      border-radius: 20px;
+      float: right;
+    }
+
+
+    .paymentBtnBlock {
+      padding: 24px;
+      text-align: center;
+      background: #ddd;
+      border-radius: 8px;
+    }
+
+    .paymentBtnBlock div {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #fff;
+      border-radius: 8px;
+    }
+
+    .paymentBtnBlock span {
+      font-size: 30px;
+      margin-top: 11px;
+      margin-right: 10px;
+    }
+
+
+
+    .md-chip {
+      display: inline-block;
+      background: #e0e0e0;
+      padding: 0 12px;
+      border-radius: 32px;
+      font-size: 13px;
+
+      &.md-chip-hover:hover {
+        background: #ccc;
+      }
+    }
+
+    .md-chip-clickable {
+      cursor: pointer;
+    }
+
+    .md-chip,
+    .md-chip-icon {
+      height: 32px;
+      line-height: 32px;
+    }
+
+    .md-chip-icon {
+      display: block;
+      float: left;
+      background: #009587;
+      width: 32px;
+      border-radius: 50%;
+      text-align: center;
+      color: white;
+      margin: 0 8px 0 -12px;
+    }
+
+    .md-chip-remove {
+      display: inline-block;
+      background: #aaa;
+      border: 0;
+      height: 20px;
+      width: 20px;
+      border-radius: 50%;
+      padding: 0;
+      margin: 0 -4px 0 4px;
+      cursor: pointer;
+      font: inherit;
+      line-height: 20px;
+
+      &:after {
+        color: #e0e0e0;
+        content: 'x';
+      }
+
+      &:hover {
+        background: #999;
+      }
+
+      &:active {
+        background: #777;
+      }
+    }
+
+    .md-chips {
+      padding: 12px 0;
+
+      .md-chip {
+        margin: 0 5px 3px 0;
+      }
+    }
+
+    .md-chip-raised {
+      box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
+    }
+
+
+    input[type="checkbox"] {
+      display: none;
+    }
+
+
+    input[type="checkbox"]:checked+label {
+      -webkit-transition: all 500ms ease;
+      transition: all 500ms ease;
+      background-color: #1579b3;
+      color: white;
+      border-color: #fc6c27;
+    }
+  </style>
+</head>
+
+<body class="backCls" style="background:#ddd;">
+  <div class="container mt-4 ">
+    <div class="d-flex align-items-center backClsWhite">
+      <div class="drop-zone">
+        <span class="drop-zone__prompt mosiacSecondUploadBtn">
+          <img src="images/Vector.png" onclick="closePop()" style="width: 40px;" alt="Image 1" />
+          <br>
+          Upload a Photo
+        </span>
+        <input type="file" name="myFile" id="photo" class="drop-zone__input">
+        <canvas id="canvas" width=100 height=100 style="display: none;"></canvas>
+      </div>
+      <p>or</p>
+      <div class="drop-zone" style="opacity: .5;pointer-events: none;">
+        <span class="drop-zone__prompt mosiacSecondUploadBtn2">
+          <img src="images/Youtube.png" onclick="closePop()" style="width: 40px;" lt="Image 1" /><br>
+          Embed a Youtube Video
+        </span>
+        <input type="file" name="myFile" class="drop-zone__input">
+      </div>
+    </div>
+
+    <div class="backClsWhite ">
+      <div class="text-center textAreaCls mosiacSecondCaptionHead">Write a caption for your upload</div>
+      <textarea rows="10" id="caption" style="width: 100%;" id="comment_text" cols="45" class="ui-autocomplete-input"
+        autocomplete="off" role="textbox" aria-autocomplete="list" aria-haspopup="true"></textarea>
+    </div>
+
+    <div class="backClsWhite">
+      <section>
+        <div class="text-center textAreaCls mosiacSecondTagHead">Select Tags For Your Upload</div>
+        <div class="md-chips">
+          <input type="checkbox" name="tags" value="#paris" id="1">
+          <label for="1" class="md-chip md-chip-clickable md-chip-hover">#paris</label>
+          <input type="checkbox" name="tags" value="#love" id="2">
+          <label for="2" class="md-chip md-chip-clickable md-chip-hover">#love</label>
+          <input type="checkbox" name="tags" value="#Friendship" id="3">
+          <label for="3" class="md-chip md-chip-clickable md-chip-hover">#Friendship</label>
+          <input type="checkbox" name="tags" value="#Travel" id="4">
+          <label for="4" class="md-chip md-chip-clickable md-chip-hover">#Travel</label>
+          <input type="checkbox" name="tags" value="#Games" id="5">
+          <label for="5" class="md-chip md-chip-clickable md-chip-hover">#Games</label>
+          <input type="checkbox" name="tags" value="#Peace" id="6">
+          <label for="6" class="md-chip md-chip-clickable md-chip-hover">#Peace</label>
+        </div>
+
+      </section>
+    </div>
+  </div>
+  <div class="card" id="uploadModal">
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+      <img src="images/Overlay.png" onclick="closePop()" style="width: 40px;    margin-top: 2.3em;" alt="Image 1" />
+    </button>
+
+    <!-- <h4>Εξερεύνησε το μωσαϊκό
+      </h4> -->
+
+    <div class="data uploadBlock">
+      <div class="row">
+        <div class="text-center">
+          <img src="images/thankYou.png" onclick="closePop()" class="w-5opx" lt="Image 1" />
+          <p class="">for adding your image or video to the mosaic. It will soon be visible and remain for 24
+          hours. <br><br>If you want your image or video to remain findable permanently then contribute to the mosaic to
+          become a mosaic supporter
+          </p>
+        </div>
+        <div class="paymentBtnBlock">
+          <p>Be visible in the Mosaic and support responsible graffiti movement of Athens.</p>
+          <div>
+            <span>2€</span>
+            <button type="button" class="btn btn-submit " id="btnClicked" onclick="addPayment()">Make a Payment</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container-fluid">
+    <button type="button" class="btn btn-cancel mosiacSecondCancelBtn mr-2">Cancel</button>
+    <button type="button" class="btn btn-submit mosiacSecondAddPhotoBtn" id="btnClicked"
+      onclick="addPhoto()">Submit</button>
+  </div>
+</body>
+
+<script>
+  $(document).ready(function () {
+    changeLanguage();
+  })
+
+  $(".thing").click(function () {
+    $("#otherthing").slideToggle("slow");
+  });
+
+  function openPop() {
+    $("#uploadModal").fadeIn()
+  }
+
+  var ctx = canvas.getContext("2d");
+  var cw = canvas.width;
+  var ch = canvas.height;
+  var maxW = 100;
+  var maxH = 100;
+  var base64;
+  var files;
+  var input = document.getElementById('photo');
+  var output = document.getElementById('file_output');
+  input.addEventListener('change', handleFiles);
+
+  function handleFiles(e) {
+    files = e.target.files[0];
+    var img = new Image;
+    img.onload = function () {
+      var iw = img.width;
+      var ih = img.height;
+      var scale = Math.min((maxW / iw), (maxH / ih));
+      var iwScaled = iw * scale;
+      var ihScaled = ih * scale;
+      canvas.width = iwScaled;
+      canvas.height = ihScaled;
+      ctx.drawImage(img, 0, 0, iwScaled, ihScaled);
+      console.log(canvas.toDataURL("image/jpeg", 0.5))
+      base64 = canvas.toDataURL("image/jpeg", 0.5)
+    }
+    img.src = URL.createObjectURL(e.target.files[0]);
+  }
+
+  var storedData = JSON.parse(localStorage.getItem('storedData'));
+  let userId = localStorage.getItem('userId')
+  var src = storedData?.picturemosaiclink;
+  $("#mosiacId iframe").attr("src", src)
+  function map() {
+    window.location.href = "viewMap.html";
+  }
+
+  function addPhoto() {
+    var tagsArray = []
+    var checkboxes = document.getElementsByName('tags');
+    for (var i = 0, n = checkboxes.length; i < n; i++) {
+      if (checkboxes[i].checked === true) {
+        tagsArray.push(checkboxes[i].value)
+      }
+    }
+    const formData = new FormData();
+    var photo = base64
+    var caption = $("#caption").val();
+
+    // if(photo == "" || photo == "undefined"){
+    // 	toastr["error"]("Please upload photo.");
+    // 	$("#photo").trigger();
+    // 	return false;
+    // }
+    if (caption == "" || caption == "undefined") {
+      toastr["error"]("Please enter caption.");
+      $("#caption").focus();
+      return false;
+    }
+
+    // if(!tagsArray?.length == "" ){
+    // 	toastr["error"]("Please enter tags.");
+    // 	$("#tags").trigger();
+    // 	return false;
+    // }
+
+    formData.append('campaignid', storedData?.campaignsid);
+    formData.append('caption', caption);
+    formData.append('imagepath', files);
+    formData.append('locationid', storedData?.locationid);
+    formData.append('tags', JSON.stringify(tagsArray));
+    // formData.append('userid', 1);
+    formData.append('userid', userId);
+    formData.append('mosiacid', storedData?.mosiacid);
+
+    fetch('https://2024api.icons4good.com/addimage', { // Replace with your API endpoint
+      method: 'POST',
+      body: formData, // Use the FormData object directly
+      // Optional: If you need to send JSON, convert FormData to an object and stringify it
+      // headers: { 'Content-Type': 'application/json' },
+      // body: JSON.stringify(Object.fromEntries(formData))
+    }).then(response => {
+        if (response?.status === 200) {
+          toastr["success"]("image saved Successfully.");
+          window.location.href = "thank.html";
+        } else {
+          toastr["error"](err?.responseJSON?.message);
+        }
+    }).then(data => {
+        toastr["error"](err?.responseJSON?.message);
+    }).catch(error => {
+        toastr["error"](err?.responseJSON?.message);
+    });
+    //   $.ajax({
+    //   url:'https://2024api.icons4good.com/addimage',
+    //   data:formData,
+    //   async:false,
+    //   type:'post',
+    //   success: function (res) {
+    //     toastr["success"]("image saved Successfully.");
+    //     setTimeout(function() {
+    //       $("#uploadModal").fadeIn()
+    //                   }, 2000);
+    //   },
+    //   error: function (err) {
+    //     toastr["error"](err?.responseJSON?.message);
+    //   },
+    // })
+
+  }
+
+  function enableBtn() {
+
+    var val = $('#checkVal').is(':checked')
+    if (val) {
+      $("#btnClicked").attr("disabled", false)
+    } else {
+      $("#btnClicked").attr("disabled", true)
+    }
+
+
+  }
+
+  function closePop() {
+    $("#uploadModal").fadeOut()
+
+  }
+
+  function isFileAdded(formData, key) {
+    for (const [formKey, value] of formData.entries()) {
+      if (formKey === key && value instanceof File) {
+        return true;
+      }
+    }
+    return false;
+  }
+  function addPayment() {
+
+    window.location.href = "payment.html";
+  }
+  document.querySelectorAll(".drop-zone__input").forEach((inputElement) => {
+    const dropZoneElement = inputElement.closest(".drop-zone");
+
+    dropZoneElement.addEventListener("click", (e) => {
+      inputElement.click();
+    });
+
+    inputElement.addEventListener("change", (e) => {
+      if (inputElement.files.length) {
+        updateThumbnail(dropZoneElement, inputElement.files[0]);
+      }
+    });
+
+    dropZoneElement.addEventListener("dragover", (e) => {
+      e.preventDefault();
+      dropZoneElement.classList.add("drop-zone--over");
+    });
+
+    ["dragleave", "dragend"].forEach((type) => {
+      dropZoneElement.addEventListener(type, (e) => {
+        dropZoneElement.classList.remove("drop-zone--over");
+      });
+    });
+
+    dropZoneElement.addEventListener("drop", (e) => {
+      e.preventDefault();
+
+      if (e.dataTransfer.files.length) {
+        inputElement.files = e.dataTransfer.files;
+        updateThumbnail(dropZoneElement, e.dataTransfer.files[0]);
+      }
+
+      dropZoneElement.classList.remove("drop-zone--over");
+    });
+  });
+
+  /**
+   * Updates the thumbnail on a drop zone element.
+   *
+   * @param {HTMLElement} dropZoneElement
+   * @param {File} file
+   */
+  function updateThumbnail(dropZoneElement, file) {
+    let thumbnailElement = dropZoneElement.querySelector(".drop-zone__thumb");
+
+    // First time - remove the prompt
+    if (dropZoneElement.querySelector(".drop-zone__prompt")) {
+      dropZoneElement.querySelector(".drop-zone__prompt").remove();
+    }
+
+    // First time - there is no thumbnail element, so lets create it
+    if (!thumbnailElement) {
+      thumbnailElement = document.createElement("div");
+      thumbnailElement.classList.add("drop-zone__thumb");
+      dropZoneElement.appendChild(thumbnailElement);
+    }
+
+    thumbnailElement.dataset.label = file.name;
+
+    // Show thumbnail for image files
+    if (file.type.startsWith("image/")) {
+      const reader = new FileReader();
+
+      reader.readAsDataURL(file);
+      reader.onload = () => {
+        thumbnailElement.style.backgroundImage = `url('${reader.result}')`;
+      };
+    } else {
+      thumbnailElement.style.backgroundImage = null;
+    }
+  }
+</script>
+
+</body>
+</html>

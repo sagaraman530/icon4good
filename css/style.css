@@ -1,0 +1,381 @@
+.btn-default {
+  width: 100%;
+  color: #fff;
+  font-size: 15px;
+}
+@font-face {
+  font-family: Lexend;
+  src: url(/css/Lexend-VariableFont_wght.ttf);
+}
+body {
+  font-family: Lexend !important;
+}
+
+button[disabled],
+html input[disabled] {
+  cursor: default;
+  opacity: 0.3;
+}
+
+.w-20px {
+  width: 30px;
+}
+
+.bottomBtns {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: #fff;
+  display: none !important;
+}
+
+.colorCls {
+  color: #fa3737;
+}
+
+.colorBlack {
+  color: #000;
+}
+.mb-7 {
+  margin-bottom: 7rem;
+}
+.border-btn-blank {
+  border-radius: 10px !important;
+  background: #fff !important;
+  color: #000 !important;
+  width: 90%;
+  font-weight: 700;
+}
+.border-btn-fill {
+  border-radius: 10px;
+  background: #000000b5;
+  border: #000000b5;
+  width: 90%;
+  font-weight: 700;
+}
+
+.border-btn-blank-red {
+  /* border-radius: 30px !important; */
+  background: #ee0000 !important;
+  color: #fff !important;
+  width: 90%;
+  /* font-weight: 700; */
+}
+.border-btn-blank-white {
+  border-radius: 30px !important;
+  background: #fff !important;
+  color: #000 !important;
+  width: 90%;
+  font-weight: 700;
+}
+.height70vh {
+  height: 66vh;
+}
+/* Style for footer */
+footer {
+  position: fixed;
+  bottom: 15px;
+  left: 0;
+  width: 100%;
+  text-align: center;
+}
+
+footer div {
+  background-color: #000000a1;
+  margin: 0px 20px;
+  border-radius: 9px;
+}
+
+.footer-button-wrapper {
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+  gap: 5px;
+}
+/* Style for buttons */
+.footer-btn {
+  display: inline-block;
+  margin: 0 1px;
+  color: #000;
+  text-decoration: none;
+  padding: 8px 0;
+  border: none;
+  border-radius: 5px;
+  /* background-color: #F3F0E6; */
+}
+
+.footer-button-wrapper button {
+  display: flex;
+  flex-direction: column;
+  padding: 5px 20px;
+  align-items: center;
+  justify-content: center;
+  width: 70px;
+  background: #f0f0f0;
+}
+
+.footer-button-wrapper button .button-icon {
+  font-size: 18px;
+}
+
+.footer-button-wrapper button .button-text {
+  font-size: 16px;
+  font-weight: 900;
+}
+
+.footer-button-wrapper button:nth-child(2) {
+  width: 185px;
+  background-color: #f3f0e6;
+}
+
+.footer-btn img {
+  width: 100%;
+}
+
+.footer-btn:hover {
+  background-color: #777 !important;
+  color: #fff;
+}
+
+.disabled {
+  opacity: 0.8;
+}
+
+.disabled:hover {
+  background: #f0f0f0 !important;
+  color: #000;
+}
+
+.infoIconCls {
+  color: #fff;
+  font-size: 50px !important;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  cursor: pointer;
+}
+
+.selectLanguageCls {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  border-radius: 30px;
+  height: 45px;
+  z-index: 1;
+}
+
+.topBarCls {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.paraTopCLs {
+  font-size: 16px;
+  color: #fff;
+  margin-top: 25px;
+}
+
+.vectorImgCls1 {
+  position: absolute;
+  left: 1em;
+  top: 6em;
+}
+.vectorImgCls2 {
+  position: absolute;
+  right: 1em;
+  top: 6em;
+}
+.vectorImgCls3 {
+  position: absolute;
+  left: 1em;
+  bottom: 7em;
+}
+.vectorImgCls4 {
+  position: absolute;
+  right: 1em;
+  bottom: 7em;
+}
+
+.bottomBtnsCls {
+  position: absolute;
+  bottom: 5em;
+}
+
+.card {
+  background: transparent;
+  border-radius: 8px;
+  padding: 50px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  position: absolute;
+  top: 10%;
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+/* Styles for icons */
+.icon {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  margin-right: 8px;
+  vertical-align: middle;
+}
+.cancel-icon i {
+  cursor: pointer;
+  font-size: 28px;
+  color: #fff;
+  position: absolute;
+  right: 70px;
+  top: 178px;
+}
+.card .mb-4 {
+  margin-bottom: 1.5rem !important;
+  background: #fff;
+  border-radius: 8px;
+  padding: 20px 30px;
+}
+
+.data {
+  margin-top: 40px;
+  font-weight: 700;
+}
+
+.centerParaCLs-wrapper {
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.centerParaCLs-box {
+}
+
+.centerParaCLs {
+  text-align: center;
+  font-size: 40px;
+  padding: 8px;
+  background: #00000052;
+  /* margin: 180px 69px; */
+  color: #fff;
+  /* display: flex; */
+  font-weight: 700;
+  border-radius: 4px;
+  max-width: 250px;
+}
+
+.centerParaCLs-wrapper .cancel-icon {
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.centerParaCLs-wrapper .cancel-icon i {
+  position: relative;
+  top: -35px;
+  right: 0;
+}
+
+.backCls {
+  background-repeat: round;
+  height: 100vh;
+}
+.scanBtnCls {
+  background-color: #f3f0e6;
+  color: #000;
+  width: 54%;
+  padding: 15px 0px;
+  font-weight: bold;
+}
+
+.save-button {
+  background: #f0f0f0;
+  margin: 0px auto;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-radius: 10px;
+  color: #222;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.loader2 {
+  /* background: url(../images/Ripple-loader.gif); */
+  background: url(../images/Ripple-loader2.gif);
+  width: 125px;
+  height: 125px;
+  background-size: cover;
+}
+
+.p2Class2 {
+  width: 100%;
+  padding: 0px 10px;
+  text-wrap: wrap;
+}
+
+.profile-details button {
+}
+
+.profile-details i {
+  width: 35px;
+  height: 35px;
+  background: #7f7f7f;
+  color: #ffffff;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* font-weight: 900; */
+}
+
+.profile-tabs .nav-item {
+  color: #000;
+  border-bottom: 0;
+  border: none;
+}
+
+.profile-tabs .nav-link {
+  color: #000;
+  border-bottom: 0;
+  border: none;
+}
+
+.profile-tabs .nav-link.active {
+  border-bottom: 5px solid black !important;
+  font-weight: 600;
+}
+
+.post-like {
+  background-color: rgb(0 0 0 / 58%) !important;
+  border-radius: 20px;
+  padding: 0px;
+  color: #f0f0f0;
+  font-size: 12px;
+  bottom: 8px;
+  left: 8px;
+}
+
+.carousal-grid .col-6 {
+  padding: 0px 15px;
+}
+
+.carousal-like {
+  background-color: rgb(0 0 0 / 58%) !important;
+  border-radius: 20px;
+  padding: 0px;
+  color: #f0f0f0;
+  font-size: 12px;
+  bottom: 50px;
+  left: 8px;
+}
+
+.carousal-name {
+  background: rgb(215 215 215 / 62%);
+  color: #323232;
+  border-radius: 0px 0px 8px 8px;
+  font-size: 16px;
+  margin-bottom: 8px !important;
+}

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Photo Mosaic</title>
+    <style>
+         
+         #container {
+            width: 800px;
+            height: 800px;
+            position: relative;
+            overflow: hidden;
+        }
+        #mosaicCanvas {
+            position: absolute;
+            left: 0;
+            top: 0;
+            cursor: grab;
+        }
+        .zoom-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            z-index: 10;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <canvas id="mosaicCanvas"></canvas>
+        
+    </div>
+    <div class="zoom-buttons">
+        <button id="zoomIn">Zoom In</button>
+        <button id="zoomOut">Zoom Out</button>
+    </div>
+</body>
+<script>
+
+const container = document.getElementById('container');
+const canvas = document.getElementById('mosaicCanvas');
+const ctx = canvas.getContext('2d');
+const zoomInButton = document.getElementById('zoomIn');
+const zoomOutButton = document.getElementById('zoomOut');
+let scale = 1;
+let isDragging = false;
+let startX, startY;
+let offsetX = 0, offsetY = 0;
+const tileSize = 30;
+const rows = 25, cols = 25;
+const backgroundImage = new Image();
+backgroundImage.src = 'mosaic.jpg'; // Replace with your mosaic image path
+
+canvas.width = container.clientWidth;
+canvas.height = container.clientHeight;
+// Mock data for tiles
+const tileData = [];
+for (let y = 0; y < rows; y++) {
+    for (let x = 0; x < cols; x++) {
+        tileData.push({ x: x * tileSize, y: y * tileSize, data: `Tile ${x}, ${y}` });
+    }
+}
+
+function drawMosaic() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.save();
+    ctx.scale(scale, scale);
+    ctx.translate(offsetX, offsetY);
+    ctx.drawImage(backgroundImage, 0, 0, backgroundImage.width, backgroundImage.height);tileData.forEach(tile => {
+        ctx.strokeRect(tile.x, tile.y, tileSize, tileSize);
+    });
+    ctx.restore();
+}
+
+function zoomIn() {
+    scale *= 1.1;
+    drawMosaic();
+}
+
+function zoomOut() {
+    scale /= 1.1;
+    drawMosaic();
+}
+
+function onMouseDown(event) {
+    isDragging = true;
+    startX = event.clientX - offsetX * scale;
+    startY = event.clientY - offsetY * scale;
+    container.style.cursor = 'grabbing';
+}
+
+function onMouseMove(event) {
+    if (isDragging) {
+        offsetX = (event.clientX - startX) / scale;
+        offsetY = (event.clientY - startY) / scale;
+        drawMosaic();
+    }
+}
+
+function onMouseUp() {
+    isDragging = false;
+    container.style.cursor = 'grab';
+}
+
+function onClick(event) {
+    const mouseX = (event.clientX - canvas.offsetLeft) / scale - offsetX;
+    const mouseY = (event.clientY - canvas.offsetTop) / scale - offsetY;
+    const tileX = Math.floor(mouseX / tileSize);
+    const tileY = Math.floor(mouseY / tileSize);
+    const clickedTile = tileData.find(tile => tile.x / tileSize === tileX && tile.y / tileSize === tileY);
+    if (clickedTile) {
+        alert(`Clicked on: ${clickedTile.data}`);
+    }
+}
+
+canvas.addEventListener('mousedown', onMouseDown);
+canvas.addEventListener('mousemove', onMouseMove);
+canvas.addEventListener('mouseup', onMouseUp);
+canvas.addEventListener('click', onClick);
+zoomInButton.addEventListener('click', zoomIn);
+zoomOutButton.addEventListener('click', zoomOut);
+
+backgroundImage.onload = () => {
+    drawMosaic();
+};
+
+</script>
+</html>

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="css/bootstrapv3.1.4.css" />
+  <link href="css/bootstrapv5.3.1.css" rel="stylesheet">
+  <link href="css/bootstrapv3.1.4.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+  <link href="css/toaster.css" rel="stylesheet">
+  <script src="js/jquery.js"></script>
+  <script src="js/bootstrap.js"></script>
+  <script src="js/toaster.js"></script>
+  <script src="js/common.js"></script>
+
+  <style>
+    .uploadBlock {
+      background-color: #fff;
+      border-radius: 5px;
+      padding: 3em;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      right: 0;
+      left: 0;
+
+    }
+
+    .paymentBtnBlock {
+      padding: 24px;
+      text-align: center;
+      background: #ddd;
+      border-radius: 8px;
+    }
+
+    .paymentBtnBlock div {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #fff;
+      border-radius: 8px;
+    }
+
+    .paymentBtnBlock span {
+      font-size: 30px;
+      margin-top: 11px;
+      margin-right: 10px;
+    }
+
+    .btn-submit {
+      margin-top: 10px;
+      color: #000;
+      background-color: #FFD600;
+      border-color: #FFD600;
+      border-radius: 20px;
+      float: right;
+    }
+
+    .backbtnCls {
+      text-align: center;
+    }
+
+    .backbtnCls button {
+      background-color: #ddd;
+      margin-top: 2em;
+      /* text-align: center; */
+      font-weight: bold;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="px-2 pt-4">
+    <div class="data uploadBlock" style="margin-top: 0px;">
+      <div class="row">
+        <div class="text-center">
+          <img src="images/thankYou.png" onclick="closePop()" class="w-5opx" lt="Image 1" />
+          <p class="firstthankline">for adding your image or video to the mosaic. It will soon be visible and remain for 24
+          hours.</p>
+          <br>
+          <p class="secondthankline">If you want your image or video to remain findable permanently then contribute to the mosaic to
+          become a mosaic supporter</p>
+        </div>
+        <div class="paymentBtnBlock">
+          <p class="thirdthankline">Be visible in the Mosaic and support responsible graffiti movement of Athens.</p>
+          <div>
+            <span>2€</span>
+            <button type="button" class="btn btn-submit makePaymentBtn" id="btnClicked" onclick="addPayment()">Make a Payment</button>
+          </div>
+        </div>
+      </div>
+      <div class="backbtnCls">
+        <button type="button" class="btn mosiacSecondCancelBtn" id="btnClicked" onclick="cancel()">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  </div>
+  </div>
+
+
+</body>
+<script>
+  $(document).ready(function () {
+    changeLanguage();
+  })
+  function cancel() {
+    window.location.href = "mosiac.html";
+  }
+  function addPayment() {
+
+    window.location.href = "payment.html";
+  }
+
+</script>
+
+</html>

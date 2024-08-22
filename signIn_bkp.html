@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="css/bootstrapv5.3.1.css" rel="stylesheet">
+  <link href="css/bootstrapv3.1.4.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+  <link href="css/toaster.css" rel="stylesheet">
+  <script src="js/jquery.js"></script>
+  <script src="js/bootstrap.js"></script>
+  <script src="js/toaster.js"></script>
+
+
+  <style>
+
+  </style>
+</head>
+
+<body>
+  <div class="px-2 pt-4">
+    <div class="text-center mt-5">
+      <img src="images/scanGoodsicon.png" class="w-50" alt="Image 1" />
+    </div>
+    <div class="p-2">
+      <h4 class="fw-medium">Sign In</h4>
+      <div class="form-group">
+        <label for="name">User Name</label>
+        <input class="form-control" id="userName" type="text" name="Name">
+      </div>
+      <div class="form-group">
+        <label for="surname">Password</label>
+        <input class="form-control" id="password" type="password" name="surname">
+      </div>
+
+
+      <!-- <div class="form-group d-flex text-center">
+      <input class="me-2 mb-2" id="policy" type="checkbox" name="cnfrmPassword"> <p class="h6 me-4"> I agree with the icons4good <a class="colorCls" href="policy.html" >Privacy Policy</a> </p>
+    </div>
+    <div class="form-group d-flex text-center">
+      <input class="me-2 mb-2" id="policy" type="checkbox" name="cnfrmPassword"> 
+     <p class="h6"> I agree with the icons4good <a class="colorCls" href="tearmsAndCondition.html" >Terms & Conditions</a></p> 
+    </div>
+    <div class="form-group d-flex">
+      <input class="me-2 mb-2" id="cnfrmPassword" type="checkbox" name="cnfrmPassword"> <p class="h6">  I confirm that I am contributing a photo which I personally own.
+      </p>
+    </div> -->
+    </div>
+    <div class="container-fluid">
+      <button type="button" onclick="submit('new',null)" class="btn btn-default my-2 p-3">Sign In</button>
+      <p class="text-center">or</p>
+      <script src="https://accounts.google.com/gsi/client" async defer></script>
+
+      <div id="g_id_onload" data-client_id="1021558277012-3gi8r28679ihucp4qu115b7dtjjh55kl.apps.googleusercontent.com"
+        data-callback="handleCredentialResponse">
+      </div>
+      <div class="g_id_signin" data-type="standard"></div>
+
+    </div>
+
+  </div>
+  <div class="bottomBtns">
+    <div class="row">
+      <div class="col-xs-4">
+        <div class="text-center mb-2">
+          <a href="signUp.html" class="fz-12 colorBlack">
+            <img src="images/profileRed.png" class="w-20px" alt="Image 1" /><br>
+            Profile</a>
+        </div>
+      </div>
+      <div class="col-xs-4">
+        <div class="text-center mb-2">
+          <a href="./" class="fz-12 colorBlack">
+            <img src="images/scanBlack.png" class="w-20px" alt="Image 1" /><br>
+            Home</a>
+        </div>
+      </div>
+      <div class="col-xs-4">
+        <div class="text-center mb-2">
+          <a href="viewMap.html" class="fz-12 colorBlack">
+            <img src="images/map.png" class="w-20px" alt="Image 1" /><br>
+            Map</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  </div>
+
+</body>
+<script>
+  var storedData = JSON.parse(localStorage.getItem('storedData'));
+
+  function submit(type, data) {
+    var req = {};
+    if (type === 'new') {
+      var userName = $('#userName').val();
+      var password = $('#password').val();
+
+      if (userName == "" || userName == "undefined") {
+        toastr["error"]("Please enter first User Name.");
+        $("#userName").focus();
+        return false;
+      }
+
+      if (password == "" || password == "undefined") {
+        toastr["error"]("Please enter password.");
+        $("#password").focus();
+        return false;
+      }
+      req = {
+
+        "username": userName,
+        "password": password
+      }
+    }
+
+    if (type === 'google') {
+
+      req = {
+
+        "username": data?.email,
+        "password": data?.token
+      }
+    }
+
+    $.ajax({
+      url: 'https://2024api.icons4good.com/userlogin',
+      data: JSON.stringify(req),
+      async: false,
+      contentType: "application/json",
+      type: 'post',
+      success: function (res) {
+        if (res?.statusCode === 0) {
+          toastr["error"](res?.message);
+        } else {
+          if (storedData?.ispaid === 'N') {
+            setTimeout(function () {
+              window.location.replace("/mosiac_second.html");
+            }, 2000);
+          }
+          if (storedData?.ispaid === 'Y') {
+            var paymentFlag = res?.result.find((e) => e.location == storedData?.id);
+            if (paymentFlag) {
+              setTimeout(function () {
+                window.location.replace("/mosiac_second.html");
+              }, 2000);
+            } else {
+              setTimeout(function () {
+                window.location.replace("/payment.html");
+              }, 2000);
+            }
+
+          }
+          toastr["success"](res?.message);
+
+        }
+      },
+      error: function (err) {
+        toastr["error"](err?.responseJSON?.message);
+      },
+    })
+  }
+  
+  function handleCredentialResponse(response) {
+    var base64 = response.credential;
+    var decodedData = JSON.parse(atob(base64.split('.')[1]));
+    var req = {
+
+      "email": decodedData?.email,
+      "name": decodedData?.name,
+      "token": decodedData?.jti,
+    }
+    $.ajax({
+      url: 'https://2024.api.icons4good.com/getSocialData',
+      data: JSON.stringify(req),
+      async: false,
+      contentType: "application/json",
+      type: 'post',
+      success: function (res) {
+        if (res?.statusCode === 0) {
+          toastr["error"](res?.message);
+        } else {
+          submit('google', req);
+
+        }
+      },
+      error: function (err) {
+        toastr["error"](err?.responseJSON?.message);
+      },
+    })
+  }
+</script>
+
+</html>

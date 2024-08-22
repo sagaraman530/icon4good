@@ -1,0 +1,1475 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <!-- <meta name="viewport" content="width=device-width, height=device-height,  initial-scale=1.0, user-scalable=no;user-scalable=0" /> -->
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=no" />
+
+  <link href="css/bootstrapv5.3.1.css" rel="stylesheet">
+  <link href="css/bootstrapv3.1.4.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+  <link href="css/toaster.css" rel="stylesheet">
+  <script src="js/jquery.js"></script>
+  <script src="js/bootstrap.js"></script>
+  <script src="js/toaster.js"></script>
+  <script src="js/common.js"></script>
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
+    integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+  <style>
+    .bottomBtns {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      background-color: #fff;
+    }
+
+    .btn-default {
+      border-color: #FA3737;
+      width: 100%;
+      background-color: #FA3737;
+      color: #fff;
+      font-size: 14px;
+
+    }
+
+    .w-50px {
+      width: 50px;
+    }
+
+    .card {
+      background: transparent;
+      border-radius: 8px;
+      padding: 50px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      position: absolute;
+      display: none;
+
+    }
+
+    #zoomPopView {
+      position: absolute;
+      top: 1em;
+      left: 0;
+      right: 0;
+      position: absolute;
+      left: 1em;
+      right: 1em;
+      background-color: #fff;
+      padding: 7px;
+      border-radius: 10px;
+      display: none;
+    }
+
+    #resizePopView {
+      position: absolute;
+      bottom: 12em;
+      position: absolute;
+      left: 10em;
+      right: 1em;
+      background-color: #fff;
+      padding: 7px;
+      border-radius: 10px;
+      display: none;
+    }
+
+    #searchpopView {
+      position: absolute;
+      bottom: 12em;
+      left: 0;
+      right: 0;
+      position: absolute;
+      left: 1em;
+      right: 10em;
+      background-color: #fff;
+      padding: 7px;
+      border-radius: 10px;
+      display: none;
+    }
+
+    #sharePopView {
+      display: none;
+      position: absolute;
+      left: 8em;
+      right: 1em;
+      bottom: 6em;
+      background-color: #fff;
+      padding: 7px;
+      border-radius: 10px;
+    }
+
+    /* Styles for icons */
+    .icon {
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      margin-right: 8px;
+      vertical-align: middle;
+    }
+
+    .cancel-icon {
+      cursor: pointer;
+    }
+
+    /* Styles for data */
+    .data {
+      /* margin-top: 0px; */
+      margin-top: 40px;
+    }
+
+
+    .thing {
+      width: unset !important;
+    }
+
+    #otherthing {
+      text-align: center;
+      background-color: #fff;
+      border: 2px solid #222;
+      padding: 20px;
+      display: none;
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+    }
+
+
+
+    .crossThing {
+      position: absolute;
+      right: 0;
+      top: 0;
+      left: 0;
+      width: 100% !important;
+      background: #fa3737;
+      border-radius: 0;
+      color: #fff;
+    }
+
+    .icon {
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      margin-right: 8px;
+      vertical-align: middle;
+    }
+
+    .cancel-icon i {
+      cursor: pointer;
+      font-size: 28px;
+      color: #fff;
+      float: right;
+    }
+
+    .card .mb-4 {
+      margin-bottom: 1.5rem !important;
+      background: #fff;
+      border-radius: 8px;
+      /* padding: 5px 5px; */
+      padding: 20px 30px;
+    }
+
+    .card .mb-4 img {
+      width: 25px;
+      margin-right: 10px;
+    }
+
+    .data,
+    .data2 {
+      font-weight: 700;
+    }
+
+    .topBarCls {
+      display: flex;
+      justify-content: space-evenly;
+    }
+
+    .infoIconCls {
+      color: #fff;
+      font-size: 50px;
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      cursor: pointer;
+    }
+
+    .selectLanguageCls {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      border-radius: 30px;
+      height: 45px;
+
+    }
+
+    .paraTopCLs {
+      font-size: 16px;
+      color: #fff;
+      margin-top: 25px;
+    }
+
+
+    .bottomBtnsCls {
+      position: absolute;
+      bottom: 0em;
+    }
+
+    .backCls {
+      background-repeat: round;
+      height: 100vh;
+    }
+
+    .lftCtrls,
+    .rightCtrls {
+
+      display: none !important;
+    }
+
+    .mosaically-iframe-classname .controls {
+      display: none !important;
+    }
+
+    @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+
+    body {
+      background: #E1E1E1;
+    }
+
+    .container {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    input,
+    button {
+      border: none;
+      background: none;
+      outline: none;
+      padding: 0px;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    .search-box {
+      display: flex;
+      border-radius: 50px;
+      margin: 5px;
+      /* background-color: #00000091; */
+      /* padding: 4px; */
+
+    }
+
+    .search-box-input {
+      width: 0px;
+      font-size: 14px;
+      color: #000;
+      transition: .5s;
+    }
+
+    .search-box-btn {
+      display: flex;
+      border-radius: 50%;
+      /* width: 30px;
+	height: 30px; */
+      background: white;
+      transition: .3s;
+    }
+
+    .search-box-icon {
+      margin: auto;
+      color: #fff;
+      font-weight: bold;
+    }
+
+    .search-box-input::placeholder {
+      color: #000;
+      opacity: .7;
+    }
+
+    .search-box:hover .search-box-input {
+      padding-left: 1em;
+      padding-right: 1em;
+      width: 250px;
+      background-color: #fff;
+      border-radius: 20px 4px 0px 20px;
+      height: 47px;
+    }
+
+    .search-box .hover-show {
+      display: none;
+    }
+
+    .search-box .hover-hidden {
+      display: block;
+    }
+
+    .search-box:hover .hover-show {
+      display: block;
+    }
+
+    .search-box:hover .hover-hidden {
+      display: none;
+    }
+
+    .search-box-btn:active {
+      transform: scale(.75);
+    }
+
+    .w-25px {
+      width: 25px;
+    }
+
+    #container {
+
+      position: relative;
+
+    }
+
+    #mosaicCanvas {
+      width: 100%;
+      cursor: grab;
+    }
+
+    .zoom-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      z-index: 10;
+    }
+
+    .p1Class {
+      font-weight: bold;
+      background: #F3F0E6;
+      padding: 7px;
+    }
+
+    /* Base button styles */
+    .like-button {
+      display: flex;
+      align-items: center;
+      padding: 5px 10px;
+      border-radius: 35px;
+      background-color: #000000a1;
+      font-family: Arial, sans-serif;
+      font-size: 14px;
+      color: #333;
+      cursor: pointer;
+      transition: background-color 0.3s, border-color 0.3s;
+      outline: none;
+
+    }
+
+    .button-left {
+      position: absolute;
+      bottom: 9em;
+      left: 5px;
+    }
+
+    .button-right {
+      position: absolute;
+      bottom: 9em;
+      right: 5px;
+    }
+
+    /* Heart icon styles */
+    .heart-icon {
+      font-size: 16px;
+      /* Adjust size as needed */
+      margin-right: 5px;
+      background-color: #F3F0E6;
+      border-radius: 30px;
+      padding: 7px;
+      margin-left: -5px;
+    }
+
+    /* Likes count styles */
+    .likes-count {
+      font-weight: bold;
+      color: #fff;
+    }
+
+    /* Button hover and focus effects */
+    .like-button:not(:disabled):hover,
+    .like-button:not(:disabled):focus {
+      background-color: #d82b2b;
+      border-color: #ccc;
+    }
+
+    /* Button active (clicked) effect */
+    .like-button:not(:disabled):active {
+      background-color: #c41919;
+      border-color: #bbb;
+    }
+
+    /* Optional: Change color of the heart icon and text on hover */
+    .like-button:hover .heart-icon,
+    .like-button:hover .likes-count {
+      color: #fff;
+    }
+
+    .carousel {
+      position: absolute;
+      width: 100%;
+      max-width: 400px;
+      /* Adjust to your desired size */
+      margin: 0 auto;
+      overflow: hidden;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      border-radius: 10px;
+    }
+
+    /* Carousel track */
+    .carousel-track {
+      display: flex;
+      transition: transform 0.3s ease-in-out;
+    }
+
+    /* Carousel track */
+    .carousel-track2 {
+      display: flex;
+      transition: transform 0.3s ease-in-out;
+    }
+
+    /* Carousel slide */
+    .carousel-slide {
+      flex: 0 0 40%;
+      margin: 0 5px;
+      box-sizing: border-box;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 200px;
+      /* background: #fff; */
+    }
+
+    .carousel-slide2 {
+      flex: 0 0 55%;
+      margin: 0 5px;
+      box-sizing: border-box;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 70px;
+      background: white;
+      margin-bottom: 10px;
+    }
+
+    /* Styling images inside slides */
+    .carousel-slide img {
+      max-width: 100%;
+      display: block;
+      object-fit: cover;
+      max-height: 100%;
+    }
+
+    /* Styling images inside slides */
+    .carousel-slide2 img {
+      max-width: 100%;
+      display: block;
+      object-fit: cover;
+      max-height: 100%;
+    }
+
+    .imagesHeaderCount {
+      background: #000000d9;
+      padding: 10px;
+      margin: 1em 3em;
+      border-radius: 12px;
+    }
+
+    .countSpan {
+      background: #fff;
+      border-radius: 5px;
+      font-size: 18px;
+      font-weight: bold;
+      padding: 5px 10px;
+      margin-left: -18px;
+      margin-right: 4px;
+    }
+
+    .labelSpan {
+      color: #fff;
+      font-size: 18px;
+      /* font-weight: bold; */
+    }
+
+    .searchResetClass {
+      position: absolute;
+      bottom: 7em;
+      right: 3em;
+      width: 100%;
+    }
+
+    .loader-container {
+      display: flex;
+      /* Enable flexbox */
+      align-items: center;
+      /* Center the GIF vertically within this container */
+      justify-content: center;
+      /* Center the GIF horizontally within this container */
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background-color: rgba(255, 255, 255, 0.8);
+      /* Optional: Semi-transparent background */
+    }
+
+    .loader {
+      width: 100%;
+      height: 40%;
+      background: url('https://i.gifer.com/YCZH.gif') no-repeat center center;
+      background-size: cover;
+      /* Adjust the size of the background to cover the element */
+    }
+  </style>
+</head>
+
+<body class="backCls" style="backdrop-filter: blur(5px);background-size: cover;">
+  <div id="zoomPopView">
+    <div class="data">
+      <div class="d-flex">
+        <img src="images/Animation.png" onclick="closePop()" class="w-50px" alt="Image 1" />
+        <span class="mosiacLineOne">Zoom in on the mosaic to see all images</span>
+      </div>
+    </div>
+  </div>
+  <div id="searchpopView">
+    <div class="data">
+      <div class="d-flex">
+        <img src="images/Animation.png" onclick="closePop()" class="w-50px" alt="Image 1" />
+        <span class="">Search picture in the mosiac</span>
+      </div>
+    </div>
+  </div>
+  <div class="card" id="viewAfterSeconds1" style="top: 27px; display: none;">
+    <div class="cancel-icon" onclick="closePop()">
+      <i class="fa fa-times-circle" style="right: 35px; top: 73px" aria-hidden="true"></i>
+    </div>
+    <!-- <h4>Εξερεύνησε το μωσαϊκό
+  </h4> -->
+    <div class="data">
+      <div class="mb-4">
+        <img src="images/Animation.png" class="w-30px" alt="Image 1">
+        <span class="mosiacLineOne">Zoom in on the mosaic to see all images</span>
+      </div>
+      <div class="mb-4">
+        <img src="images/Animation.png" class="w-30px" alt="Image 1">
+        <span class="">Reset Mosiac Zoom</span>
+      </div>
+      <div class="mb-4">
+        <img src="images/Search.png" class="w-30px" alt="Image 1">
+        <span class="">Search picture in the mosiac</span>
+      </div>
+      <div class="mb-4">
+        <img src="images/Info.png" class="w-30px" alt="Image 1">
+        <span class="">Share the mosiac on social media</span>
+      </div>
+      <!-- Add more data as needed -->
+    </div>
+  </div>
+  <div id="">
+    <div class="text-center" style="    margin: 0px 15px;" id="mosiacId">
+      <!-- <img src="images/image2.png" class="w-100" alt="Image 1" /> -->
+      <br>
+      <div id="div" style="overflow: scroll; width: 100%; height: 87vh;">
+        <canvas id="mosaicCanvas"></canvas>
+      </div>
+      <!--REMOVING THE FOLLOWING CREDIT IS A VIOLATION OF YOUR TERMS OF USE
+	<br><small>Photo mosaic by: <a href="https://mosaically.com/willirabitsch">willirabitsch</a> @ <a href="https://mosaically.com">Mosaically</a></small>-->
+    </div>
+  </div>
+  <!-- <div class="zoom-buttons">
+        <button id="zoomIn">Zoom In</button>
+        <button id="zoomOut">Zoom Out</button>
+    </div> -->
+  <div class="row searchResetClass">
+    <div class="col-xs-10" style="float: left;">
+      <div class="search-box" style="margin: 18px;">
+        <!-- <input type="text" class="search-box-input" id="searchInput" placeholder="What are you looking for ?"> -->
+        <input type="text" class="search-box-input" id="searchInput" placeholder="Search by names or themes.">
+        <button class="search-box-btn">
+          <img src="images/searchToggle.png" onclick="searchimage()" class=""
+            style="float: right; background-color: #494948;padding: 4px;border-radius: 20px;" alt="Image 1" />
+        </button>
+      </div>
+    </div>
+    <div class="col-xs-2">
+      <img src="images/resize.png" onclick="resize()" style="width: 80px;" alt="Image 1" />
+    </div>
+  </div>
+  <div id="resizePopView">
+    <div class="data">
+      <div class="d-flex" style="    align-items: center;">
+        <img src="images/info.png" onclick="closePop()" class="w-50px" alt="Image 1" />
+        <span class="">Reset Mosiac Zoom</span>
+      </div>
+    </div>
+  </div>
+  <div id="sharePopView">
+    <div class="data">
+      <div class="d-flex" style="    align-items: center;">
+        <img src="images/info.png" onclick="closePop()" class="w-50px" alt="Image 1" />
+        <span class="">Share the mosiac on social media</span>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-button-wrapper">
+      <!-- <a onclick="map()" class="footer-btn"><img src="images/MapIcon.png"><br><span>Map</span></a>
+      <a  onclick="checkLocation()" class="footer-btn scanBtnCls" >Scan</a>
+      <a onclick="profile()" class="footer-btn"><img src="images/ProfileIcon.png">Profile</a> -->
+
+      <!-- <a onclick="map()" class="footer-btn">
+        <img src="images/MapBtn.png">
+      </a>
+      <a onclick="profile()" class="footer-btn">
+        <img src="images/addMosiacBtn.png">
+      </a>
+      <a onclick="share()" style="opacity: .5;pointer-events: none;" class="footer-btn">
+        <img src="images/shareBtn.png">
+      </a> -->
+      <button onclick="map()" class="footer-btn" disabled="true">
+        <span class="button-icon">
+          <span class="material-symbols-outlined">
+            map
+          </span>
+        </span>
+        <span class="button-text mapButton">
+          Map
+        </span>
+      </button>
+      <button onclick="profile()" class="footer-btn">
+        <span class="button-text addImageMosaicButton">
+          Add image to mosaic
+        </span>
+      </button>
+      <button onclick="share()" class="footer-btn disabled" disabled="true">
+        <span class="button-icon">
+          <span class="material-symbols-outlined">
+            account_circle
+          </span>
+        </span>
+        <span class="button-text shareButton">
+          Share
+        </span>
+      </button>
+    </div>
+  </footer>
+  <div class="modal" id="fullScreenModal" style="background-color: #000000a1;">
+    <div class="modal-dialog " style="margin: 2em;">
+      <div class="modal-content" style="background-color: #d0d9da;">
+        <div class="" style="position:absolute;top: 1em;right:1em;z-index:2;">
+          <img src="images/crossImgPop.png" onclick="closePop()" alt="Image 1" />
+        </div>
+        <div class="modal-body p-0">
+          <div class="text-center">
+            <div id="pushMosiacImage" style="max-height: 70vh;overflow: auto;"><img style="  width:100%" src=""></a>
+            </div>
+            <button id="like-btn" class="like-button button-left">
+              <span class="heart-icon"><img src="images/HeartBlank.png"></span>
+              <span id="likes-count" class="likes-count">120</span>
+            </button>
+            <button id="follow-btn" class="like-button button-right ">
+              <span class="heart-icon"><img src="images/Follow.png"></span>
+              <span id="follow-count" class="likes-count">76</span>
+            </button>
+            <p class="p1Class">Anna</p>
+            <p class="p2Class">Hey, I was here Too</p>
+            <p class="p3Class">#love,#paris</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal" id="fullScreenModal2" style="background-color: rgba(0, 0, 0, 0.63);z-index: 1051;">
+    <div class="modal-dialog " style="margin: 2em;">
+      <div class="modal-content" style="background-color: #d0d9da;">
+        <div class="" style="position:absolute;top: 1em;right:1em;z-index:2;">
+          <img src="images/crossImgPop.png" onclick="closePop2()" alt="Image 1" />
+        </div>
+        <div class="modal-body p-0">
+          <div class="text-center">
+            <div id="pushMosiacImage2" style="max-height: 70vh;overflow: auto;"><img style="  width:100%" src=""></a>
+            </div>
+            <button id="like-btn2" class="like-button button-left">
+              <span class="heart-icon"><img src="images/HeartBlank.png"></span>
+              <span id="likes-count2" class="likes-count">120</span>
+            </button>
+            <button id="follow-btn2" class="like-button button-right ">
+              <span class="heart-icon"><img src="images/Follow.png"></span>
+              <span id="follow-count2" class="likes-count">76</span>
+            </button>
+            <p class="p1Class2">Anna</p>
+            <p class="p2Class2">Hey, I was here Too</p>
+            <p class="p3Class2">#love,#paris</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal" id="carouselDiv" style="background-color: #000000a1;">
+    <div class="modal-dialog " style="margin: 2em;">
+      <div class="modal-content" style="background-color: #d0d9da;">
+        <div class="" style="position: absolute;top: -1em;right: -1em;z-index: 2;">
+          <img src="images/crossImgPop.png" onclick="closePop()" alt="Image 1" />
+        </div>
+        <div class="carousel">
+          <div class="imagesHeaderCount">
+            <div class="text-center">
+              <span class="countSpan"></span>
+              <span class="labelSpan">Images Found</span>
+            </div>
+            <!-- </div style="position: absolute;top: 0;bottom: 0;left: 0;right: 0;background: #00000080;"> -->
+          </div>
+          <!-- <div class="text-center">
+            <img src="images/sponserImage.jpeg" onclick="searchimage()" class="mb-3"
+              style="border-radius: 20px; width: 70%;" alt="Image 1" />
+          </div> -->
+          <div class="carousel-track2">
+            <div class="carousel-slide2">
+              <img src="images/sponserImage1.jpeg" alt="Image 1">
+            </div>
+            <div class="carousel-slide2">
+              <img src="images/sponserImage2.jpg" alt="Image 1">
+            </div>
+            <div class="carousel-slide2">
+              <img src="images/sponserImage3.jpg" alt="Image 1">
+            </div>
+            <div class="carousel-slide2">
+              <img src="images/sponserImage4.jpg" alt="Image 1">
+            </div>
+          </div>
+          <div class="carousel-track">
+            <div class="carousel-slide">
+              <img src="images/heart1.png" alt="Image 1">
+            </div>
+            <div class="carousel-slide">
+              <img src="images/aboutUs.png" alt="Image 2">
+            </div>
+            <div class="carousel-slide">
+              <img src="images/Animation.png" alt="Image 3">
+            </div>
+            <div class="carousel-slide">
+              <img src="images/facebook.png" alt="Image 4">
+            </div>
+            <div class="carousel-slide">
+              <img src="images/Animation.png" alt="Image 5">
+            </div>
+          </div>
+          <div class="search-box" style="margin: 18px;" id="carousal-save-btn">
+            <input type="text" class="search-box-input" id="carousalNameInput" placeholder="Enter Carousal Name">
+            <button class="search-box-btn save-button" title="Save Carousel"
+              style="border-radius: 5px;width: 60px;display: flex;justify-content: center;">
+              <!-- <img src="images/searchToggle.png" onclick="searchimage()" class="" style="float: right; background-color: #494948;padding: 4px;border-radius: 20px;" alt="Image 1"> -->
+              <span class="hover-hidden">
+                save
+              </span>
+              <span class="hover-show" onclick="handleSubmitSaveCarousel()">
+                save
+              </span>
+              <!-- <span>Save</span> -->
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+  <div class="loader-container">
+    <div class="loader"></div>
+  </div>
+  <script>
+    $(document).ready(function () {
+      var option = ""
+      for (let i = 0; i < languagesArry.length; i++) {
+        option += "<option value='" + languagesArry[i]?.code + "'>" + languagesArry[i]?.name + "</option>"
+      }
+      $("#selectLanguageId").empty().append(option);
+      $("#selectLanguageId").val(localStorage.getItem('storedLanguage') ? localStorage.getItem('storedLanguage') : 'english')
+      changeLanguage();
+
+      // Get the userId from localStorage
+      let userId = localStorage.getItem("userId");
+
+      // Check if userId exists
+      if (userId != null) {
+        document.getElementById("carousal-save-btn").style.display = "flex";
+      } else {
+        // If userId doesn't exist, disable the like and follow buttons using Vanilla JavaScript
+        document.getElementById("carousal-save-btn").style.display = "none";
+        document.getElementById("like-btn").disabled = true; // Disable the like button
+        document.getElementById("follow-btn").disabled = true; // Disable the follow button
+        document.getElementById("like-btn2").disabled = true; // Disable the like button
+        document.getElementById("follow-btn2").disabled = true; // Disable the follow button
+      }
+
+      setTimeout(() => {
+        $("#viewAfterSeconds1").fadeOut();
+      }, 5000)
+
+    })
+
+    $(".thing").click(function () {
+      $("#otherthing").slideToggle("slow");
+    });
+
+    function zoomFuncIn() {
+      $("#zoomPopView").fadeIn()
+      setTimeout(setTimeout(zoomFuncOut, 3000));
+    }
+
+    function zoomFuncOut() {
+      $("#zoomPopView").fadeOut()
+    }
+
+    function resizeFuncIn() {
+      $("#resizePopView").fadeIn()
+      setTimeout(setTimeout(resizeFuncOut, 3000));
+    }
+
+    function shareFuncIn() {
+      $("#sharePopView").fadeIn()
+      setTimeout(setTimeout(shareFuncOut, 3000));
+    }
+
+    function resizeFuncOut() {
+      $("#resizePopView").fadeOut()
+    }
+
+    function searchFuncIn() {
+      $("#searchpopView").fadeIn()
+      setTimeout(setTimeout(searchFuncOut, 3000));
+    }
+
+    function searchFuncOut() {
+      $("#searchpopView").fadeOut()
+    }
+
+    function shareFuncOut() {
+      $("#sharePopView").fadeOut()
+    }
+
+    function infoData() {
+      $("#infoBlock").fadeIn()
+    }
+
+    var storedData = JSON.parse(localStorage.getItem('storedData'));
+    $(".backCls").css("background-image", "url(" + storedData?.bgimg + ")");
+
+    var src = storedData?.picturemosaicimage;
+    $("#mosiacId iframe").attr("src", src);
+
+    function signUp() {
+      window.location.href = "signUp.html";
+    }
+
+    function closePop() {
+      $("#zoomPopView").fadeOut()
+      $("#infoBlock,#fullScreenModal,#carouselDiv").fadeOut()
+      $("#pushMosiacImage img").attr("src", "")
+      $("#searchInput").val('');
+    }
+
+    function closePop2() {
+      $("#fullScreenModal2").fadeOut()
+    }
+
+    function signInInfo() {
+      window.location.href = "signInInfo.html";
+    }
+
+    function map() {
+      window.location.href = "viewMap.html";
+    }
+
+    function addMosiac() {
+      window.location.href = "signInInfo.html";
+    }
+
+    function share() {
+      window.location.href = "mosiac_second.html";
+    }
+
+    function handleCredentialResponse(response) {
+      var base64 = response.credential;
+      var decodedData = JSON.parse(atob(base64.split('.')[1]));
+    }
+
+    $(".loader-container").fadeIn()
+    const canvas = document.getElementById('mosaicCanvas');
+
+    const div = document.getElementById('div');
+    const offsetHeight = div.offsetHeight;
+    const offsetWidth = div.offsetWidth;
+    const clientHeight = div.clientHeight;
+    const rect = div.getBoundingClientRect();
+    const boundingHeight = rect.height;
+    const scrollHeight = div.scrollHeight;
+
+    const ctx = canvas.getContext('2d');
+    // const zoomInButton = document.getElementById('zoomIn');
+    // const zoomOutButton = document.getElementById('zoomOut');
+
+    let isDragging = false;
+    let startX, startY;
+    let offsetX = 0, offsetY = 0;
+    const tileSize = storedData?.tilesize;
+    const rows = storedData?.rowsize, cols = storedData?.columnsize;
+    const backgroundImage = new Image();
+
+    backgroundImage.src = storedData?.mosiacimagepath; // Replace with your mosaic image path mosiacimagepath
+    // let storedScale =  offsetHeight/backgroundImage.height;
+    let storedScale = 0.100;
+    let scale = storedScale
+    canvas.width = offsetWidth
+    canvas.height = offsetHeight
+    // Mock data for tiles
+    const tileData = [];
+    for (let y = 0; y < rows; y++) {
+      for (let x = 0; x < cols; x++) {
+        tileData.push({ x: x * tileSize, y: y * tileSize, data: `Tile ${x}, ${y}` });
+      }
+    }
+
+    function drawMosaic() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.save();
+      ctx.scale(scale, scale);
+      ctx.translate(offsetX, offsetY);
+      ctx.drawImage(backgroundImage, 0, 0, backgroundImage.width, backgroundImage.height); tileData.forEach(tile => {
+        // ctx.strokeRect(tile.x, tile.y, tileSize, tileSize);
+      });
+      ctx.restore();
+    }
+
+    // function zoomIn() {
+    //     scale *= 1.1;
+    //     drawMosaic();
+    // }
+
+    // function zoomOut() {
+    //   if(scale > 0.4 ){
+    //     scale /= 1.1;
+    //     drawMosaic();
+    // }
+    //}
+
+    function resize() {
+      scale = storedScale;
+      drawMosaic();
+    }
+
+    function onMouseDown(event) {
+      isDragging = true;
+      startX = event.clientX - offsetX * scale;
+      startY = event.clientY - offsetY * scale;
+      div.style.cursor = 'grabbing';
+    }
+
+    function onMouseMove(event) {
+      if (isDragging) {
+        offsetX = (event.clientX - startX) / scale;
+        offsetY = (event.clientY - startY) / scale;
+        drawMosaic();
+      }
+    }
+
+    function onMouseUp() {
+      isDragging = false;
+      div.style.cursor = 'grab';
+    }
+
+    function onClick(event) {
+      const mouseX = (event.clientX - canvas.offsetLeft) / scale - offsetX;
+      const mouseY = (event.clientY - canvas.offsetTop) / scale - offsetY;
+      const tileX = Math.floor(mouseX / tileSize);
+      const tileY = Math.floor(mouseY / tileSize);
+      const clickedTile = tileData.find(tile => tile.x / tileSize === tileX && tile.y / tileSize === tileY);
+      if (clickedTile) {
+        openImagePop(clickedTile.x / tileSize, clickedTile.y / tileSize)
+        //  alert(`Clicked on: ${clickedTile.data}`);
+      }
+    }
+
+    function openImagePop(x, y) {
+      var req = {
+        "xcordinate": x,
+        "ycordinate": y,
+        "mosiacid": storedData?.mosiacid
+      }
+      $.ajax({
+        url: 'https://2024api.icons4good.com/getImageForMosiac',
+        data: JSON.stringify(req),
+        async: false,
+        contentType: "application/json",
+        type: 'post',
+        success: function (res) {
+          var data = res?.result[0]
+          $("#pushMosiacImage img").attr("src", data?.imagepath);
+          $(".p1Class").empty().append(data?.imagename);
+          $(".p2Class").empty().append(data?.caption);
+          $(".p3Class").empty().append(data?.tags.replace("[", "").replace("]", "").replace(/,\s*/g, ', '));
+          $("#likes-count").empty().append(data?.likecount);
+          $("#follow-count").empty().append(data?.followcount);
+          $("#fullScreenModal").fadeIn()
+        },
+        error: function (err) {
+          toastr["error"](err?.responseJSON?.message);
+        },
+      })
+    }
+
+    function openImagePop2(imageid) {
+      var req = {
+        "imageid": imageid,
+      }
+      $.ajax({
+        url: 'https://2024api.icons4good.com/getImageForMosiac',
+        data: JSON.stringify(req),
+        async: false,
+        contentType: "application/json",
+        type: 'post',
+        success: function (res) {
+          var data = res?.result[0]
+          $("#pushMosiacImage2 img").attr("src", data?.imagepath);
+          $(".p1Class2").empty().append(data?.imagename);
+          $(".p2Class2").empty().append(data?.caption);
+          $(".p3Class2").empty().append(data?.tags.replace("[", "").replace("]", "").replace(/,\s*/g, ', '));
+          $("#likes-count2").empty().append(data?.likecount);
+          $("#follow-count2").empty().append(data?.followcount);
+          $("#fullScreenModal2").fadeIn()
+        },
+        error: function (err) {
+          toastr["error"](err?.responseJSON?.message);
+        },
+      })
+    }
+
+    function onTouchStart(event) {
+      if (event.touches.length === 1) {
+        isDragging = true;
+        startX = event.touches[0].clientX - offsetX * scale;
+        startY = event.touches[0].clientY - offsetY * scale;
+        div.style.cursor = 'grabbing';
+      } else if (event.touches.length === 2) {
+        isDragging = false;
+        lastTouchDist = getTouchDistance(event.touches);
+      }
+    }
+
+    function onTouchMove(event) {
+      event.preventDefault();
+      if (event.touches.length === 1 && isDragging) {
+        offsetX = (event.touches[0].clientX - startX) / scale;
+        offsetY = (event.touches[0].clientY - startY) / scale;
+        drawMosaic();
+      } else if (event.touches.length === 2) {
+        const touchDist = getTouchDistance(event.touches);
+        const zoomFactor = touchDist / lastTouchDist;
+        lastTouchDist = touchDist;
+        scale *= zoomFactor;
+        drawMosaic();
+      }
+    }
+
+    function onTouchEnd(event) {
+      if (event.touches.length < 2) {
+        isDragging = false;
+        div.style.cursor = 'grab';
+      }
+    }
+
+    function getTouchDistance(touches) {
+      const dx = touches[0].clientX - touches[1].clientX;
+      const dy = touches[0].clientY - touches[1].clientY;
+      return Math.sqrt(dx * dx + dy * dy);
+    }
+
+    canvas.addEventListener('touchstart', onTouchStart);
+    canvas.addEventListener('touchmove', onTouchMove);
+    canvas.addEventListener('touchend', onTouchEnd);
+    canvas.addEventListener('mousedown', onMouseDown);
+    canvas.addEventListener('mousemove', onMouseMove);
+    canvas.addEventListener('mouseup', onMouseUp);
+    canvas.addEventListener('click', onClick);
+    // zoomInButton.addEventListener('click', zoomIn);
+    // zoomOutButton.addEventListener('click', zoomOut);
+
+    backgroundImage.onload = () => {
+      drawMosaic();
+      $(".loader-container").fadeOut()
+      $("#viewAfterSeconds1").fadeIn();
+      setTimeout(() => {
+        $("#viewAfterSeconds1").fadeOut();
+      }, 5000)
+      // setTimeout(setTimeout(zoomFuncIn, 3000));
+      // setTimeout(setTimeout(searchFuncIn, 11000));
+      // setTimeout(setTimeout(resizeFuncIn, 7000));
+      // setTimeout(setTimeout(shareFuncIn, 15000));
+    };
+
+    function handleCredentialResponse(response) {
+      var base64 = response.credential;
+      var decodedData = JSON.parse(atob(base64.split('.')[1]));
+      var req = {
+
+        "email": decodedData?.email,
+        "name": decodedData?.name,
+        "token": decodedData?.jti,
+      }
+      $.ajax({
+        url: 'https://apilove.icons4good.com/getSocialData',
+        data: JSON.stringify(req),
+        async: false,
+        contentType: "application/json",
+        type: 'post',
+        success: function (res) {
+          if (res?.statusCode === 0) {
+            toastr["error"](res?.message);
+          } else {
+            submit('google', req);
+
+          }
+        },
+        error: function (err) {
+          toastr["error"](err?.responseJSON?.message);
+        },
+      })
+
+
+    }
+
+    function profile() {
+      window.location.href = "signIn.html";
+    }
+
+    function sponseredImage() {
+      const track = document.querySelector('.carousel-track2');
+
+      const slides = Array.from(track.children);
+      const slideWidth = slides[0].getBoundingClientRect().width;
+      console.log("slideWidth");
+      console.log(slideWidth);
+      let currentIndex = 0;
+      const setSlidePosition = (slide, index) => {
+        slide.style.left = slideWidth * index + 'px';
+      };
+      slides.forEach(setSlidePosition);
+
+      const moveToSlide = (track, currentSlide, targetSlide) => {
+        track.style.transform = 'translateX(-' + targetSlide.style.left + ')';
+      };
+
+      const updateIndex = (increment) => {
+        currentIndex = (currentIndex + increment + slides.length) % slides.length;
+        moveToSlide(track, slides[currentIndex - increment], slides[currentIndex]);
+      };
+
+      // Touch event handling for mobile
+      let strtX;
+      let isDrag = false;
+
+      track.addEventListener('touchstart', (e) => {
+        strtX = e.touches[0].clientX;
+        isDrag = true;
+      });
+
+      track.addEventListener('touchmove', (e) => {
+        if (!isDrag) return;
+        const currentX = e.touches[0].clientX;
+        const moveX = strtX - currentX;
+
+        if (moveX > 50) {
+          updateIndex(1);
+          isDrag = false;
+        } else if (moveX < -50) {
+          updateIndex(-1);
+          isDrag = false;
+        }
+      });
+
+      track.addEventListener('touchend', () => {
+        isDrag = false;
+      });
+    }
+
+    function searchimage() {
+      var input = $("#searchInput").val().trim();
+      localStorage.setItem('searchkeyword', input)
+      if (!input) {
+        return
+      }
+      var req = {
+        "data": input,
+        "mosiacid": storedData?.mosiacid,
+      }
+      $.ajax({
+        url: 'https://2024api.icons4good.com/searchImageByMosiac',
+        data: JSON.stringify(req),
+        async: false,
+        contentType: "application/json",
+        type: 'post',
+        success: function (res) {
+
+          if (res?.statusCode === 0) {
+            toastr["error"](res?.message);
+          } else {
+            localStorage.setItem("carousel_response", JSON.stringify(res));
+            let row = ''
+            for (let i = 0; i < res?.result.length; i++) {
+              row += `<div class="carousel-slide" onclick="openImagePop2(${res?.result[i]?.imageid})">
+                        <img src="${res?.result[i]?.imagepath}" alt="Image 1">
+                      </div>`;
+            }
+
+            $(".carousel-track").empty().append(row);
+            $("#carouselDiv").fadeIn();
+            $("#carouselDiv").css('display', 'block');
+            $(".countSpan").empty().append(res?.result.length);
+            sponseredImage();
+
+            const track = document.querySelector('.carousel-track');
+            const slides = Array.from(track.children);
+            const slideWidth = slides[0].getBoundingClientRect().width;
+            let currentIndex = 0;
+            const setSlidePosition = (slide, index) => {
+              slide.style.left = slideWidth * index + 'px';
+            };
+            slides.forEach(setSlidePosition);
+
+            const moveToSlide = (track, currentSlide, targetSlide) => {
+              track.style.transform = 'translateX(-' + targetSlide.style.left + ')';
+            };
+
+            const updateIndex = (increment) => {
+              currentIndex = (currentIndex + increment + slides.length) % slides.length;
+              moveToSlide(track, slides[currentIndex - increment], slides[currentIndex]);
+            };
+
+            // Touch event handling for mobile
+            let strtX;
+            let isDrag = false;
+
+            track.addEventListener('touchstart', (e) => {
+              strtX = e.touches[0].clientX;
+              isDrag = true;
+            });
+
+            track.addEventListener('touchmove', (e) => {
+              if (!isDrag) return;
+              const currentX = e.touches[0].clientX;
+              const moveX = strtX - currentX;
+
+              if (moveX > 50) {
+                updateIndex(1);
+                isDrag = false;
+              } else if (moveX < -50) {
+                updateIndex(-1);
+                isDrag = false;
+              }
+            });
+
+            track.addEventListener('touchend', () => {
+              isDrag = false;
+            });
+
+            localStorage.getItem("carousel_response");
+          }
+        },
+        error: function (err) {
+          toastr["error"](err?.responseJSON?.message);
+        },
+      })
+    }
+
+
+    let userId = localStorage.getItem("userId");
+
+    // Check if userId exists
+    if (userId != null) {
+      document.getElementById("carousal-save-btn").style.display = "flex";
+    } else {
+      // If userId doesn't exist, disable the like and follow buttons using Vanilla JavaScript
+      document.getElementById("carousal-save-btn").style.display = "none";
+    }
+
+    const handleSubmitSaveCarousel = () => {
+
+      if (userId) {
+        let carousalName = $("#carousalNameInput").val().trim();
+        let request = {
+          carouselname: carousalName,
+          location: storedData?.locationid,
+          searchkeyword: localStorage.getItem("searchkeyword"),
+          searchresponse: `${localStorage.getItem("carousel_response")}`,
+          userid: userId
+        }
+        $.ajax({
+          url: 'https://2024api.icons4good.com/addCarousel',
+          data: JSON.stringify(request),
+          async: false,
+          contentType: "application/json",
+          type: 'post',
+          success: function (res) {
+            if (res?.statusCode === 0) {
+              toastr["error"](res?.message);
+            } else {
+
+            }
+          },
+          error: function (err) {
+            toastr["error"](err?.responseJSON?.message);
+          },
+        })
+      } else {
+
+      }
+    }
+
+    function getLocations() {
+      const url = new URL(window.location.href);
+      const carouselId = url.searchParams.get("caraousal");
+      if (carouselId) openCarouselByUrl(carouselId);
+    }
+
+    getLocations();
+
+    function openCarouselByUrl(id) {
+      const req = {
+        carouselid: id,
+      };
+
+      $.ajax({
+        url: "https://2024api.icons4good.com/getCarousel",
+        data: JSON.stringify(req),
+        async: false,
+        contentType: "application/json",
+        type: "post",
+        success: handleCarouselResponse,
+        error: handleError,
+      });
+    }
+
+    function handleCarouselResponse(response) {
+      $("#carousal-save-btn").hide(300);
+      if (response?.statusCode && response?.result?.length > 0) {
+        const carouselData = response.result[0];
+        let res;
+        try {
+          res = JSON.parse(JSON.parse(carouselData.searchresponse));
+        } catch (error) {
+          console.error("Failed to parse search response:", error);
+          toastr["error"]("Failed to parse carousel data.");
+          return;
+        }
+
+        if (res?.statusCode !== 0) {
+          renderCarouselSlides(res.result);
+        } else {
+          toastr["error"](res?.message || "Error fetching carousel data.");
+        }
+      } else {
+        toastr["error"]("Invalid response from server.");
+      }
+    }
+
+    function handleError(err) {
+      console.error("AJAX error:", err);
+      toastr["error"]("Failed to fetch carousel data. Please try again later.");
+    }
+
+    function renderCarouselSlides(slideData) {
+      const slideHtml = slideData
+        .map(
+          (slide) => `
+      <div class="carousel-slide" onclick="openImagePop2(${slide.imageid})">
+        <img src="${slide.imagepath}" alt="Carousel Image">
+      </div>`
+        )
+        .join("");
+
+      $(".carousel-track").empty().append(slideHtml);
+      $("#carouselDiv").fadeIn().css("display", "block");
+      $(".countSpan").empty().append(slideData.length);
+
+      setupCarousel();
+    }
+
+    function setupCarousel() {
+      const track = document.querySelector(".carousel-track");
+      const slides = Array.from(track.children);
+      const slideWidth = slides[0].getBoundingClientRect().width;
+
+      slides.forEach((slide, index) => {
+        slide.style.left = slideWidth * index + "px";
+      });
+
+      let currentIndex = 0;
+
+      const moveToSlide = (targetIndex) => {
+        track.style.transform = `translateX(-${slides[targetIndex].style.left})`;
+        currentIndex = targetIndex;
+      };
+
+      const updateIndex = (increment) => {
+        const targetIndex = (currentIndex + increment + slides.length) % slides.length;
+        moveToSlide(targetIndex);
+      };
+
+      setupTouchEvents(track, updateIndex);
+    }
+
+    function setupTouchEvents(track, updateIndex) {
+      let startX, isDragging = false;
+
+      track.addEventListener("touchstart", (e) => {
+        startX = e.touches[0].clientX;
+        isDragging = true;
+      });
+
+      track.addEventListener("touchmove", (e) => {
+        if (!isDragging) return;
+        const currentX = e.touches[0].clientX;
+        const moveX = startX - currentX;
+
+        if (moveX > 50) {
+          updateIndex(1);
+          isDragging = false;
+        } else if (moveX < -50) {
+          updateIndex(-1);
+          isDragging = false;
+        }
+      });
+
+      track.addEventListener("touchend", () => {
+        isDragging = false;
+      });
+    }
+
+
+  </script>
+</body>
+
+</html>

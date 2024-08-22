@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <link href="css/style.css" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <script src="/js/aframe.min.js"></script>
+  <script src="/js/image-aframe.prod.js"></script>
+  <style>
+
+
+
+  </style>
+</head>
+
+<body>
+
+  <a-scene id="showScanner" mindar-image="" color-space="sRGB" renderer="colorManagement: true, physicallyCorrectLights"
+    vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+    <a-assets>
+      <img id="avatarModel" src="/images/ModelImage/ARModel.JPG" />
+      <!-- <a-asset-item  id="avatarModel" src="/images/ModelImage/ARAd.glb"></a-asset-item>-->
+      <!--<a-asset-item id="avatarModel" src="/images/scanGoodsicon.png"></a-asset-item> -->
+
+    </a-assets>
+
+    <a-camera position="0 0 0" look-controls="enabled: false" cursor="fuse: false; rayOrigin: mouse;"
+      raycaster="near: 10; far: 10000; objects: .clickable"></a-camera>
+
+    <!-- <a-entity mindar-image-target="targetIndex: 0">
+       <a-plane src="#card" position="0 0 0" height="0.8" width="0.8" rotation="0 0 0"></a-plane>
+      </a-entity>
+    <a-entity mindar-image-target="targetIndex: 1">
+        <a-plane src="#card" position="0 0 0" height="0.4" width="0.4" rotation="0 0 0"></a-plane>
+      </a-entity> -->
+    <a-entity mindar-image-target="targetIndex: 0">
+      <!-- <a-gltf-model id="vrmodel" class="clickable" src="#avatarModel" rotation="0 0 0 "  position="0 0 0.1" scale="0.4 0.4 0.4" > -->
+
+      <!-- <a-box id="vrmodel" class="clickable" color="red"></a-box> -->
+      <a-plane id="vrmodel" class="clickable" src="#avatarModel" position="0 0 0" height="0.4" width="0.4"
+        rotation="0 0 0"></a-plane>
+    </a-entity>
+
+
+  </a-scene>
+
+
+
+  <script>
+
+    document.querySelector('#vrmodel').addEventListener('click', function (evt) {
+      location.replace('/mosiac.html');
+    });
+
+    var storedData = JSON.parse(localStorage.getItem('storedData'));
+    var data = 'imageTargetSrc:' + storedData?.finalimagefeaturepath + '; filterMinCF:0.0001; filterBeta: 0.001; missTolerance: 3'
+    $("#showScanner").attr("mindar-image", data)
+  </script>
+
+  <script>
+
+  </script>
+
+</body>
+
+</html>

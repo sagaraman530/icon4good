@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Icons4Good | CRM</title>
+<link rel="icon" type="image/x-icon" href="assets/dist/img/fav.ico">
+  <link  href="assets/dist/fonts/inter/inter.css" rel="stylesheet">
+  <link
+           href="https://fonts.gstatic.com"
+           rel="preconnect">
+       <link
+           href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;1,400&display=swap"
+           rel="stylesheet">
+
+       <!-- Icon fonts -->
+       <link
+           href="https://fonts.googleapis.com/icon?family=Material+Icons"
+           rel="stylesheet">
+
+ <!-- Font Awesome -->
+ <script src="https://kit.fontawesome.com/f03a5829e7.js" crossorigin="anonymous"></script>
+   
+ <!-- Ionicons -->
+ <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+ <!-- Tempusdominus Bootstrap 4 -->
+ <!-- iCheck -->
+ <link rel="stylesheet" href="assets/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+ <!-- JQVMap -->
+ <link rel="stylesheet" href="assets/plugins/jqvmap/jqvmap.min.css">
+ <link rel="stylesheet" href="assets/plugins/select2/css/select2.min.css">
+
+ <!-- Theme style -->
+ <link rel="stylesheet" href="assets/dist/css/adminlte.min.css">
+   <link rel="stylesheet" href="assets/dist/css/style.css">
+ <!-- overlayScrollbars -->
+ <link rel="stylesheet" href="assets/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+ <link rel="stylesheet" type="text/css" href="assets/dist/css/select2.min.css">
+ <link rel="stylesheet" type="text/css" href="assets/dist/css/toast.css">
+ <link rel="stylesheet" type="text/css" href="assets/dist/css/sweetalert2.min.css">
+ <link rel="stylesheet" type="text/css" href="assets/dist/css/dataTables.css">
+ <link rel="stylesheet" type="text/css" href="assets/dist/css/fixedColumns.dataTables.min.css">
+</head>
+<body class="hold-transition sidebar-mini layout-fixed">
+<div class="wrapper">
+
+ 
+
+  <!-- Navbar -->
+  <nav class="main-header navbar navbar-expand navbar-white navbar-light fixed-top">
+    <!-- Left navbar links -->
+    <ul class="navbar-nav pl-3">
+      <li class="nav-item">
+        <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>      </li>
+       
+       <li class="nav-item  d-sm-inline-block">
+        <a href="#" class="nav-link pl-0"> List Of Images</a>      </li>
+    </ul>
+
+    <!-- Right navbar links -->
+    <ul class="navbar-nav ml-auto">
+      <!-- Navbar Search -->
+      <li class="nav-item  mt-1tpnv mr-51a dis-none">
+<!--          
+          <div class="input-group">
+    <input type="text" class="form-control frm-hight40" placeholder="Search Details">
+    <div class="input-group-append">
+      <button class="btn btn-secondary" type="button">
+        <i class="fa fa-search"></i>
+      </button>
+    </div>
+  </div> -->
+  
+      </li>
+	    <li class="nav-item ">
+         
+        <a href="javascript:void(0)" class="btn   btn-outline-secondary btn-sm pl-3 pr-3 border-all mt-1 clickOnNew"> <i class="fa fa-plus" aria-hidden="true"></i> New </a>
+
+    </li>
+	    
+      <li class="nav-item dropdown">
+        <a class="nav-link" data-toggle="dropdown" href="#">
+          <img src="assets/dist/img/user8-128x128.jpg" alt="User Avatar" class="img-size-50  img-circle">        </a>
+        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-lg1  dropdown-menu">
+          <span class="dropdown-item dropdown-header text-center fnt112"id="profileUserName"> Admin </span>
+          <div class="dropdown-divider"></div>
+          <a href="#" class="dropdown-item">
+          <div class="media">
+               <mat-icon role="img" class="mat-icon notranslate mat-icon-no-color mr-4" aria-hidden="true" data-mat-icon-type="svg" data-mat-icon-name="user-circle" data-mat-icon-namespace="heroicons_outline"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" fit="" height="100%" width="100%" preserveAspectRatio="xMidYMid meet" focusable="false">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+        </svg></mat-icon>
+              <div class="media-body">
+                 
+                 
+                <p class="text-sm "> Profile</p>
+              </div>
+          </div>
+          </a>
+           <div class="dropdown-divider"></div>
+           
+              <span class="dropdown-item dropdown-header text-center fnt112"> Settings </span>
+             
+          
+          <div class="dropdown-divider"></div>
+          <!-- <a href="changePassword.html" class="dropdown-item">
+          <div class="media">
+             <mat-icon role="img" class="mat-icon notranslate icon-size-5 mat-icon-no-color mr-4" aria-hidden="true" data-mat-icon-type="svg" data-mat-icon-name="refresh" data-mat-icon-namespace="heroicons_solid"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" fit="" height="100%" width="100%" preserveAspectRatio="xMidYMid meet" focusable="false">
+            <path fill-rule="evenodd" d="M4 2a1 1 0 011 1v2.101a7.002 7.002 0 0111.601 2.566 1 1 0 11-1.885.666A5.002 5.002 0 005.999 7H9a1 1 0 010 2H4a1 1 0 01-1-1V3a1 1 0 011-1zm.008 9.057a1 1 0 011.276.61A5.002 5.002 0 0014.001 13H11a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0v-2.101a7.002 7.002 0 01-11.601-2.566 1 1 0 01.61-1.276z" clip-rule="evenodd"></path>
+        </svg></mat-icon> <div class="media-body"><p class="text-sm ">Change Password</p></div></div>
+          </a> -->
+          <div class="dropdown-divider"></div>
+          <a href="#" class="dropdown-item">
+          <div class="media">
+            <mat-icon role="img" class="mat-icon notranslate mat-icon-no-color mr-4" aria-hidden="true" data-mat-icon-type="svg" data-mat-icon-name="logout" data-mat-icon-namespace="heroicons_outline"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" fit="" height="100%" width="100%" preserveAspectRatio="xMidYMid meet" focusable="false">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path>
+        </svg></mat-icon><div class="media-body"><p class="text-sm " onClick="logout()"> Logout</p></div>
+          </div>
+          </a>        </div>
+      </li>
+      
+      
+       
+       
+    </ul>
+  </nav>
+  <div id="common"></div>
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper bdr-tp-aa1">
+    <!-- Content Header (Page header) -->
+      
+    <!-- /.content-header -->
+
+    <!-- Main content -->
+    <section class="content  mt-1">
+      <div class="container-fluid ">
+      
+        <!-- Small boxes (Stat box) -->
+        <div class="row"> 
+         <div class="col-md-12">
+            <!-- general form elements -->
+            <div class="card card-primary">
+              
+              <!-- /.card-header -->
+              <!-- form start -->
+              <form>
+                <div class="card-body pt-0 pl-0">
+                  <div class="row"> 
+                    <div class="col-12">
+                    <div class="in-table-st11ab">
+                    <div class="table-responsive-sm mt-3" id="spareTableList">
+               
+  </div>
+  </div>
+                    </div>
+                    </div>
+                   
+                   
+                
+                <!-- /.card-body -->
+
+                </div>
+              </form>
+            </div>
+            <!-- /.card -->
+
+            <!-- general form elements -->
+             
+            <!-- /.card -->
+
+            <!-- Input addon -->
+             
+            <!-- /.card -->
+            <!-- Horizontal Form -->
+             
+            <!-- /.card -->
+
+          </div>
+        </div>
+         
+         
+          
+                   
+                   
+         
+          
+        <!-- /.row -->
+        <!-- Main row -->
+         
+        <!-- /.row (main row) -->
+      </div>
+       <!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+  </div>
+            
+          </div>
+          <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+      </div>
+  <!-- Control Sidebar -->
+  
+  <!-- /.control-sidebar -->
+  
+ 
+  <!-- /.content-wrapper -->
+<div id="footer" class="main-footer text-center mt-2">
+	   <span class="small"> Powered by GoEVC</span>   
+     <!-- <img src="assets/dist/img/GO-EVC.png" alt="AdminLTE Logo" class="brand-image"> -->
+   
+	  </div>
+
+  <!-- Control Sidebar -->
+   
+  <!-- /.control-sidebar -->
+</div>
+<!-- ./wrapper -->
+<script src="assets/plugins/jquery/jquery.min.js"></script>
+<script src="assets/plugins/jquery-ui/jquery-ui.min.js"></script>
+<script>
+  $.widget.bridge('uibutton', $.ui.button)
+</script>
+<script src="assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+ <script src="assets/plugins/select2/js/select2.full.min.js"></script>
+<script src="assets/plugins/jqvmap/jquery.vmap.min.js"></script>
+<script src="assets/plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
+<script src="assets/plugins/jquery-knob/jquery.knob.min.js"></script>
+<script src="assets/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+<script src="assets/dist/js/adminlte.js"></script>
+<script src="assets/dist/js/demo.js"></script>
+<script src="assets/dist/js/common.js"></script>
+<script src="assets/dist/js/pages/dashboard.js"></script>
+<script type="text/javascript" charset="utf8"	src="assets/dist/js/select2.min.js"></script>
+<script type="text/javascript" charset="utf8"	src="assets/dist/js/toast.js"></script>
+<script type="text/javascript" charset="utf8"	src="assets/dist/js/dataTables.min.js"></script>
+<script type="text/javascript" charset="utf8"	src="assets/dist/js/dataTables.buttons.min.js"></script>
+<script type="text/javascript" charset="utf8"	src="assets/dist/js/dataTables.fixedColumns.min.js"></script>
+<script type="text/javascript" charset="utf8"	src="assets/dist/js/jszip.min.js"></script>
+<script type="text/javascript" charset="utf8"	src="assets/dist/js/buttons.html5.min.js"></script>
+ <script>
+ $("#common").load("include/common.html");
+ $("#footer").load("include/footer.html");
+ 
+
+$(document).ready(function () {
+		
+  getSpareList();
+	 })
+
+
+
+
+function getSpareList(){
+  var req = {
+  "id": 3
+}
+		$.ajax({
+			type : "POST",
+			async:true,
+			url : apiUrl+"getImagesForLocation",
+      data: JSON.stringify(req),
+		contentType: "application/json",
+			 success: function(data) {
+				
+           var row='<table class="table"><thead><tr><th>Sr. No.<hr class="mt-4vvvvawqqq mb-0"></th><th >Name<hr class="mt-4vvvvawqqq mb-0"></th><th >Mobile<hr class="mt-4vvvvawqqq mb-0"></th><th >Email<hr class="mt-4vvvvawqqq mb-0"></th><th  >Picture <hr class="mt-4vvvvawqqq mb-0"></th><th  >Status <hr class="mt-4vvvvawqqq mb-0"></th><th > Action<hr class="mt-4vvvvawqqq mb-0"></th></tr></thead><tbody>'
+             
+						  for (var i = 0; i < data.result.length; i++) {
+						  var k=i+1
+							  row +=' <tr class=""  spareId='+data.result[i].id+' userId='+data.result[i].userid+'><td scope="row">'+k+'</td>'
+                  row+='<td><a   class="no-st-text-b">'+checknullStatus(data.result[i].name)+'</a></td>'
+                  row+='<td><a   class="no-st-text-b">'+checknullStatus(data.result[i].mobile)+'</a></td>'
+                  row+='<td style="width: 20%; word-break: break-all; "><a   class="no-st-text-b">'+checknullStatus(data.result[i].email)+'</a></td>'
+                  row+='<td> <img src="'+ checknullStatus(data.result[i].image)+'" width="50" height="50"></td>'
+                  row+='<td><a   class="no-st-text-b">'+checknullStatus(data.result[i].approvalstatus)+'</a></td>'
+
+                  if(data.result[i].approvalstatus=="Pending"){
+                    row += '<td style="width: 15%; word-break: break-all; "><a  class="downloadCls clickable" base64Img="'+data.result[i].image+'"><i class="fa fa-download" aria-hidden="true"></i></a><a  class="status clickable" statusAttr="Approved"><i class="fa fa-check" aria-hidden="true"></i></a><a  class="status clickable" statusAttr="Rejected"><i class="fa fa-times" aria-hidden="true"></i></a></td></tr>'
+                  }else{
+                    row += '<td style="width: 15%; word-break: break-all; " ><a base64Img="'+data.result[i].image+'" class="downloadCls clickable"><i class="fa fa-download" aria-hidden="true"></i></a></td></tr>'
+                  }
+                
+
+
+                  // row+='<td><a   class="no-st-text-b">'+checknullStatus(data.result[i].scanedimagepath)+'</a></td>'
+                  // row+='<td><a   class="no-st-text-b">'+checknullStatus(data.result[i].sponser1image)+'</a></td>'
+                  // row+='<td><a   class="no-st-text-b">'+checknullStatus(data.result[i].sponser2image)+'</a></td>'
+                  // row+='<td> <img src="'+ checknullStatus(data.result[i].picturemosaiclink)+'" width="100" height="100"></td>'
+                }
+						  row+='</tbody></table>'
+						$("#spareTableList").empty().append(row)
+            $('.table').DataTable();
+            $('.table').off('click', 'a.status').on('click', 'a.status', function (e) {
+          	 var id =  $(this).parent().parent().attr("spareId")
+             var status =  $(this).attr("statusAttr")
+             var userId =  $(this).parent().parent().attr("userId")
+             var req = {
+                "id": id,
+                "status": status,
+                "userid":userId
+              }
+             $.ajax({
+            type : "POST",
+            async:true,
+            url : apiUrl+"approveImagesForLocation",
+            data:JSON.stringify(req),
+		      	contentType: "application/json",
+            success: function(data) {
+              console.log(data);
+                if(data.status == 'Success'){
+                  console.log(data.result);
+                  toastr["success"](data.message);
+                  getSpareList();
+                
+                    }
+				 unblockUI();
+		},
+		error: function (xhr, errorThrown) {
+		if(xhr.responseJSON==undefined){
+			ConfirmAlert('error',xhr.statusText);
+		}else{
+		ConfirmAlert('error',xhr.responseJSON.message);
+		}
+		unblockUI();
+		}
+
+		})
+              })
+
+              $('.table').off('click', 'a.downloadCls').on('click', 'a.downloadCls', function (e) {
+          	 var image =  $(this).attr("base64Img")
+             const link = document.createElement('a');
+              link.href = image;
+              link.download = 'image.png'; // Change the file name and extension as needed
+              document.body.appendChild(link);
+              link.click();
+              document.body.removeChild(link);
+                  
+                      })
+						 
+				 unblockUI();
+		},
+		error: function (xhr, errorThrown) {
+		if(xhr.responseJSON==undefined){
+			ConfirmAlert('error',xhr.statusText);
+		}else{
+		ConfirmAlert('error',xhr.responseJSON.message);
+		}
+		unblockUI();
+		}
+
+		})
+			 }
+       $(".clickOnNew").click(function () {
+            localStorage.setItem("spareCategoryCache","Add");
+         window.location.href="list-of-spares-registration.html"
+             })
+						  
+       
+
+
+</script>
+</body>
+</html>

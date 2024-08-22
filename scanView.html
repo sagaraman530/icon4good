@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="css/bootstrapv5.3.1.css" rel="stylesheet">
+    <link href="css/bootstrapv3.1.4.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/toaster.css" rel="stylesheet">
+    <script src="js/jquery.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script src="js/toaster.js"></script>
+
+    <style>
+ 
+  
+ 
+   
+    </style>
+  </head>
+  <body>
+    <div class="">
+    <div class="text-center">
+      <img src="" id="getImage" class="w-100 height70vh" alt="Image 1" />
+
+  
+<div class="container-fluid">
+  <p class="h6">Ανακάλυψε το κρυμμένο φωτογραφικό μωσαϊκό
+ 
+  </p>
+      <button type="button" onclick="openScanScreen()" class="border-btn-fill btn btn-default my-4 mt-2 p-3">σαρώστε το σημείο</button>
+   
+      <!-- <button type="button" onclick="map()" class="border-btn-blank btn btn-default my-4 p-3">έλεγξε την τοποθεσία</button> -->
+    </div>
+    </div>
+     
+    <div class="bottomBtns">
+      <div class="row">
+        <div class="col-xs-4">
+    <div class="text-center mb-2" >
+      <img src="images/profile.png"  class="w-20px" alt="Image 1" /><br>
+      <a href="signUp.html" class="fz-12 colorBlack">Profile</a>
+    </div>
+    </div>
+    <div class="col-xs-4">
+    <div class="text-center mb-2">
+      <img src="images/scan.png"  class="w-20px" alt="Image 1" /><br>
+      <a href="scanView.html" class="fz-12 colorBlack">Scan</a>
+    </div>
+    </div>
+    <div class="col-xs-4">
+    <div class="text-center mb-2" >
+      <img src="images/map.png"  class="w-20px" alt="Image 1" /><br>
+      <a href="viewMap.html" class="fz-12 colorBlack">Map</a>
+    </div>
+    </div>
+  </div>
+  </div>
+    </div>
+  </body>
+  <script>
+  var name = window.location.search.split("=")[1];
+$( document ).ready(function() {
+  getLocations();
+  
+});
+var name = window.location.search.split("=")[1];
+    function getLocations(){
+        $.ajax({
+        url:'https://api.icons4good.com/getLocation',
+        async:false,
+        type:'post',
+        success: function (res) {
+          var data = res?.result.find((e) => e.name.toLowerCase() == name.toLowerCase() )
+            localStorage.setItem("storedData",JSON.stringify(data))
+          $("#getImage").attr('src',data.scanedimagepath )
+        },
+        error: function (err) {
+           console.log(err)
+        },
+    });
+    
+      }
+var storedData = JSON.parse(localStorage.getItem('storedData'));
+$("#getImage").attr('src',storedData.scanedimagepath )
+
+    function map() {
+      window.location.href = "viewMap.html";
+    }
+
+    
+    function openScanScreen() {
+      window.location.href = "checkLocation.html";
+    }
+  </script>
+</html>

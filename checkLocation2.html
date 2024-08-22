@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <link href="css/style.css" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <script src="/js/aframe.min.js"></script>
+  <script src="/js/image-aframe.prod.js"></script>
+  <style>
+    .noshow {
+      display: none !important
+    }
+  </style>
+</head>
+
+<body class="backCls" style="background-size: cover;">
+
+  <!-- <div class="topBarCls">
+    <i  class="fa fa-info-circle infoIconCls" onclick="myGreeting1()" aria-hidden="true"></i>
+    <p class="paraTopCLs1"></p>
+    <select class="selectLanguageCls" id="selectLanguageId" onchange="changeLanguage()"></select>
+  </div> -->
+
+  <a-scene id="showScanner" style="height: 80vh;position: fixed; top: 10px;" mindar-image="" color-space="sRGB"
+    renderer="colorManagement: true, physicallyCorrectLights" vr-mode-ui="enabled: false"
+    device-orientation-permission-ui="enabled: false">
+    <a-assets>
+      <!--<img id="card" src="/images/scanGoodsicon.png" /> -->
+      <a-asset-item id="avatarModel" src=""></a-asset-item>
+      <!--<a-asset-item id="avatarModel" src="/images/scanGoodsicon.png"></a-asset-item> -->
+    </a-assets>
+
+    <a-camera position="0 0 0" look-controls="enabled: false" cursor="fuse: false; rayOrigin: mouse;"
+      raycaster="near: 10; far: 10000; objects: .clickable"></a-camera>
+    <!-- <a-entity mindar-image-target="targetIndex: 1">
+       <a-plane src="#card" position="0 0 0" height="0.8" width="0.8" rotation="0 0 0"></a-plane>
+      </a-entity>
+    <a-entity mindar-image-target="targetIndex: 1">
+        <a-plane src="#card" position="0 0 0" height="0.4" width="0.4" rotation="0 0 0"></a-plane>
+      </a-entity> -->
+    <a-entity mindar-image-target="targetIndex: 0">
+      <!-- <a-gltf-model id="vrmodel1" class="clickable viewForGlb"   src="#avatarModel"  rotation="0 0 0 "  position="0 1 0" scale="0.5 0.5 0.5" >  </a-gltf-model>   -->
+      <a-image id="vrmodel1" class="clickable viewForPng" src="#avatarModel" position="0 0 0" scale="1 0.7 1"
+        rotation="0 0 0" alpha-test></a-image>
+    </a-entity>
+    <a-entity mindar-image-target="targetIndex: 1">
+      <!-- <a-gltf-model id="vrmodel2" class="clickable viewForGlb"   src="#avatarModel"  rotation="0 0 0 "  position="0 1 0" scale="0.5 0.5 0.5">  </a-gltf-model> -->
+      <a-image id="vrmodel2" class="clickable viewForPng" src="#avatarModel" position="0 0 0" scale="1 0.7 1"
+        rotation="0 0 0" alpha-test></a-image>
+    </a-entity>
+    <a-entity mindar-image-target="targetIndex: 2">
+      <!-- <a-gltf-model id="vrmodel3" class="clickable viewForGlb"  src="#avatarModel"  rotation="0 0 0 "  position="0 1 0" scale="0.1 0.1 0.1">  </a-gltf-model> -->
+      <a-image id="vrmodel3" class="clickable viewForPng" src="#avatarModel" position="0 1 0" scale="1 0.7 1"
+        rotation="0 0 0" alpha-test></a-image>
+    </a-entity>
+    <a-entity mindar-image-target="targetIndex: 3">
+      <!-- <a-gltf-model id="vrmodel4" class="clickable viewForGlb"  src="#avatarModel"  rotation="0 0 0 "  position="0 1 0" scale="0.1 0.1 0.1" >  </a-gltf-model> -->
+      <a-image id="vrmodel4" class="clickable viewForPng" src="#avatarModel" position="0 1 0" scale="1 0.7 1"
+        rotation="0 0 0" alpha-test></a-image>
+    </a-entity>
+    <a-entity mindar-image-target="targetIndex: 4">
+      <!-- <a-gltf-model id="vrmodel5" class="clickable viewForGlb"  src="#avatarModel"  rotation="0 0 0 "  position="0 1 0" scale="0.1 0.1 0.1" >  </a-gltf-model> -->
+      <a-image id="vrmodel5" class="clickable viewForPng" src="#avatarModel" position="0 1 0" scale="1 0.7 1"
+        rotation="0 0 0" alpha-test></a-image>
+    </a-entity>
+  </a-scene>
+
+  <script>
+    var storedData = JSON.parse(localStorage.getItem('storedData'));
+    $(".backCls").css("background-image", "url(" + storedData?.bgimg + ")")
+    var name = storedData?.name;
+    document.querySelector('#vrmodel1').addEventListener('click', function (evt) {
+      location.replace('/mosiac.html?loc=' + name);
+    });
+    document.querySelector('#vrmodel2').addEventListener('click', function (evt) {
+      location.replace('/mosiac.html?loc=' + name);
+    });
+    document.querySelector('#vrmodel3').addEventListener('click', function (evt) {
+      location.replace('/mosiac.html?loc=' + name);
+    });
+    document.querySelector('#vrmodel4').addEventListener('click', function (evt) {
+      location.replace('/mosiac.html?loc=' + name);
+    });
+    document.querySelector('#vrmodel5').addEventListener('click', function (evt) {
+      location.replace('/mosiac.html?loc=' + name);
+    });
+
+    // var storedData = JSON.parse(localStorage.getItem('storedData'));
+    // var modellink3dExt = storedData?.modellink3d.match(/(.*)\.(.*)/)[2];
+    // Attempt to parse the data from localStorage
+    var storedData = JSON.parse(localStorage.getItem('storedData'));
+
+    // Check if storedData is valid and modellink3d exists
+    if (storedData && typeof storedData.modellink3d === 'string') {
+      // Use regex match to extract the file extension
+      var modellink3dExt = storedData.modellink3d.match(/\.([^\.]+)$/)?.[1];
+      if (modellink3dExt?.toLowerCase() === 'glb') {
+        //$(".viewForGlb").attr("visible","true");	 
+        //$(".viewForPng").attr("visible","false");
+      } else {
+        //$(".viewForGlb").attr("visible","false");
+        //$(".viewForPng").attr("visible","true");	  
+      }
+    }
+
+    var data = 'imageTargetSrc:' + storedData?.finalimagefeaturepath + '; filterMinCF:0.0001; filterBeta: 0.001; missTolerance: 3'
+    $("#showScanner").attr("mindar-image", data);
+    $("#avatarModel").attr("src", storedData?.modellink3d);
+
+  </script>
+</body>
+
+</html>

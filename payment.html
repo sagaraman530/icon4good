@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="css/bootstrapv5.3.1.css" rel="stylesheet">
+    <link href="css/bootstrapv3.1.4.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/toaster.css" rel="stylesheet">
+    <script src="js/jquery.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script src="js/toaster.js"></script>
+    <script src="js/common.js"></script>
+    <style>
+   
+   
+  
+    </style>
+  </head>
+  <body>
+    
+   
+      <div class="container-fluid" style="margin-top: 8em;">
+     
+     
+   
+    <div class="text-center px-2" >
+      <p class="h6 paymentParaOne">Add your image to the mosaic and keep it there </p>
+      <p class="h4 paymentParaTwo">Pay Now  </p>
+      <p class="h2 paymentParaThree">2.00  </p>
+      <!-- <p class="h6">In order to add your image please pay &nbsp; &nbsp; <span id="amount"> </span></p> -->
+    </div>
+    <div class="text-center " >
+    <button type="button" onclick="pay()" class="border-btn-blank-red btn btn-default my-2 p-3 mb-5 paymentBtnOne">payment</button>
+    <!-- <button type="button" onclick="backToMosiac()" class="border-btn-blank btn btn-default my-2 p-3 mb-5 paymentBtnTwo">Without Donation
+
+    </button> -->
+  </div>
+  <div class="text-center px-2" >
+    <p class="h6 paymentParaFour">Let us give a part of the amount to a charity of our choice </p>
+   
+    <!-- <p class="h6">In order to add your image please pay &nbsp; &nbsp; <span id="amount"> </span></p> -->
+  </div>
+  </div>
+  </body>
+  <script>
+           $( document ).ready(function() {
+  changeLanguage();
+})
+     var storedData = JSON.parse(localStorage.getItem('storedData'));
+           var amount = storedData?.amount;
+        $("#amount").text(amount);
+    function pay() {
+      var payAmount = storedData?.amount;
+      var password = $('#password').val();
+             
+      var req = {
+            
+        "currency": "USD",
+        "description": "Demo",
+        "intent": "Sale",
+        "method": "paypal",
+        "price": 2
+            }
+        $.ajax({
+        url:'https://apilove.icons4good.com/pay',
+        data:JSON.stringify(req),
+        async:false,
+        contentType: "application/json",
+        type:'post',
+        success: function (res) {
+          if(res?.statusCode === 0 ){
+            toastr["error"](res?.message); 
+          }else{
+          toastr["success"](res?.message);
+          setTimeout(function() {
+            window.location.replace(res.slice(9));
+                           // window.location.replace("/mosiac_second.html");
+                        }, 2000);
+                      }
+        },
+        error: function (err) {
+          toastr["error"](err?.responseJSON?.message);
+        },
+      })
+     
+    }
+
+   function backToMosiac() {
+        window.location.href = "mosiac_second.html";
+    }
+ 
+  </script>
+</html>

@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <link href="css/bootstrapv5.3.1.css" rel="stylesheet">
+    <link href="css/bootstrapv3.1.4.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/toaster.css" rel="stylesheet">
+    <script src="js/jquery.js"></script>
+    <script src="js/toaster.js"></script>
+    <script src="js/common.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" rel="stylesheet">
+    <link href="bootstrap-tabs-portfolio.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
+</head>
+<style>
+
+#customersCats{
+   margin-top:0.2rem;
+   height: 50px;
+}
+
+
+
+.nav-link.active, .nav-link:focus,  .nav-link:hover {
+    background-color: transparent;
+    border-color: transparent;
+    border-bottom: 3px solid #1aafff;
+}
+a.nav-link{
+  color:#333;
+  font-size: 16px;
+  padding: 6px 15px;
+}
+/* Basic styles */
+
+
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 10px;
+    width: 90%;
+    max-width: 600px;
+    padding: 10px;
+  }
+  
+  .gallery-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  
+  .gallery-item img {
+    width: 100%;
+    height: auto;
+    border-bottom: 2px solid #ddd;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-radius: 60px;
+  }
+  
+  .caption {
+    padding: 10px;
+    text-align: center;
+    width: 100%;
+    font-size: 16px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+  }
+
+
+
+</style>
+<body>
+  <div><i class="fa fa-chevron-left float-left mt-4 ms-4" onclick="back()" style="font-size: 25px;" aria-hidden="true"></i>
+    <h2 class="text-center mt-4">Community</h2>
+  </div>
+    
+      
+
+
+
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12">
+      <ul class="nav justify-content-center" role="tablist" id="customersCats" >
+        <li class="nav-item">
+          <a class="nav-link active show" href="#featuredSection" id="featured" data-toggle="tab" role="tab" aria-controls="featuredSection" aria-selected="true">Following</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#educationSection" id="education" data-toggle="tab" role="tab" aria-controls="educationSection" aria-selected="false">Followers</a>
+        </li>
+       
+      </ul>
+    </div>
+  </div><!-- row-->
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="tab-content" id="catsContent">
+        <div class="tab-pane fade show active" id="featuredSection" role="tabpanel" aria-lRobotoledby="feature">
+        <div class="row justify-content-center">
+            <div class="gallery col-xs-12">
+                <div class="gallery-item">
+                  <img src="/images/johnDeo.jpg" alt="Image 1">
+                  <div class="caption">Image 1</div>
+                </div>
+                <div class="gallery-item">
+                  <img src="/images/johnDeo.jpg" alt="Image 2">
+                  <div class="caption">Image 2</div>
+                </div>
+                <div class="gallery-item">
+                  <img src="/images/johnDeo.jpg" alt="Image 3">
+                  <div class="caption">Image 3</div>
+                </div>
+                <div class="gallery-item">
+                  <img src="/images/johnDeo.jpg" alt="Image 4">
+                  <div class="caption">Image 4</div>
+                </div>
+                <div class="gallery-item">
+                  <img src="/images/johnDeo.jpg" alt="Image 5">
+                  <div class="caption">Image 5</div>
+                </div>
+                <div class="gallery-item">
+                  <img src="/images/johnDeo.jpg" alt="Image 6">
+                  <div class="caption">Image 6</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="/images/johnDeo.jpg" alt="Image 2">
+                    <div class="caption">Image 2</div>
+                  </div>
+                  <div class="gallery-item">
+                    <img src="/images/johnDeo.jpg" alt="Image 3">
+                    <div class="caption">Image 3</div>
+                  </div>
+                  <div class="gallery-item">
+                    <img src="/images/johnDeo.jpg" alt="Image 4">
+                    <div class="caption">Image 4</div>
+                  </div>
+                  <div class="gallery-item">
+                    <img src="/images/johnDeo.jpg" alt="Image 5">
+                    <div class="caption">Image 5</div>
+                  </div>
+                  <div class="gallery-item">
+                    <img src="/images/johnDeo.jpg" alt="Image 6">
+                    <div class="caption">Image 6</div>
+                  </div>
+              </div>
+
+             
+      
+        </div>
+        
+       
+       
+    </div>
+    <div class="tab-pane fade" id="educationSection" role="tabpanel" aria-lRobotoledby="education">
+        
+      
+      
+        
+        
+       
+       
+    </div>
+  </div><!--row-->
+</div><!-- container-->
+<div class="modal" id="fullScreenModal" style="background-color: #000000a1;"  >
+  <div class="modal-dialog " style="margin: 2em;">
+    <div class="modal-content" style="background-color: #d0d9da;">
+      <div class="" style="position: absolute;
+      top: 1em;
+      right: 1em;
+      z-index: 2;">
+          <img src="images/crossImgPop.png" onclick="closePop()"  alt="Image 1" />
+
+      </div>
+      <div class="modal-body p-0" >
+        <div class="text-center">
+          <div id="pushMosiacImage" style="    max-height: 70vh;
+overflow: auto;"><img style="  width:100%" src=""></a></div>
+          <button class="like-button button-left">
+            <span class="heart-icon"><img src="images/HeartBlank.png"></span>
+            <span class="likes-count">120</span>
+        </button>
+        <button class="like-button button-right ">
+          <span class="heart-icon"><img src="images/Follow.png"></span>
+          <span class="likes-count">76</span>
+      </button>
+          <p class="p1Class">Anna</p>
+          <p class="p2Class">Hey, I was here Too</p>
+          <p class="p3Class">#love,#paris</p>
+         
+      </div>
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+<script type="text/javascript">
+             var storedData = JSON.parse(localStorage.getItem('storedData'));
+
+$(document).ready(function(){
+$('.image-popup-vertical-fit').magnificPopup({
+  type: 'image',
+  mainClass: 'mfp-with-zoom', 
+  gallery:{
+      enabled:true
+    },
+  image: {
+      verticalFit: false
+    },
+
+  zoom: {
+    enabled: true, 
+
+    duration: 300, // duration of the effect, in milliseconds
+    easing: 'ease-in-out', // CSS transition easing function
+
+    opener: function(openerElement) {
+
+      return openerElement.is('img') ? openerElement : openerElement.find('img');
+  }
+}
+
+});
+
+});
+function back() {
+      window.location.href = "./";
+    }
+
+    function openImagePop(){
+      
+  var req = {
+   "xcordinate": 1,
+  "ycordinate": 1,
+  "mosiacid": storedData?.mosiacid
+}
+      $.ajax({
+      url:'https://2024api.icons4good.com/getImageForMosiac',
+      data:JSON.stringify(req),
+      async:false,
+      contentType: "application/json",
+      type:'post',
+      success: function (res) {
+        
+        var data = res?.result[0]
+        $("#pushMosiacImage img").attr("src",data?.imagepath);
+        $(".p1Class").empty().append(data?.imagename);
+        $(".p2Class").empty().append(data?.caption);
+        $(".p3Class").empty().append(data?.tags);
+        $("#fullScreenModal").fadeIn()
+      },
+      error: function (err) {
+        toastr["error"](err?.responseJSON?.message);
+      },
+    })
+}
+
+function closePop(){
+      $("#zoomPopView").fadeOut()
+      $("#infoBlock,#fullScreenModal,#carouselDiv").fadeOut()
+      $("#pushMosiacImage img").attr("src","")
+       $("#searchInput").val('');
+
+      
+     }
+</script>
+     
+    </div>
+ 
+  </div>
+    <script>
+    
+    </script> <!-- If needed for dynamic functionality -->
+</body>
+</html>

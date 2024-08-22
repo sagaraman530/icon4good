@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Responsive Image Gallery</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f0f0f0;
+  }
+  
+  .gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 10px;
+    width: 90%;
+    max-width: 600px;
+    padding: 10px;
+  }
+  
+  .gallery-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .gallery-item img {
+    width: 100%;
+    height: auto;
+    border-bottom: 2px solid #ddd;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+  }
+  
+  .caption {
+    padding: 10px;
+    text-align: center;
+    width: 100%;
+    font-size: 16px;
+    background: #f8f8f8;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+  }
+  ``
+  </style>
+</head>
+<body>
+  <div class="gallery">
+    <div class="gallery-item">
+      <img src="/images/aboutUs.png" alt="Image 1">
+      <div class="caption">Image 1</div>
+    </div>
+    <div class="gallery-item">
+      <img src="/images/aboutUs.png" alt="Image 2">
+      <div class="caption">Image 2</div>
+    </div>
+    <div class="gallery-item">
+      <img src="/images/aboutUs.png" alt="Image 3">
+      <div class="caption">Image 3</div>
+    </div>
+    <div class="gallery-item">
+      <img src="/images/aboutUs.png" alt="Image 4">
+      <div class="caption">Image 4</div>
+    </div>
+    <div class="gallery-item">
+      <img src="/images/aboutUs.png" alt="Image 5">
+      <div class="caption">Image 5</div>
+    </div>
+    <div class="gallery-item">
+      <img src="/images/aboutUs.png" alt="Image 6">
+      <div class="caption">Image 6</div>
+    </div>
+  </div>
+</body>
+</html>

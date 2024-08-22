@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="css/bootstrapv3.1.4.css"/>
+    <link href="css/bootstrapv5.3.1.css" rel="stylesheet">
+    <link href="css/bootstrapv3.1.4.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/toaster.css" rel="stylesheet">
+    <script src="js/jquery.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script src="js/toaster.js"></script>
+
+
+    <style>
+  
+    </style>
+  </head>
+  <body>
+    <div class="px-2 pt-4">
+    <div class="text-center mt-5">
+      <img src="images/scanGoodsicon.png"  class="w-50" alt="Image 1" />
+    </div>
+    <div class="text-center container-fluid">
+    <h4>Σας ευχαριστούμε για τη μεταφόρτωση της εικόνας.</h4>
+      
+      </div>
+ <div class="text-center container-fluid">
+  <button type="button" onclick="viewOnMap()" class="border-btn-fill btn btn-default my-2 p-3 mb-5">Next</button>
+  </div>
+
+</div>
+<div class="bottomBtns">
+  <div class="row">
+    <div class="col-xs-4">
+<div class="text-center mb-2" >
+  <img src="images/profileRed.png"  class="w-20px" alt="Image 1" /><br>
+  <a href="signUp.html" class="fz-12 colorBlack">Profile</a>
+</div>
+</div>
+<div class="col-xs-4">
+<div class="text-center mb-2" >
+  <img src="images/scanBlack.png"  class="w-20px" alt="Image 1" /><br>
+  <a href="scanView.html" class="fz-12 colorBlack">Scan</a>
+</div>
+</div>
+<div class="col-xs-4">
+<div class="text-center mb-2" >
+  <img src="images/map.png"  class="w-20px" alt="Image 1" /><br>
+  <a href="viewMap.html" class="fz-12 colorBlack">Map</a>
+</div>
+</div>
+</div>
+</div>
+
+
+  </body>
+<!-- <div class="d-flex justify-content-around">
+ 
+  <div class="text-center" onclick="scan()">
+    <img src="images/scanBlack.png"  class="w-20px" alt="Image 1" />
+    <p class="fz-12">Scan</p>
+  </div>
+  <div class="text-center" onclick="map()">
+    <img src="images/map.png"  class="w-20px" alt="Image 1" />
+    <p class="fz-12">Map</p>
+  </div>
+</div>  -->
+</div>  
+   
+  </body>
+  <script>
+
+document.querySelector('#photo').addEventListener('change', convertImage, false);
+	$('input[type=file]').change(function () {
+		console.dir(this.files[0])
+	})
+	var base64 = "";
+	function convertImage(e) {
+	//	$("#imageDisplayDiv").empty();
+		base64 = "";
+		var files = e.target.files;
+		if (files.length == "0") {
+			{
+				toastr["error"]("Please add image.");
+			}
+			$("#file").val('');
+			return;
+		}
+		var filesArr = Array.prototype.slice.call(files);
+		// if (filesArr[0].size >= 1000000) {
+		// 	{
+		// 		toastr["error"]("Size should be less than 1mb.");
+		// 	}
+		// 	$("#file").val('');
+		// 	return;
+		// }
+		
+		filesArr.forEach(function (f) {
+			if (!f.type.match("image.*")) return;
+			var reader = new FileReader();
+			reader.onload = function (e) {
+				base64="";
+				base64 = e.target.result;
+				var html = '<img src="' + base64 + '" style="width:145px;height:100px;padding: 5px;">'
+				$("#imageDisplayDiv").append(html);
+				// console.log(base64)
+			};
+			reader.readAsDataURL(f);
+		});
+	}
+    function submit() {
+      var name = $('#name').val();
+      var surname = $('#surname').val();
+      var graduationyear = $('#graduationyear').val();
+      var schoolrelation = $('#schoolrelation').val();
+      var lotteryno = $('#lotteryno').val();
+      var email = $('#email').val();
+       var mobile = $('#mobile').val();
+       var photo = base64
+
+       if(name == "" || name == "undefined"){
+             toastr["error"]("Please enter first name.");
+             $("#name").focus();
+             return false;
+           }
+
+           if(surname == "" || surname == "undefined"){
+             toastr["error"]("Please enter last name.");
+             $("#surname").focus();
+             return false;
+           }
+
+
+           if(lotteryno == "" || lotteryno == "undefined"){
+             toastr["error"]("Please enter lottery number.");
+             $("#lotteryno").focus();
+             return false;
+           }
+
+           if(email == "" || email == "undefined"){
+							toastr["error"]("Please enter Email.");
+							$("#email").focus();
+							return false;
+						}
+						
+						if (email != '') {
+							var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+							if (!emailReg.test(email)) {
+								toastr["error"]("Please enter valid email id.");
+								$("#email").focus();
+								return false;
+							}
+						} 
+
+						if(mobile == "" || mobile == "undefined"){
+							toastr["error"]("Please enter mobile.");
+							$("#mobile").focus();
+							return false;
+						}
+
+            if(photo == "" || photo == "undefined"){
+							toastr["error"]("Please upload photo.");
+							$("#photo").trigger();
+							return false;
+						}
+
+      var req = {
+              "countrycode": "US",
+              "email": email,
+              "graduationyear": graduationyear,
+              "lotteryno": lotteryno,
+              "mobile": mobile,
+              "name": name,
+              "password": 'Admin@123',
+              "photo": photo,
+              "schoolrelation": schoolrelation,
+              "surname": surname
+            }
+        $.ajax({
+        url:'https://intellitest.in/signup',
+        data:JSON.stringify(req),
+        async:false,
+        contentType: "application/json",
+        type:'post',
+        success: function (res) {
+          toastr["success"]("Data Subbmited Successfully.");
+							return false;
+        },
+        error: function (err) {
+          toastr["error"](err?.responseJSON?.message);
+        },
+      })
+     
+    }
+  </script>
+  <script>
+    function viewOnMap() {
+      window.location.href = "mosiac_second.html";
+    }
+  </script>
+</html>

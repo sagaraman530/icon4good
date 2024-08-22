@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="css/bootstrapv5.3.1.css" rel="stylesheet">
+  <link href="css/bootstrapv3.1.4.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+  <link href="css/toaster.css" rel="stylesheet">
+  <script src="js/jquery.js"></script>
+  <script src="js/bootstrap.js"></script>
+  <script src="js/toaster.js"></script>
+  <script src="js/common.js"></script>
+
+  <style>
+    .social-login-btns {
+      display: flex;
+      justify-content: space-around;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .social-login-btns button {
+      width: 100%;
+      color: white;
+      padding: 10px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 6px;
+      height: 42px;
+      border: none;
+      border-radius: 5px;
+    }
+
+    .social-login-btns button img {
+      width: 20px;
+    }
+
+    .apple-btn {
+      background-color: black;
+    }
+
+    .google-btn {
+      background-color: #4285f5;
+    }
+
+    .facebook-btn {
+      background-color: #3c5a95;
+    }
+
+    .social-login-btns button.google-btn img {
+      background: #ffffff;
+      padding: 3px;
+      border-radius: 10px;
+    }
+  </style>
+  <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-firestore.js"></script>
+
+</head>
+
+<body>
+  <div class="w-100">
+    <div class="p-4">
+      <h4 class="fw-medium text-center mt-5 signUpsubsLabel">Subscription</h4>
+      <!-- <script src="https://accounts.google.com/gsi/client" async defer></script>
+      <div class="container-fluid" id="g_id_onload"
+        data-client_id="1021558277012-3gi8r28679ihucp4qu115b7dtjjh55kl.apps.googleusercontent.com"
+        data-callback="handleCredentialResponse">
+      </div>
+      <div>
+        <div class="g_id_signin" style="    display: flex;
+    justify-content: space-around;"></div>
+      </div> -->
+      <!-- <p class="text-center signUpOrlabel">or</p> -->
+      <!-- <div class="form-group">
+        <label for="name" class="signUpFirstNameLabel">First Name</label>
+        <input class="form-control" id="name" type="text" name="Name">
+      </div>
+      <div class="form-group">
+        <label for="surname" class="signUpLastNameLabel">Last Name</label>
+        <input class="form-control" id="surname" type="text" name="surname">
+      </div>
+
+      <div class="form-group">
+        <label for="email" class="signUpEmailLabel">Email Address</label>
+        <input class="form-control" id="email" type="email" name="Email">
+      </div>
+      <div class="form-group">
+        <label for="country" class="signUpMobileLabel">Mobile Number</label>
+        <input class="form-control" id="mobile" type="text" name="mobile">
+      </div>
+      <div class="form-group">
+        <label for="surname" class="signUpPasswordLabel">Password</label>
+        <input class="form-control" id="password" type="password" name="password">
+      </div>
+
+      <div class="form-group d-flex mb-0">
+        <input class="me-2 mb-2" id="policy" type="checkbox" name="cnfrmPassword">
+        <p class="h6 me-4 signUpPrivecyPara">I agree with the icons4good privacy policy </p>
+      </div>
+      <div class="form-group d-flex mb-0">
+        <input class="me-2 mb-2" id="policy" type="checkbox" name="cnfrmPassword">
+        <p class="h6 signUpTermsPara">I agree with the icons4good terma and conditions</p>
+      </div>
+      <div class="form-group d-flex mb-0">
+        <input class="me-2 mb-2" id="cnfrmPassword" type="checkbox" name="cnfrmPassword">
+        <p class="h6 signUpDeclerationPara">I confirm that I am 18 old or older</p>
+      </div> -->
+    </div>
+    <!-- <div class="container-fluid text-center p-4">
+    </div> -->
+    <div class="px-4 pb-2">
+      <div class="social-login-btns">
+        <!-- <button type="button" onclick="submit()" class="border-btn-blank-red btn-default p-3 signUpBtn">
+          <span>Submit</span>
+        </button>
+        <p class="text-center signUpOrlabel fw-medium fs-3 mb-0">With</p> -->
+        <button onclick="appleSignIn()" class="apple-btn">
+          <img src="./images/apple-white.png" alt="Apple Img">
+          <span>Continue with Apple</span>
+        </button>
+        <button onclick="googleSignIn()" class="google-btn">
+          <img src="./images/google-logo.png" alt="Google Img">
+          <span>Continue with Google</span>
+        </button>
+        <button onclick="facebookSignIn()" class="facebook-btn">
+          <img src="./images/facebook-logo.png" alt="Facebook Img">
+          <span>Continue with Facebook</span>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="bottomBtns">
+    <div class="row">
+      <div class="col-xs-4">
+        <div class="text-center mb-2">
+          <a href="signUp.html" class="fz-12 colorBlack">
+            <img src="images/profileRed.png" class="w-20px" alt="Image 1" /><br>
+            Profile</a>
+        </div>
+      </div>
+      <div class="col-xs-4">
+        <div class="text-center mb-2">
+          <a href="./" class="fz-12 colorBlack">
+            <img src="images/scanBlack.png" class="w-20px" alt="Image 1" /><br>
+            Home</a>
+        </div>
+      </div>
+      <div class="col-xs-4">
+        <div class="text-center mb-2">
+          <a href="viewMap.html" class="fz-12 colorBlack">
+            <img src="images/map.png" class="w-20px" alt="Image 1" /><br>
+            Map</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+
+    $(document).ready(function () {
+      changeLanguage();
+    })
+    
+    function submit() {
+      var name = $('#name').val();
+      var surname = $('#surname').val();
+
+      var email = $('#email').val();
+      var mobile = $('#mobile').val();
+      var password = $('#password').val();
+      // var photo = base64
+
+      if (name == "" || name == "undefined") {
+        toastr["error"]("Please enter first name.");
+        $("#name").focus();
+        return false;
+      }
+
+      if (surname == "" || surname == "undefined") {
+        toastr["error"]("Please enter last name.");
+        $("#surname").focus();
+        return false;
+      }
+
+      if (email == "" || email == "undefined") {
+        toastr["error"]("Please enter Email.");
+        $("#email").focus();
+        return false;
+      }
+
+      if (email != '') {
+        var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+        if (!emailReg.test(email)) {
+          toastr["error"]("Please enter valid email id.");
+          $("#email").focus();
+          return false;
+        }
+      }
+
+      if (mobile == "" || mobile == "undefined") {
+        toastr["error"]("Please enter mobile.");
+        $("#mobile").focus();
+        return false;
+      }
+      if (password == "" || password == "undefined") {
+        toastr["error"]("Please enter password.");
+        $("#password").focus();
+        return false;
+      }
+      var req = {
+        "countrycode": "US",
+        "email": email,
+        "mobile": mobile,
+        "name": name,
+        "password": password,
+        "surname": surname,
+        // "lotteryno": 'abc',
+        // "photo": 'photo',
+      }
+      $.ajax({
+        url: 'https://apilove.icons4good.com/signup',
+        data: JSON.stringify(req),
+        async: false,
+        contentType: "application/json",
+        type: 'post',
+        success: function (res) {
+          toastr["success"]("Data Submited Successfully.");
+          setTimeout(function () {
+            login(email, password);
+          }, 2000);
+        },
+        error: function (err) {
+          toastr["error"](err?.responseJSON?.message);
+        },
+      })
+    }
+
+    function handleCredentialResponse(response) {
+      var base64 = response.credential;
+      var decodedData = JSON.parse(atob(base64.split('.')[1]));
+      var req = {
+        "email": decodedData?.email,
+        "name": decodedData?.name,
+        "token": decodedData?.jti,
+      }
+      $.ajax({
+        url: 'https://apilove.icons4good.com/getSocialData',
+        data: JSON.stringify(req),
+        async: false,
+        contentType: "application/json",
+        type: 'post',
+        success: function (res) {
+          if (res?.statusCode === 0) {
+            toastr["error"](res?.message);
+          } else {
+            submit('google', req);
+          }
+        },
+        error: function (err) {
+          toastr["error"](err?.responseJSON?.message);
+        },
+      })
+    }
+  </script>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-app.js";
+    import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-firestore.js";
+    import { getAuth, GoogleAuthProvider, signInWithPopup, OAuthProvider, FacebookAuthProvider } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-auth.js";
+
+    var storedData = JSON.parse(localStorage.getItem('storedData'));
+
+    // Firebase configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyBz7Aa49DHgYU1YTXCjCkT8R31V5Ypx9go",
+      authDomain: "mosaicprc-bd05b.firebaseapp.com",
+      projectId: "mosaicprc-bd05b",
+      storageBucket: "mosaicprc-bd05b.appspot.com",
+      messagingSenderId: "324205703135",
+      appId: "1:324205703135:web:e57e3f60bd97f22d3b9e6a",
+      measurementId: "G-EFDN5ZJ8QV"
+    };
+
+    //........................Firebase initiliazation begains from here .............
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+    const auth = getAuth(app);
+
+    window.googleSignIn = function () {
+      const provider = new GoogleAuthProvider();
+      signInWithPopup(auth, provider)
+        .then((result) => {
+          handleSignIn(result);
+        })
+        .catch((error) => {
+          console.error("Google Sign-In Error: ", error.message);
+        });
+    }
+
+    window.appleSignIn = function () {
+      const provider = new OAuthProvider('apple.com');
+      signInWithPopup(auth, provider)
+        .then((result) => {
+          handleSignIn(result);
+        })
+        .catch((error) => {
+          console.error("Apple Sign-In Error: ", error.message);
+        });
+    }
+
+    window.facebookSignIn = function () {
+      const provider = new FacebookAuthProvider();
+      signInWithPopup(auth, provider)
+        .then((result) => {
+          handleSignIn(result);
+        })
+        .catch((error) => {
+          console.error("Facebook Sign-In Error: ", error.message);
+        });
+    }
+
+    function handleSignIn(result) {
+      const user = result.user;
+      const userData = {
+        name: user.displayName,
+        email: user.email,
+        uid: user.uid,
+        provider: result.providerId
+      };
+      storeUserData(userData);
+    }
+
+    function storeUserData(userData) {
+      let { email, name, uid } = userData;
+
+      var req = {
+        "email": email,
+        "name": name,
+        "password": uid
+      }
+      $.ajax({
+        url: 'https://2024api.icons4good.com/signup',
+        data: JSON.stringify(req),
+        async: false,
+        contentType: "application/json",
+        type: 'post',
+        success: function (res) {
+          console.log("res1");
+          console.log(res);
+          toastr["success"]("Data Submited Successfully.");
+          setTimeout(function () {
+            login(email, uid);
+          }, 2000);
+        },
+        error: function (err) {
+          console.log("err1");
+          console.log(err);
+          toastr["error"](err?.responseJSON?.message);
+        },
+      })
+
+      const userDoc = doc(db, "users", userData.uid);
+      setDoc(userDoc, userData)
+        .then(() => {
+          console.log("User data stored successfully");
+          // window.location.href = "index.html";
+        })
+        .catch((error) => {
+          console.error("Error storing user data: ", error);
+        });
+    }
+
+    function login(userName, password) {
+      var req = {
+        "username": userName,
+        "password": password
+      }
+
+      $.ajax({
+        url: 'https://apilove.icons4good.com/userlogin',
+        data: JSON.stringify(req),
+        async: false,
+        contentType: "application/json",
+        type: 'post',
+        success: function (res) {
+          console.log("res2");
+          console.log(res);
+          
+          if (res?.statusCode === 0) {
+            toastr["error"](res?.message);
+          } else {
+            localStorage.setItem("userId", res?.result[0]?.userid)
+            if (storedData?.ispaid === 'N') {
+              setTimeout(function () {
+                // window.location.replace("/mosiac_second.html");
+              }, 2000);
+            }
+            if (storedData?.ispaid === 'Y') {
+              var paymentFlag = res?.result.find((e) => e.location == storedData?.id);
+              if (paymentFlag) {
+                setTimeout(function () {
+                  // window.location.replace("/mosiac_second.html");
+                }, 2000);
+              } else {
+                setTimeout(function () {
+                  // window.location.replace("/payment.html");
+                }, 2000);
+              }
+
+            }
+            toastr["success"](res?.message);
+            window.location.replace("/thank.html");
+          }
+        },
+        error: function (err) {
+          console.log("err2");
+          console.log(err);
+          
+          toastr["error"](err?.responseJSON?.message);
+        },
+      })
+
+    }
+
+  </script>
+</body>
+
+</html>

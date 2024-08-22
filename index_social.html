@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="css/bootstrapv5.3.1.css" rel="stylesheet">
+    <link href="css/bootstrapv3.1.4.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/toaster.css" rel="stylesheet">
+    <script src="js/jquery.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script src="js/toaster.js"></script>
+    <style>
+   
+   
+  
+    </style>
+  </head>
+  <body>
+    
+    <div class="text-center mt-5">
+      <img src="images/scanGoodsicon.png" class="w-100" alt="Image 1" />
+    </div>
+    
+      <div class="container-fluid">
+      <button type="button" onclick="viewOnMap()" class="btn btn-default my-2 p-3 mb-5">Find icons4good</button>
+      <script src="https://accounts.google.com/gsi/client" async defer></script>
+
+      <div id="g_id_onload"
+      data-client_id="1021558277012-3gi8r28679ihucp4qu115b7dtjjh55kl.apps.googleusercontent.com"
+      data-callback="handleCredentialResponse">
+ </div>
+ <div class="g_id_signin" data-type="standard"></div>
+   
+    <div class="text-center px-2" >
+      <p class="h6">Find an exciting picture mosaic around you and become part of it.</p>
+      <p class="h6">Share your icons</p>
+    </div>
+  </div>
+  </body>
+  <script>
+    function viewOnMap() {
+      window.location.href = "viewMap.html";
+    }
+    function handleCredentialResponse(response) {
+      var base64 = response.credential;
+      var decodedData = JSON.parse(atob(base64.split('.')[1]));
+    console.log(decodedData)
+  }
+  </script>
+</html>
