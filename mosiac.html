@@ -6,12 +6,16 @@
   <!-- <meta name="viewport" content="width=device-width, height=device-height,  initial-scale=1.0, user-scalable=no;user-scalable=0" /> -->
   <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=no" />
 
-  <link href="css/bootstrapv5.3.1.css" rel="stylesheet">
-  <link href="css/bootstrapv3.1.4.css" rel="stylesheet">
+  <!-- <link href="css/bootstrapv5.3.1.css" rel="stylesheet">
+  <link href="css/bootstrapv3.1.4.css" rel="stylesheet"> -->
   <link href="css/style.css" rel="stylesheet">
   <link href="css/toaster.css" rel="stylesheet">
   <script src="js/jquery.js"></script>
-  <script src="js/bootstrap.js"></script>
+  <!-- <script src="js/bootstrap.js"></script> -->
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
   <script src="js/toaster.js"></script>
   <script src="js/common.js"></script>
   <link rel="stylesheet"
@@ -515,7 +519,7 @@
     .searchResetClass {
       position: absolute;
       bottom: 7em;
-      right: 3em;
+      /* right: 3em; */
       width: 100%;
     }
 
@@ -541,6 +545,15 @@
       background: url('https://i.gifer.com/YCZH.gif') no-repeat center center;
       background-size: cover;
       /* Adjust the size of the background to cover the element */
+    }
+
+    #fadeCarousel {
+      position: relative;
+      margin-bottom: 10px;
+    }
+
+    #fadeCarousel img {
+      height: 80px;
     }
   </style>
 </head>
@@ -603,9 +616,9 @@
         <button id="zoomIn">Zoom In</button>
         <button id="zoomOut">Zoom Out</button>
     </div> -->
-  <div class="row searchResetClass">
-    <div class="col-xs-10" style="float: left;">
-      <div class="search-box" style="margin: 18px;">
+  <div class="row w-100 searchResetClass mx-0">
+    <div class="col-9">
+      <div class="search-box m-1">
         <!-- <input type="text" class="search-box-input" id="searchInput" placeholder="What are you looking for ?"> -->
         <input type="text" class="search-box-input" id="searchInput" placeholder="Search by names or themes.">
         <button class="search-box-btn">
@@ -614,14 +627,14 @@
         </button>
       </div>
     </div>
-    <div class="col-xs-2">
-      <img src="images/resize.png" onclick="resize()" style="width: 80px;" alt="Image 1" />
+    <div class="col-3 d-flex justify-content-end">
+      <img class="m-1" src="images/resize2.png" onclick="resize()" style="width: 48px;" alt="Image 1" />
     </div>
   </div>
   <div id="resizePopView">
     <div class="data">
       <div class="d-flex" style="    align-items: center;">
-        <img src="images/info.png" onclick="closePop()" class="w-50px" alt="Image 1" />
+        <img src="images/info.png" onclick="closePop()" class="m-1" alt="Image 1" />
         <span class="">Reset Mosiac Zoom</span>
       </div>
     </div>
@@ -747,7 +760,7 @@
             <img src="images/sponserImage.jpeg" onclick="searchimage()" class="mb-3"
               style="border-radius: 20px; width: 70%;" alt="Image 1" />
           </div> -->
-          <div class="carousel-track2">
+          <!-- <div class="carousel-track2">
             <div class="carousel-slide2">
               <img src="images/sponserImage1.jpeg" alt="Image 1">
             </div>
@@ -760,7 +773,24 @@
             <div class="carousel-slide2">
               <img src="images/sponserImage4.jpg" alt="Image 1">
             </div>
+          </div> -->
+          <div id="fadeCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
+            <div class="carousel-inner">
+              <div class="carousel-item d-flex justify-content-center w-100 active">
+                <img src="images/sponserImage1.jpeg" class="d-block" alt="...">
+              </div>
+              <div class="carousel-item d-flex justify-content-center w-100">
+                <img src="images/sponserImage2.jpg" class="d-block" alt="...">
+              </div>
+              <div class="carousel-item d-flex justify-content-center w-100">
+                <img src="images/sponserImage3.jpg" class="d-block" alt="...">
+              </div>
+              <div class="carousel-item d-flex justify-content-center w-100">
+                <img src="images/sponserImage4.jpg" class="d-block" alt="...">
+              </div>
+            </div>
           </div>
+
           <div class="carousel-track">
             <div class="carousel-slide">
               <img src="images/heart1.png" alt="Image 1">
@@ -1140,7 +1170,7 @@
         "token": decodedData?.jti,
       }
       $.ajax({
-        url: 'https://apilove.icons4good.com/getSocialData',
+        url: 'https://2024api.icons4good.com/getSocialData',
         data: JSON.stringify(req),
         async: false,
         contentType: "application/json",
@@ -1166,53 +1196,51 @@
     }
 
     function sponseredImage() {
-      const track = document.querySelector('.carousel-track2');
+      // const track = document.querySelector('.carousel-track2');
 
-      const slides = Array.from(track.children);
-      const slideWidth = slides[0].getBoundingClientRect().width;
-      console.log("slideWidth");
-      console.log(slideWidth);
-      let currentIndex = 0;
-      const setSlidePosition = (slide, index) => {
-        slide.style.left = slideWidth * index + 'px';
-      };
-      slides.forEach(setSlidePosition);
+      // const slides = Array.from(track.children);
+      // const slideWidth = slides[0].getBoundingClientRect().width;
+      // let currentIndex = 0;
+      // const setSlidePosition = (slide, index) => {
+      //   slide.style.left = slideWidth * index + 'px';
+      // };
+      // slides.forEach(setSlidePosition);
 
-      const moveToSlide = (track, currentSlide, targetSlide) => {
-        track.style.transform = 'translateX(-' + targetSlide.style.left + ')';
-      };
+      // const moveToSlide = (track, currentSlide, targetSlide) => {
+      //   track.style.transform = 'translateX(-' + targetSlide.style.left + ')';
+      // };
 
-      const updateIndex = (increment) => {
-        currentIndex = (currentIndex + increment + slides.length) % slides.length;
-        moveToSlide(track, slides[currentIndex - increment], slides[currentIndex]);
-      };
+      // const updateIndex = (increment) => {
+      //   currentIndex = (currentIndex + increment + slides.length) % slides.length;
+      //   moveToSlide(track, slides[currentIndex - increment], slides[currentIndex]);
+      // };
 
-      // Touch event handling for mobile
-      let strtX;
-      let isDrag = false;
+      // // Touch event handling for mobile
+      // let strtX;
+      // let isDrag = false;
 
-      track.addEventListener('touchstart', (e) => {
-        strtX = e.touches[0].clientX;
-        isDrag = true;
-      });
+      // track.addEventListener('touchstart', (e) => {
+      //   strtX = e.touches[0].clientX;
+      //   isDrag = true;
+      // });
 
-      track.addEventListener('touchmove', (e) => {
-        if (!isDrag) return;
-        const currentX = e.touches[0].clientX;
-        const moveX = strtX - currentX;
+      // track.addEventListener('touchmove', (e) => {
+      //   if (!isDrag) return;
+      //   const currentX = e.touches[0].clientX;
+      //   const moveX = strtX - currentX;
 
-        if (moveX > 50) {
-          updateIndex(1);
-          isDrag = false;
-        } else if (moveX < -50) {
-          updateIndex(-1);
-          isDrag = false;
-        }
-      });
+      //   if (moveX > 50) {
+      //     updateIndex(1);
+      //     isDrag = false;
+      //   } else if (moveX < -50) {
+      //     updateIndex(-1);
+      //     isDrag = false;
+      //   }
+      // });
 
-      track.addEventListener('touchend', () => {
-        isDrag = false;
-      });
+      // track.addEventListener('touchend', () => {
+      //   isDrag = false;
+      // });
     }
 
     function searchimage() {
@@ -1248,7 +1276,7 @@
             $("#carouselDiv").fadeIn();
             $("#carouselDiv").css('display', 'block');
             $(".countSpan").empty().append(res?.result.length);
-            sponseredImage();
+            // sponseredImage();
 
             const track = document.querySelector('.carousel-track');
             const slides = Array.from(track.children);
@@ -1315,17 +1343,58 @@
       document.getElementById("carousal-save-btn").style.display = "none";
     }
 
-    const handleSubmitSaveCarousel = () => {
+    // const handleSubmitSaveCarousel = () => {
+    //   if (userId) {
+    //     let carousalName = $("#carousalNameInput").val().trim();
+    //     let request = {
+    //       carouselname: carousalName,
+    //       location: storedData?.locationid,
+    //       searchkeyword: localStorage.getItem("searchkeyword"),
+    //       searchresponse: `${localStorage.getItem("carousel_response")}`,
+    //       userid: userId
+    //     }
+    //     $.ajax({
+    //       url: 'https://2024api.icons4good.com/addCarousel',
+    //       data: JSON.stringify(request),
+    //       async: false,
+    //       contentType: "application/json",
+    //       type: 'post',
+    //       success: function (res) {
+    //         if (res?.statusCode === 0) {
+    //           toastr["error"](res?.message);
+    //         } else {
 
+    //         }
+    //       },
+    //       error: function (err) {
+    //         toastr["error"](err?.responseJSON?.message);
+    //       },
+    //     })
+    //   } else {
+
+    //   }
+    // }
+
+    const handleSubmitSaveCarousel = () => {
       if (userId) {
-        let carousalName = $("#carousalNameInput").val().trim();
+        let carousalNameInput = $("#carousalNameInput");
+        let carousalName = carousalNameInput.val().trim();
+
+        if (carousalName === "") {
+          // If the input is empty, focus on the input field and show a required message
+          carousalNameInput.focus();
+          toastr["error"]("Please enter a carousel name.");
+          return; // Stop further execution
+        }
+
         let request = {
           carouselname: carousalName,
           location: storedData?.locationid,
           searchkeyword: localStorage.getItem("searchkeyword"),
-          searchresponse: `${localStorage.getItem("carousel_response")}`,
+          searchresponse: localStorage.getItem("carousel_response"),
           userid: userId
-        }
+        };
+
         $.ajax({
           url: 'https://2024api.icons4good.com/addCarousel',
           data: JSON.stringify(request),
@@ -1336,17 +1405,21 @@
             if (res?.statusCode === 0) {
               toastr["error"](res?.message);
             } else {
-
+              toastr["success"]("Carousel saved successfully!");
+              // You can add any additional success logic here, like resetting the input field
+              carousalNameInput.val('');
+              closePop();
             }
           },
           error: function (err) {
-            toastr["error"](err?.responseJSON?.message);
+            toastr["error"](err?.responseJSON?.message || "An error occurred while saving the carousel.");
           },
-        })
+        });
       } else {
-
+        toastr["error"]("User ID is missing. Please log in.");
       }
-    }
+    };
+
 
     function getLocations() {
       const url = new URL(window.location.href);

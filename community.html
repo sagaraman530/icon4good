@@ -136,8 +136,10 @@
         });
       };
 
-      const followersReq = { "followedby": userId };
-      const followingsReq = { "userid": userId };
+      // const followersReq = { "followedby": userId };
+      // const followingsReq = { "userid": userId };
+      const followersReq = { "followedby": 1 };
+      const followingsReq = { "userid": 1 };
 
       // Fetch followers and followings concurrently
       Promise.all([
@@ -153,7 +155,7 @@
     openImagePop();
 
     function getUserDetails(id) {
-      // window.location.href = `mosiac.html?caraousal=${id}`;
+      window.location.href = `profile.html?user=${id}`;
     }
 
     function back() {

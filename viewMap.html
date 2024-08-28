@@ -19,6 +19,11 @@
       height: 100%;
     }
 
+    .map-wrapper {
+      width: 100%;
+      height: 100vh;
+    }
+
     html,
     body {
       height: 96%;
@@ -27,7 +32,9 @@
     }
   </style>
   <body>
-    <div id="map"></div>
+    <div class="map-wrapper">
+      <div id="map"></div>
+    </div>
     <div class="bottomBtns">
       <div class="row">
         <div class="col-xs-4">
@@ -66,8 +73,12 @@
       See https://developers.google.com/maps/documentation/javascript/load-maps-js-api
       for more information.
       -->
-    <script
+    <!-- <script
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBW0N8IoMtvJGP3AgqJQigq-im_rhAfcNI&callback=initMap&v=weekly"
+      defer
+    ></script> -->
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD561C-YXK1TmL__i2SZbgWvOCFHOhrLR4&callback=initMap&v=weekly"
       defer
     ></script>
     <script>

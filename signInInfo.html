@@ -225,7 +225,7 @@ $( document ).ready(function() {
               "token":decodedData?.jti,
             }
         $.ajax({
-        url:'https://apilove.icons4good.com/getSocialData',
+        url:'https://2024api.icons4good.com/getSocialData',
         data:JSON.stringify(req),
         async:false,
         contentType: "application/json",
@@ -283,7 +283,7 @@ function submit(type,data) {
   }
  
     $.ajax({
-    url:'https://apilove.icons4good.com/userlogin',
+    url:'https://2024api.icons4good.com/userlogin',
     data:JSON.stringify(req),
     async:false,
     contentType: "application/json",

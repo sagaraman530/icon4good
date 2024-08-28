@@ -13,6 +13,9 @@
   <script src="js/jquery.js"></script>
   <script src="js/toaster.js"></script>
 
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.js"></script>
+
   <style>
     body {
       overflow-x: hidden;
@@ -198,142 +201,144 @@
     crossorigin="anonymous"></script>
 
   <script>
-    let userId = localStorage.getItem("userId");
-    if (userId != null) {
+    // Utility function to get user ID from URL or localStorage
+    function getUserId() {
+      const url = new URL(window.location.href);
+      return url.searchParams.get("user") || localStorage.getItem("userId");
+    }
+
+    // Initialize the userId and manage button states
+    const userId = getUserId();
+    if (userId) {
       document.getElementById("profile-btn").disabled = false;
       document.getElementById("like-btn").disabled = false;
     } else {
-      window.location.href = "./signIn.html";
       document.getElementById("profile-btn").disabled = true;
       document.getElementById("like-btn").disabled = true;
+      window.location.href = "./signIn.html";
     }
 
+    // Function to handle AJAX requests
+    function fetchData(url, reqData, successCallback) {
+      $.ajax({
+        url,
+        data: JSON.stringify(reqData),
+        async: false,
+        contentType: "application/json",
+        type: 'post',
+        success: successCallback,
+        error: function (err) {
+          toastr["error"](err?.responseJSON?.message);
+        },
+      });
+    }
+
+    // Function to open image pop-up
     function openImagePop() {
-      let userId = localStorage.getItem("userId");
+      if (!userId) return;
 
-      if (userId != null) {
+      const req = { userid: userId };
 
-        var req = {
-          "userid": userId
+      // Fetch user details
+      fetchData('https://2024api.icons4good.com/getUserDetails', req, function (res) {
+        if (!res.statusCode) return;
+
+        const { details, detailsResponses } = res?.result || {};
+
+        if (details) {
+          $("#profile-img").attr("src", details?.userimage || "images/johnDeo.jpg");
+          $("#profile-name").text(details?.name || "Anonymous");
+          $("#profile-like").text(details?.likecnt || 0);
+          $("#profile-follow").text(details?.followercnt || 0);
+
+          const imageText = (detailsResponses || []).map(({ imagename, imagepath, likecnt }) => `
+        <div class="col-4 px-0 position-relative" onclick="openImagePop(${imagename?.imageid || 0})">
+          <div class="square-image">
+            <img src="${imagepath || 'images/johnDeo.jpg'}" alt="${imagename || 'Image'}">
+            <div class="border-0 bg-transparent d-flex align-items-center position-absolute post-like">
+              <i class="fa-regular fa-heart p-1" aria-hidden="true"></i>
+              <p class="fw-semibold mb-0 px-1">${likecnt}</p>
+            </div>
+          </div>
+        </div>
+      `).join('');
+
+          $("#posts-wrapper").html(imageText);
         }
+      });
 
-        $.ajax({
-          url: 'https://2024api.icons4good.com/getUserDetails',
-          data: JSON.stringify(req),
-          async: false,
-          contentType: "application/json",
-          type: 'post',
-          success: function (res) {
-            if (res.statusCode) {
-              // Safely extract properties using optional chaining and destructuring
-              const { details, detailsResponses } = res?.result || {};
+      // Fetch carousel data
+      fetchData('https://2024api.icons4good.com/getCarousel', req, function (res) {
+        if (!res?.statusCode) return;
 
-              if (details) {
-                // Update profile elements with default values in case of null or undefined
-                $("#profile-img").attr("src", details?.userimage || "images/johnDeo.jpg");
-                $("#profile-name").text(details?.name || "Anonymous");
-                $("#profile-like").text(details?.likecnt || 0);
-                $("#profile-follow").text(details?.followercnt || 0);
+        const result = res?.result || [];
+        if (!result.length) return;
 
-                // Initialize imageText using map and join for better readability and efficiency
-                const imageText = (detailsResponses || []).map(element => {
-                  const { imagename, imagepath, likecnt } = element || {};
-                  const imageId = imagename?.imageid || 0; // Use 0 or any fallback value
-                  const imageAlt = imagename || "Image";
+        const carousalHtml = result.filter(el => el.status === "Active").map(el => {
+          let carousalData;
+          try {
+            carousalData = JSON.parse(JSON.parse(el.searchresponse));
+          } catch (error) {
+            console.error("Error parsing search response:", error);
+            return '';
+          }
 
-                  return `
-                    <div class="col-4 px-0 position-relative" onclick="openImagePop(${imageId})">
-                      <div class="square-image">
-                        <img src="${imagepath || 'images/johnDeo.jpg'}" alt="${imageAlt}">
-                        <div class="border-0 bg-transparent d-flex align-items-center position-absolute post-like">
-                          <i class="fa-regular fa-heart p-1" aria-hidden="true"></i>
-                          <p class="fw-semibold mb-0 px-1">${likecnt}</p>
-                        </div>
-                      </div>
-                    </div>
-                  `;
-                }).join('');
+          if (!carousalData?.statusCode || !Array.isArray(carousalData.result)) return '';
 
-                // Append generated HTML to the DOM
-                $("#posts-wrapper").html(imageText);
-              }
-            }
-          },
-          error: function (err) {
-            toastr["error"](err?.responseJSON?.message);
-          },
-        });
+          const carousalImages = carousalData.result.slice(0, 9).map(imgElement => `
+        <div class="col-4 px-0 position-relative">
+          <div class="square-image">
+            <img class="w-100" src="${imgElement.imagepath}" alt="Image">
+          </div>
+        </div>
+      `).join('');
 
-        $.ajax({
-          url: 'https://2024api.icons4good.com/getCarousel',
-          data: JSON.stringify(req),
-          async: false,
-          contentType: "application/json",
-          type: 'post',
-          success: function (res) {
+          return `
+        <div class="col-6 position-relative" onclick="openCarousal(${el.id})">
+          <div class="row">${carousalImages}</div>
+          <div class="row">
+            <div class="col-12 px-0">
+              <p class="text-center p-1 carousal-name">${el.carouselname}</p>
+            </div>
+          </div>
+        </div>`;
+        }).join('');
 
-            if (res?.statusCode) {
-              // Safely extract properties using optional chaining and destructuring
-              const result = res?.result || [];
-
-              if (result.length > 0) {
-                // Using template literals for better readability
-                let carousalHtml = ``;
-
-                // Loop through the result array
-                result.forEach((element) => {
-                  if (element.status === "Active") {
-                    // Improved JSON parsing with error handling
-                    let carousalData;
-                    try {
-                      carousalData = JSON.parse(JSON.parse(element.searchresponse));
-                    } catch (error) {
-                      console.error("Error parsing search response:", error);
-                      return; // Skip this iteration if parsing fails
-                    }
-
-                    if (carousalData?.statusCode && Array.isArray(carousalData.result)) {
-
-                      // Using map and join to construct HTML for carousal images
-                      const carousalImages = carousalData.result
-                        .slice(0, 9) // Take only the first 9 elements
-                        .map(
-                          (imgElement) => `
-                              <div class="col-4 px-0 position-relative">
-                                <div class="square-image">
-                                  <img class="w-100" src="${imgElement.imagepath}" alt="Image">
-                                </div>
-                              </div>`
-                        )
-                        .join("");
-
-                      // Concatenate the carousal HTML
-                      carousalHtml += `
-                          <div class="col-6 position-relative" onclick="openCarousal(${element.id})">
-                            <div class="row">
-                              ${carousalImages}
-                            </div>
-                            <div class="row">
-                              <div class="col-12 px-0">
-                                <p class="text-center p-1 carousal-name">${element.carouselname}</p>
-                              </div>
-                            </div>
-                          </div>`;
-                    }
-                  }
-                });
-
-                // Update the DOM outside of the loop for performance
-                $("#carousal-wrapper").html(carousalHtml);
-              }
-            }
-          },
-          error: function (err) {
-            toastr["error"](err?.responseJSON?.message);
-          },
-        });
-      }
+        $("#carousal-wrapper").html(carousalHtml);
+      });
     }
+
+    // Function to handle image upload
+    function handleImageFile(file) {
+      const reader = new FileReader();
+      reader.onload = function (e) {
+        document.getElementById("profile-img").src = e.target.result;
+      };
+      reader.readAsDataURL(file);
+
+      const formData = new FormData();
+      formData.append('image', file);
+
+      $.ajax({
+        url: `https://2024api.icons4good.com/addUserImage?userid=${userId}`,
+        data: formData,
+        async: false,
+        contentType: false,
+        processData: false,
+        type: 'post',
+        success: function (res) {
+          toastr[res.statusCode ? "success" : "error"](res.message || "Image upload failed.");
+        },
+        error: function (err) {
+          toastr["error"](err?.responseJSON?.message || "Image upload failed.");
+        },
+      });
+    }
+
+    // Event listeners and initial function calls
+    document.getElementById('imageInput').onchange = function (event) {
+      handleImageFile(event.target.files[0]);
+    };
 
     openImagePop();
 
@@ -342,61 +347,13 @@
     }
 
     function back() {
-      window.location.href = "./";
+      const url = new URL(window.location.href);
+      window.location.href = url.searchParams.get("user") ? "./community.html" : "./";
     }
 
     function openCommunity() {
       window.location.href = "community.html";
     }
-
-    document.getElementById('imageInput').onchange = function (event) {
-      // Get the selected file
-      var file = event.target.files[0];
-
-      // Call the function to handle the selected file
-      handleImageFile(file);
-    };
-
-    function handleImageFile(file) {
-      // Perform operations with the selected file
-      console.log('Selected file:', file);
-
-      // Display the selected image
-      var reader = new FileReader();
-      reader.onload = function (e) {
-        document.getElementById("profile-img").src = e.target.result;
-      };
-      reader.readAsDataURL(file);
-
-      // Prepare the form data to send
-      var formData = new FormData();
-      formData.append('image', file);
-
-      // Send the image to the server using AJAX
-      $.ajax({
-        url: `http://3.79.249.97:8081/addUserImage?userid=${userId}`,
-        data: formData,
-        async: false,
-        contentType: false, // Important to set contentType to false for FormData
-        processData: false, // Don't process the files
-        type: 'post',
-        success: function (res) {
-          // console.log("res");
-          // console.log(res);
-
-          if (res.statusCode) {
-            toastr["success"]("Image uploaded successfully.");
-          } else {
-            toastr["error"](res.message);
-          }
-
-        },
-        error: function (err) {
-          toastr["error"](err?.responseJSON?.message || "Image upload failed.");
-        },
-      });
-    }
-
 
   </script>
 </body>
