@@ -462,6 +462,7 @@
       justify-content: center;
       align-items: center;
       height: 200px;
+      overflow: hidden;
       /* background: #fff; */
     }
 
@@ -474,6 +475,7 @@
       align-items: center;
       height: 70px;
       background: white;
+      overflow: hidden;
       margin-bottom: 10px;
     }
 
@@ -481,16 +483,16 @@
     .carousel-slide img {
       max-width: 100%;
       display: block;
-      object-fit: cover;
-      max-height: 100%;
+      /* object-fit: cover; */
+      /* max-height: 100%; */
     }
 
     /* Styling images inside slides */
     .carousel-slide2 img {
       max-width: 100%;
       display: block;
-      object-fit: cover;
-      max-height: 100%;
+      /* object-fit: cover; */
+      /* max-height: 100%; */
     }
 
     .imagesHeaderCount {
@@ -554,6 +556,10 @@
 
     #fadeCarousel img {
       height: 80px;
+    }
+
+    #carouselDiv {
+      z-index: 999;
     }
   </style>
 </head>
@@ -663,7 +669,7 @@
       <a onclick="share()" style="opacity: .5;pointer-events: none;" class="footer-btn">
         <img src="images/shareBtn.png">
       </a> -->
-      <button onclick="map()" class="footer-btn" disabled="true">
+      <button onclick="map()" class="footer-btn">
         <span class="button-icon">
           <span class="material-symbols-outlined">
             map
@@ -678,7 +684,7 @@
           Add image to mosaic
         </span>
       </button>
-      <button onclick="share()" class="footer-btn disabled" disabled="true">
+      <button onclick="share()" class="footer-btn disabled">
         <span class="button-icon">
           <span class="material-symbols-outlined">
             account_circle
@@ -1192,7 +1198,7 @@
     }
 
     function profile() {
-      window.location.href = "signIn.html";
+      window.location.href = "signIn_new.html";
     }
 
     function sponseredImage() {
