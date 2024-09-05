@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="css/bootstrapv5.3.1.css" rel="stylesheet" />
+  <!-- Removed v3.1.4 Bootstrap to avoid conflicts -->
+  <link href="css/style.css" rel="stylesheet" />
+  <link href="css/toaster.css" rel="stylesheet" />
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
+    integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+
+  <style>
+    .cancel-icon i {
+      cursor: pointer;
+      font-size: 28px;
+      color: #fff;
+      float: right;
+    }
+
+    .circleWrapper {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+    }
+
+    .circleWrapper button {
+      width: 100%;
+    }
+
+    .circleWrapper img {
+      width: 50px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="backCls" style="background-size: cover">
+    <div class="d-flex justify-content-center align-items-center h-100 px-3">
+      <div class="bg-white w-100 px-1 pb-0 pt-1 rounded-3">
+        <video id="avatarModel" class="w-100" autoplay playsinline>
+          <source id="avatarSource" src="" type="video/mp4" />
+        </video>
+      </div>
+    </div>
+    <!-- Close the div.backCls -->
+  </div>
+
+  <footer>
+    <div class="footer-button-wrapper">
+      <button onclick="map()" id="map-btn" class="footer-btn">
+        <span class="button-icon">
+          <span class="material-symbols-outlined">map</span>
+        </span>
+        <span class="button-text mapButton">Map</span>
+      </button>
+      <button onclick="mosiac()" class="footer-btn">
+        <span class="button-text mosiacButton">Mosiac</span>
+      </button>
+      <button onclick="profile()" id="profile-btn" class="footer-btn">
+        <span class="button-icon">
+          <span class="material-symbols-outlined">account_circle</span>
+        </span>
+        <span class="button-text profileButton">Profile</span>
+      </button>
+    </div>
+  </footer>
+
+  <div class="card" id="viewAfterSeconds1" style="top: 27px">
+    <div class="cancel-icon" onclick="closePop1()">
+      <i class="fa fa-times-circle" style="right: 35px; top: 73px" aria-hidden="true"></i>
+    </div>
+    <div class="data">
+      <div class="mb-4">
+        <img src="images/Heart.png" class="w-30px" alt="Image 1" />
+        <span class="infoLineOne">
+          Bridge of Love is a mosaic of pictures connecting people & places</span>
+      </div>
+      <div class="mb-4">
+        <img src="images/Upload.png" class="w-30px" alt="Image 1" />
+        <span class="infoLineTwo">Upload your own picture & share it with others</span>
+      </div>
+      <div class="mb-4">
+        <img src="images/Search.png" class="w-30px" alt="Image 1" />
+        <span class="infoLineThree">
+          Search Pictures & find your own images & explore pictures from other cities</span>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/jquery.js"></script>
+  <script src="js/bootstrap.js"></script>
+  <script src="js/toaster.js"></script>
+  <script src="js/common.js"></script>
+  <script>
+
+    var storedData = JSON.parse(localStorage.getItem('storedData')) || {};
+    var name = storedData?.locationname;
+    function mosiac() {
+      location.replace('/mosiac.html?loc=' + name);
+    }
+    $(document).ready(function () {
+      changeLanguage();
+
+      if (storedData.bgimg) {
+        $(".backCls").css("background-image", "url(" + storedData.bgimg + ")");
+      }
+
+      if (storedData.modelimagepath) {
+        const avatarModel = $("#avatarModel")[0];  // Cache the DOM element
+        $("#avatarSource").attr("src", storedData.modelimagepath);
+
+        avatarModel.muted = true;  // Ensure video is muted
+        avatarModel.load();  // Load the new source
+
+        avatarModel.onloadeddata = function () {
+          avatarModel.play();  // Play the video after it has fully loaded
+        };
+
+        // Event listener for when the video ends
+        avatarModel.onended = function () {
+          location.replace('/mosiac.html?loc=' + name);
+          // You can execute any code here, such as showing a message or performing an action
+        };
+
+      }
+    });
+  </script>
+</body>
+
+</html>

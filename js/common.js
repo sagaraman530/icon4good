@@ -31,7 +31,8 @@ function changeLanguage() {
         lineThree: "Search pictures in the mosiac",
         buttonText: "Be a part of the mosaic",
         addImageMosaicButton: "Add image to mosaic",
-        shareButton: "Share"
+        shareButton: "Share",
+        mosiacButton: "Mosiac"
       },
       signInInfoPage: {
         signInBtn: " Sign In",
@@ -147,7 +148,7 @@ function changeLanguage() {
 
         faqQues14: "Q: How can I find other icons4good installations?",
         faqAns14: "A: We are working on an app to notify users of nearby installations, and may also collaborate with other apps to push similar notifications."
-      }
+      },
     },
     greek: {
       homePage: {
@@ -173,7 +174,8 @@ function changeLanguage() {
           "Εγγραφείτε / συνδεθείτε μεταφορτώστε φωτογραφίες στο μωσαϊκ",
         buttonText: "Γίνετε μέρος του μωσαϊκού",
         addImageMosaicButton: "Προσθήκη εικόνας στο μωσαϊκό",
-        shareButton: "Μερίδιο"
+        shareButton: "Μερίδιο",
+        mosiacButton: "Mosiac"
       },
       signInInfoPage: {
         signInBtn: "Συνδεθείτε",
@@ -326,7 +328,8 @@ function changeLanguage() {
           "S'inscrire / se connecter télécharger des images dans la mosaïque",
         buttonText: "Faites partie de la mosaïque",
         addImageMosaicButton: "Ajouter une image à la mosaïque",
-        shareButton: "Partager"
+        shareButton: "Partager",
+        mosiacButton: "Mosaïque"
       },
       signInInfoPage: {
         signInBtn: " Se connecter",
@@ -477,7 +480,8 @@ function changeLanguage() {
         lineThree: "Registrarse / iniciar sesión subir fotos en el mosaico",
         buttonText: "Sé parte del mosaico",
         addImageMosaicButton: "Agregar imagen al mosaico",
-        shareButton: "Compartir"
+        shareButton: "Compartir",
+        mosiacButton: "Mosaico"
       },
       signInInfoPage: {
         signInBtn: " Iniciar sesión",
@@ -630,7 +634,8 @@ function changeLanguage() {
         lineThree: "Registrieren / anmelden Bilder im Mosaik hochladen",
         buttonText: "Werden Sie Teil des Mosaiks",
         addImageMosaicButton: "Bild zum Mosaik hinzufügen",
-        shareButton: "Aktie"
+        shareButton: "Aktie",
+        mosiacButton: "Mosiac"
       },
       signInInfoPage: {
         signInBtn: "Anmelden",
@@ -782,7 +787,8 @@ function changeLanguage() {
         lineThree: "Iscriviti/accedi carica le immagini nel mosaico",
         buttonText: "Diventa parte del mosaico",
         addImageMosaicButton: "Aggiungi l'immagine al mosaico",
-        shareButton: "Condividere"
+        shareButton: "Condividere",
+        mosiacButton: "Mosaico"
       },
       signInInfoPage: {
         signInBtn: "Registrazione",
@@ -1096,6 +1102,8 @@ function changeLanguage() {
 
   $(".faq-ques-14").empty().append(languages[value]?.aboutPage?.faqQues14);
   $(".faq-ans-14").empty().append(languages[value]?.aboutPage?.faqAns14);
+
+  $(".mosiacButton").empty().append(languages[value]?.mosiacPage?.mosiacButton);
 
   localStorage.setItem("storedLanguage", value);
 }

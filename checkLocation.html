@@ -37,7 +37,6 @@
       <!-- <a-asset-item  id="avatarModel" src=""></a-asset-item> -->
       <video id="avatarModel" autoplay muted loop="true" src="" playsinline></video>
       <!--<a-asset-item id="avatarModel" src="/images/scanGoodsicon.png"></a-asset-item> -->
-      <button id="play-video">play</button>
     </a-assets>
 
     <a-camera position="0 0 0" look-controls="enabled: false" cursor="fuse: false; rayOrigin: mouse;"
@@ -79,21 +78,21 @@
   </div>
   <script>
     var storedData = JSON.parse(localStorage.getItem('storedData'));
-    var name = storedData?.name;
+    var name = storedData?.locationname;
     document.querySelector('#vrmodel1').addEventListener('click', function (evt) {
-      location.replace('/mosiac.html?loc=' + name);
+      location.replace('/checkVideo.html?loc=' + name);
     });
     document.querySelector('#vrmodel2').addEventListener('click', function (evt) {
-      location.replace('/mosiac.html?loc=' + name);
+      location.replace('/checkVideo.html?loc=' + name);
     });
     document.querySelector('#vrmodel3').addEventListener('click', function (evt) {
-      location.replace('/mosiac.html?loc=' + name);
+      location.replace('/checkVideo.html?loc=' + name);
     });
     document.querySelector('#vrmodel4').addEventListener('click', function (evt) {
-      location.replace('/mosiac.html?loc=' + name);
+      location.replace('/checkVideo.html?loc=' + name);
     });
     document.querySelector('#vrmodel5').addEventListener('click', function (evt) {
-      location.replace('/mosiac.html?loc=' + name);
+      location.replace('/checkVideo.html?loc=' + name);
     });
 
     var storedData = JSON.parse(localStorage.getItem('storedData'));
@@ -101,8 +100,8 @@
     var data = 'imageTargetSrc:' + storedData?.featurefilepath + '; filterMinCF:0.0001; filterBeta: 0.001; missTolerance: 3'
     $("#showScanner").attr("mindar-image", data)
     $("#avatarModel").attr("src", storedData?.modelimagepath)
-    var v = document.querySelector('#avatarModel');
-    v.play();
+    // var v = document.querySelector('#avatarModel');
+    // v.play();
 
     $(".backCls").css("background-image", "url(" + storedData?.bgimg + ")")
 
