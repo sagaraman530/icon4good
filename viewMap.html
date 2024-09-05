@@ -1,224 +1,236 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Custom Markers</title>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link href="css/bootstrapv5.3.1.css" rel="stylesheet" />
-    <link href="css/bootstrapv3.1.4.css" rel="stylesheet" />
-    <link href="css/style.css" rel="stylesheet" />
-    <link href="css/toaster.css" rel="stylesheet" />
-    <script src="js/jquery.js"></script>
-    <script src="js/bootstrap.js"></script>
-    <script src="js/toaster.js"></script>
 
-    <!-- jsFiddle will insert css and js -->
-  </head>
-  <style>
-    #map {
-      height: 100%;
-    }
+<head>
+  <title>Custom Markers</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="css/bootstrapv5.3.1.css" rel="stylesheet" />
+  <link href="css/bootstrapv3.1.4.css" rel="stylesheet" />
+  <link href="css/style.css" rel="stylesheet" />
+  <link href="css/toaster.css" rel="stylesheet" />
+  <script src="js/jquery.js"></script>
+  <script src="js/bootstrap.js"></script>
+  <script src="js/toaster.js"></script>
 
-    .map-wrapper {
-      width: 100%;
-      height: 100vh;
-    }
+  <!-- jsFiddle will insert css and js -->
+</head>
+<style>
+  html,
+  body {
+    height: 96%;
+    margin: 0;
+    padding: 0;
+  }
 
-    html,
-    body {
-      height: 96%;
-      margin: 0;
-      padding: 0;
-    }
-  </style>
-  <body>
-    <div class="map-wrapper">
-      <div id="map"></div>
-    </div>
-    <div class="bottomBtns">
-      <div class="row">
-        <div class="col-xs-4">
-          <div class="text-center mb-2">
-            <img src="images/profile.png" class="w-20px" alt="Image 1" /><br />
-            <a href="signUp.html" class="fz-12 colorBlack">Profile</a>
-          </div>
+  #map {
+    height: 100%;
+  }
+
+  .map-wrapper {
+    width: 100%;
+    height: 100vh;
+  }
+</style>
+
+<body>
+  <div class="map-wrapper">
+    <div id="map"></div>
+  </div>
+  <div class="bottomBtns">
+    <div class="row">
+      <div class="col-xs-4">
+        <div class="text-center mb-2">
+          <img src="images/profile.png" class="w-20px" alt="Image 1" /><br />
+          <a href="signUp.html" class="fz-12 colorBlack">Profile</a>
         </div>
-        <div class="col-xs-4">
-          <div class="text-center mb-2">
-            <a href="./" class="fz-12 colorBlack">
-              <img
-                src="images/scanBlack.png"
-                class="w-20px"
-                alt="Image 1"
-              /><br />
-              Home</a
-            >
-          </div>
+      </div>
+      <div class="col-xs-4">
+        <div class="text-center mb-2">
+          <a href="./" class="fz-12 colorBlack">
+            <img src="images/scanBlack.png" class="w-20px" alt="Image 1" /><br />
+            Home</a>
         </div>
-        <div class="col-xs-4">
-          <div class="text-center mb-2">
-            <a href="viewMap.html" class="fz-12 colorBlack">
-              <img src="images/mapRed.png" class="w-20px" alt="Image 1" /><br />
-              Map</a
-            >
-          </div>
+      </div>
+      <div class="col-xs-4">
+        <div class="text-center mb-2">
+          <a href="viewMap.html" class="fz-12 colorBlack">
+            <img src="images/mapRed.png" class="w-20px" alt="Image 1" /><br />
+            Map</a>
         </div>
       </div>
     </div>
+  </div>
 
-    <!-- 
+  <!-- 
       The `defer` attribute causes the callback to execute after the full HTML
       document has been parsed. For non-blocking uses, avoiding race conditions,
       and consistent behavior across browsers, consider loading using Promises.
       See https://developers.google.com/maps/documentation/javascript/load-maps-js-api
       for more information.
       -->
-    <!-- <script
+  <!-- <script
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBW0N8IoMtvJGP3AgqJQigq-im_rhAfcNI&callback=initMap&v=weekly"
       defer
     ></script> -->
-    <script
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD561C-YXK1TmL__i2SZbgWvOCFHOhrLR4&callback=initMap&v=weekly"
-      defer
-    ></script>
-    <script>
-      /**
-       * @license
-       * Copyright 2019 Google LLC. All Rights Reserved.
-       * SPDX-License-Identifier: Apache-2.0
-       */
+  <script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD561C-YXK1TmL__i2SZbgWvOCFHOhrLR4&callback=initMap&v=weekly"
+    defer></script>
+  <script>
+    /**
+     * @license
+     * Copyright 2019 Google LLC. All Rights Reserved.
+     * SPDX-License-Identifier: Apache-2.0
+     */
 
-      // function getLocations() {
-      //   let mapData = [];
-      //   let req = {
-      //     locationid: 0,
-      //   };
-      //   $.ajax({
-      //     url: "https://2024api.icons4good.com/getlocation",
-      //     data : JSON.stringify(req),
-      //     async: false,
-      //     type: "post",
-      //     contentType: "application/json",
-      //     success: function (res) {
-      //       mapData = res?.result;
-      //     },
-      //     error: function (err) {
-      //       console.log(err);
-      //     },
-      //   });
+    // function getLocations() {
+    //   let mapData = [];
+    //   let req = {
+    //     locationid: 0,
+    //   };
+    //   $.ajax({
+    //     url: "https://2024api.icons4good.com/getlocation",
+    //     data : JSON.stringify(req),
+    //     async: false,
+    //     type: "post",
+    //     contentType: "application/json",
+    //     success: function (res) {
+    //       mapData = res?.result;
+    //     },
+    //     error: function (err) {
+    //       console.log(err);
+    //     },
+    //   });
 
-      //   return mapData;
-      // }
+    //   return mapData;
+    // }
 
-      // function initMap() {
-      //   // Create a map
-      //   var map = new google.maps.Map(document.getElementById("map"), {
-      //     zoom: 10,
-      //     center: { lat: 37.975297, lng: 23.736602 },
-      //   });
-      //   let mapLocation = getLocations();
+    // function initMap() {
+    //   // Create a map
+    //   var map = new google.maps.Map(document.getElementById("map"), {
+    //     zoom: 10,
+    //     center: { lat: 37.975297, lng: 23.736602 },
+    //   });
+    //   let mapLocation = getLocations();
 
-      //   // Create an array of markers
-      //   var markers = [];
-      //   let index = 0;
-      //   for (var i = 0; i < mapLocation.length; i++) {
-      //     let marker = new google.maps.Marker({
-      //       position: {
-      //         lat: parseFloat(mapLocation[i].latitude),
-      //         lng: parseFloat(mapLocation[i].longitude),
-      //       },
-      //       icon: "images/logoMapIcon.png",
-      //       data: mapLocation[i],
-      //       map: map,
-      //     });
-      //     marker.addListener("click", (e) => {
-      //       scan(e);
-      //     });
-      //   }
-      //   function scan(e) {
-      //     var lat = e.latLng.lat();
-      //     var lng = e.latLng.lng();
+    //   // Create an array of markers
+    //   var markers = [];
+    //   let index = 0;
+    //   for (var i = 0; i < mapLocation.length; i++) {
+    //     let marker = new google.maps.Marker({
+    //       position: {
+    //         lat: parseFloat(mapLocation[i].latitude),
+    //         lng: parseFloat(mapLocation[i].longitude),
+    //       },
+    //       icon: "images/logoMapIcon.png",
+    //       data: mapLocation[i],
+    //       map: map,
+    //     });
+    //     marker.addListener("click", (e) => {
+    //       scan(e);
+    //     });
+    //   }
+    //   function scan(e) {
+    //     var lat = e.latLng.lat();
+    //     var lng = e.latLng.lng();
 
-      //     var data = mapLocation.find((e) => e.latitude == lat);
-      //     localStorage.setItem("storedData", JSON.stringify(data));
-      //     var data = mapLocation.find((e) => e.latitude == lat);
-      //     // window.location.href = "scanView.html?loc=" + data?.name;
-      //     // window.location.href = `index.html?${data?.locationname}`;
+    //     var data = mapLocation.find((e) => e.latitude == lat);
+    //     localStorage.setItem("storedData", JSON.stringify(data));
+    //     var data = mapLocation.find((e) => e.latitude == lat);
+    //     // window.location.href = "scanView.html?loc=" + data?.name;
+    //     // window.location.href = `index.html?${data?.locationname}`;
 
-      //     //window.location.href = "scanView.html";
-      //   }
-      // }
+    //     //window.location.href = "scanView.html";
+    //   }
+    // }
 
-      // window.initMap = initMap;
-      // window.addEventListener("load", function () {
-      //   getLocations();
-      // });
-      // function scan(e) {
-      //   var lat = e.latLng.lat();
+    // window.initMap = initMap;
+    // window.addEventListener("load", function () {
+    //   getLocations();
+    // });
+    // function scan(e) {
+    //   var lat = e.latLng.lat();
 
-      //   var lng = e.latLng.lng();
-      //   // window.location.href = "scanView.html";
-      // }
+    //   var lng = e.latLng.lng();
+    //   // window.location.href = "scanView.html";
+    // }
 
-      function fetchLocations() {
-        let mapData = [];
-        $.ajax({
-          url: "https://2024api.icons4good.com/getlocation",
-          data: JSON.stringify({ locationid: 0 }),
-          type: "POST",
-          contentType: "application/json",
-          async: false,
-          success: function (res) {
-            mapData = res?.result;
-          },
-          error: function (err) {
-            console.log(err);
-          },
-        });
+    function fetchLocations() {
+      let mapData = [];
+      $.ajax({
+        url: "https://2024api.icons4good.com/getlocation",
+        data: JSON.stringify({ locationid: 0 }),
+        type: "POST",
+        contentType: "application/json",
+        async: false,
+        success: function (res) {
+          mapData = res?.result;
+        },
+        error: function (err) {
+          console.log(err);
+        },
+      });
 
-        return mapData;
+      return mapData;
+    }
+
+    function createMarker(map, location, icon) {
+      const marker = new google.maps.Marker({
+        position: {
+          lat: parseFloat(location.latitude),
+          lng: parseFloat(location.longitude),
+        },
+        icon: icon,
+        data: location,
+        map: map,
+      });
+
+      marker.addListener("click", (e) => handleMarkerClick(e, location));
+      return marker;
+    }
+
+    function handleMarkerClick(event, location) {
+      console.log("Clicked marker", location);
+
+      localStorage.setItem("storedData", JSON.stringify(location));
+
+      // Uncomment to enable navigation
+      // window.location.href = "scanView.html?loc=" + location.name;
+      window.location.href = `index.html?${location.locationname}`;
+    }
+
+    async function initializeMap() {
+      const map = new google.maps.Map(document.getElementById("map"), {
+        zoom: 2,
+        center: { lat: 37.975297, lng: 23.736602 },
+      });
+
+      const locations = await fetchLocations() || [];
+      const icon = "images/logoMapIcon.png";
+      locations.forEach((location) => {
+        createMarker(map, location, icon);
+      });
+
+      let storedData = JSON.parse(localStorage.getItem("storedData"));
+
+      if (storedData) {
+        focusMarker(map, storedData);
       }
+    }
 
-      function createMarker(map, location, icon) {
-        const marker = new google.maps.Marker({
-          position: {
-            lat: parseFloat(location.latitude),
-            lng: parseFloat(location.longitude),
-          },
-          icon: icon,
-          data: location,
-          map: map,
-        });
+    function focusMarker(map, storedData) {
+      // Focus the map on the stored marker
+      map.setZoom(14); // Adjust zoom level as needed
+      map.panTo({
+        lat: parseFloat(storedData.latitude),
+        lng: parseFloat(storedData.longitude),
+      });
+    }
 
-        marker.addListener("click", (e) => handleMarkerClick(e, location));
-        return marker;
-      }
+    window.initMap = initializeMap;
+    window.addEventListener("load", initializeMap);
 
-      function handleMarkerClick(event, location) {
-        console.log("Clicked marker", location);
+  </script>
+</body>
 
-        localStorage.setItem("storedData", JSON.stringify(location));
-
-        // Uncomment to enable navigation
-        // window.location.href = "scanView.html?loc=" + location.name;
-        window.location.href = `index.html?${location.locationname}`;
-      }
-
-      async function initializeMap() {
-        const map = new google.maps.Map(document.getElementById("map"), {
-          zoom: 2,
-          center: { lat: 37.975297, lng: 23.736602 },
-        });
-
-        const locations = await fetchLocations() || [];
-        const icon = "images/logoMapIcon.png";
-        locations.forEach((location) => {
-          createMarker(map, location, icon);
-        });
-      }
-
-      window.initMap = initializeMap;
-      window.addEventListener("load", initializeMap);
-    </script>
-  </body>
 </html>

@@ -23,18 +23,45 @@
       color: #fff;
       float: right;
     }
+
+    .circleWrapper {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+    }
+
+    .circleWrapper button {
+      width: 100%;
+    }
+
+    .circleWrapper img {
+      width: 50px;
+    }
   </style>
 </head>
 
 <body>
   <div class="backCls" style="background-size: cover">
-    <div class="topBarCls">
-      <i class="fa fa-info-circle infoIconCls" onclick="myGreeting1()" aria-hidden="true"></i>
-      <p class="paraTopCLs1"></p>
-      <select class="selectLanguageCls" id="selectLanguageId" onchange="changeLanguage()"></select>
+    <!-- <div class="topBarCls"> -->
+    <div class="w-100 mx-0" style="display: flex;justify-content: space-between;padding: 10px;position: absolute;top: 0px;left: 0;z-index: 999;">
+      <div class="circleWrapper">
+        <i class="fa fa-info-circle" style="color: #fff;font-size: 55px !important;cursor: pointer;width: 50px;height: 50px;display: flex;align-items: center;justify-content: center;line-height: 1;"
+          onclick="myGreeting1()" aria-hidden="true"></i>
+      </div>
+      <div class="circleWrapper">
+        <img onclick="aboutPage()" src="images/scanGoodsicon.png" alt="images/scanGoodsicon.png">
+      </div>
+      <div class="circleWrapper">
+        <select id="selectLanguageId" onchange="changeLanguage()" style="border-radius: 30px;height: 50px;z-index: 1;width: 50px;border: none;padding: 3px;"></select>
+      </div>
     </div>
 
-    <div class="data">
+    <div class="" style="font-weight: 700;">
       <div>
         <img class="vectorImgCls1" src="images/Vector1.png" />
         <img class="vectorImgCls2" src="images/Vector2.png" />
@@ -68,7 +95,7 @@
             Scan
           </span>
         </button>
-        <button  onclick="profile()" id="profile-btn" class="footer-btn">
+        <button onclick="profile()" id="profile-btn" class="footer-btn">
           <span class="button-icon">
             <span class="material-symbols-outlined">
               account_circle
@@ -107,7 +134,7 @@
       </div>
     </div>
   </div>
-  
+
   <script src="js/jquery.js"></script>
   <script src="js/bootstrap.js"></script>
   <script src="js/toaster.js"></script>
@@ -132,7 +159,7 @@
 
       setTimeout(() => {
         checkLocation()
-      }, 5000);
+      }, 20000);
 
       let userId = localStorage.getItem("userId");
 
@@ -146,6 +173,10 @@
     }
     function myGreeting1() {
       $("#viewAfterSeconds1").fadeIn();
+    }
+
+    function aboutPage() {
+      window.location.href = "aboutUs.html";
     }
 
     function checkLocation() {

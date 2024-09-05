@@ -90,6 +90,64 @@ function changeLanguage() {
         paymentbuttonOne: "Payment",
         paymentBtnTwo: "Without Donation",
       },
+      aboutPage: {
+        aboutTextHead: "About Us",
+        aboutText1: "At icons4good, we create new destinations through immersive, interactive digital artworks that celebrate important moments and unite people around shared experiences and good causes. Our patent-pending software blends augmented reality, geofencing, and artificial intelligence with the power of photomosaics.",
+        aboutText2: "Our goal is to increase awareness, build dedicated digital communities, and inspire positive change. We work closely with local communities to support initiatives that make the world a better place.",
+        aboutText3: "Key Features:",
+        aboutText4: "- Searchable participant database by name, hashtag, or personal statement",
+        aboutText5: "- Option to add photos, videos, personal statements, and hashtags",
+        aboutText6: "- Augmented reality experiences at designated locations",
+        aboutText7: "- Participant-driven theme updates through community voting",
+        aboutText8: "- Compliance with GDPR and ability to remove photos upon request",
+        aboutText9: "Participation is free, thanks to the generosity of our sponsors. However, maintaining searchability may require participants to share their involvement on social media.",
+        aboutText10: "For inquiries",
+        aboutText11: "please email us at",
+
+        faqHead : "FAQs",
+
+        faqQues1: "Q: Do you have a give-back-to-society policy?",
+        faqAns1: "A: Yes, we work closely with local communities to support initiatives that create positive impact.",
+
+        faqQues2: "Q: How can I look up participants?",
+        faqAns2: "A: Use the search button to look up people by name, hashtag, or words in their personal statements.",
+
+        faqQues3: "Q: Do I need to subscribe before adding a photo?",
+        faqAns3: "A: No, but you must log in through a social media account, accept the Terms and Conditions, and agree to the GDPR policy.",
+
+        faqQues4: "Q: What type of photos are appropriate?",
+        faqAns4: "A: All photos must meet decency criteria and be approved before becoming part of the permanent mosaics. Uploads can include selfies, filtered photos, or creative messages supporting the theme.",
+
+        faqQues5: "Q: Can I add a personal statement or video?",
+        faqAns5: "A: Yes, participants can add a photo or video, a positive personal statement, and relevant hashtags.",
+
+        faqQues6: "Q: Can the mosaic theme be updated?",
+        faqAns6: "A: Occasionally, we run contests to renew the artwork theme based on participant votes.",
+
+        faqQues7: "Q: How else can I view the mosaic?",
+        faqAns7: "A: The AR-enabled mosaics can only be accessed at designated locations, but the non-AR version is available online for all visitors.",
+
+        faqQues8: "Q: Can I share my participation on social media?",
+        faqAns8: "A: Yes, becoming part of the mosaic is an achievement worth celebrating on social media.",
+
+        faqQues9: "Q: Is participation free?",
+        faqAns9: "A: Yes, but maintaining searchability may require reposting participation on social media.",
+
+        faqQues10: "Q: Who owns my submitted photo?",
+        faqAns10: "A: Participants retain ownership of their photos but grant us the right to include them in the mosaic.",
+
+        faqQues11: "Q: How long will my photo remain in the mosaic?",
+        faqAns11: "A: Photos remain indefinitely, but may become unsearchable if the participant does not periodically renew their social media posts.",
+
+        faqQues12: "Q: How do you handle GDPR compliance?",
+        faqAns12: "A: We fully comply with GDPR requirements, and participants must accept our GDPR policy before submitting photos.",
+
+        faqQues13: "Q: Can I remove my photo?",
+        faqAns13: "A: Yes, participants can request photo removal by email, which will be processed in batches.",
+
+        faqQues14: "Q: How can I find other icons4good installations?",
+        faqAns14: "A: We are working on an app to notify users of nearby installations, and may also collaborate with other apps to push similar notifications."
+      }
     },
     greek: {
       homePage: {
@@ -175,6 +233,74 @@ function changeLanguage() {
         paymentbuttonOne: "Πληρωμή",
         paymentBtnTwo: "Χωρίς Δωρεά",
       },
+      aboutPage: {
+        aboutTextHead: "Σχετικά με εμάς",
+        aboutText1: "Στο icons4good, δημιουργούμε νέους προορισμούς μέσω συναρπαστικών, διαδραστικών ψηφιακών έργων τέχνης που γιορτάζουν σημαντικές στιγμές και ενώνουν τους ανθρώπους γύρω από κοινές εμπειρίες και καλές αιτίες. Το κατοχυρωμένο με δίπλωμα ευρεσιτεχνίας λογισμικό μας συνδυάζει την επαυξημένη πραγματικότητα, το γεωπερίφραγμα και την τεχνητή νοημοσύνη με τη δύναμη των φωτομωσαϊκών.",
+
+        aboutText2: "Στόχος μας είναι να αυξήσουμε την ευαισθητοποίηση, να χτίσουμε αφοσιωμένες ψηφιακές κοινότητες και να εμπνεύσουμε θετική αλλαγή. Συνεργαζόμαστε στενά με τις τοπικές κοινότητες για να υποστηρίξουμε πρωτοβουλίες που κάνουν τον κόσμο ένα καλύτερο μέρος.",
+
+        aboutText3: "Κύρια χαρακτηριστικά:",
+
+        aboutText4: "- Αναζητήσιμη βάση δεδομένων συμμετεχόντων κατά όνομα, hashtag ή προσωπική δήλωση",
+
+        aboutText5: "- Δυνατότητα προσθήκης φωτογραφιών, βίντεο, προσωπικών δηλώσεων και hashtags",
+
+        aboutText6: "- Εμπειρίες επαυξημένης πραγματικότητας σε καθορισμένες τοποθεσίες",
+
+        aboutText7: "- Ενημερώσεις θεμάτων με βάση τις ψήφους της κοινότητας",
+
+        aboutText8: "- Συμμόρφωση με το GDPR και δυνατότητα αφαίρεσης φωτογραφιών κατόπιν αιτήματος",
+
+        aboutText9: "Η συμμετοχή είναι δωρεάν, χάρη στη γενναιοδωρία των χορηγών μας. Ωστόσο, η διατήρηση της αναζητησιμότητας μπορεί να απαιτήσει από τους συμμετέχοντες να μοιραστούν τη συμμετοχή τους στα κοινωνικά δίκτυα.",
+
+        aboutText10: "Για ερωτήσεις",
+
+        aboutText11: "παρακαλώ στείλτε μας email στο",
+
+        faqHead : "Συχνές ερωτήσεις",
+
+        faqQues1: "Ε: Έχετε πολιτική προσφοράς στην κοινωνία;",
+        faqAns1: "Α: Ναι, συνεργαζόμαστε στενά με τις τοπικές κοινότητες για να υποστηρίξουμε πρωτοβουλίες που δημιουργούν θετικό αντίκτυπο.",
+
+        faqQues2: "Ε: Πώς μπορώ να αναζητήσω συμμετέχοντες;",
+        faqAns2: "Α: Χρησιμοποιήστε το κουμπί αναζήτησης για να αναζητήσετε άτομα κατά όνομα, hashtag ή λέξεις στις προσωπικές τους δηλώσεις.",
+
+        faqQues3: "Ε: Πρέπει να εγγραφώ πριν προσθέσω μια φωτογραφία;",
+        faqAns3: "Α: Όχι, αλλά πρέπει να συνδεθείτε μέσω ενός λογαριασμού κοινωνικής δικτύωσης, να αποδεχτείτε τους Όρους και Προϋποθέσεις και να συμφωνήσετε με την πολιτική GDPR.",
+
+        faqQues4: "Ε: Τι είδους φωτογραφίες είναι κατάλληλες;",
+        faqAns4: "Α: Όλες οι φωτογραφίες πρέπει να πληρούν τα κριτήρια ευπρέπειας και να εγκριθούν πριν γίνουν μέρος των μόνιμων μωσαϊκών. Οι μεταφορτώσεις μπορούν να περιλαμβάνουν selfies, φιλτραρισμένες φωτογραφίες ή δημιουργικά μηνύματα που υποστηρίζουν το θέμα.",
+
+        faqQues5: "Ε: Μπορώ να προσθέσω μια προσωπική δήλωση ή βίντεο;",
+        faqAns5: "Α: Ναι, οι συμμετέχοντες μπορούν να προσθέσουν μια φωτογραφία ή βίντεο, μια θετική προσωπική δήλωση και σχετικά hashtags.",
+
+        faqQues6: "Ε: Μπορεί να ανανεωθεί το θέμα του μωσαϊκού;",
+        faqAns6: "Α: Περιστασιακά, διοργανώνουμε διαγωνισμούς για να ανανεώσουμε το θέμα του έργου βάσει των ψήφων των συμμετεχόντων.",
+
+        faqQues7: "Ε: Πώς αλλιώς μπορώ να δω το μωσαϊκό;",
+        faqAns7: "Α: Τα μωσαϊκά με δυνατότητα AR μπορούν να προβληθούν μόνο σε συγκεκριμένες τοποθεσίες, αλλά η μη-AR έκδοση είναι διαθέσιμη διαδικτυακά για όλους τους επισκέπτες.",
+
+        faqQues8: "Ε: Μπορώ να μοιραστώ τη συμμετοχή μου στα κοινωνικά δίκτυα;",
+        faqAns8: "Α: Ναι, η συμμετοχή στο μωσαϊκό είναι ένα επίτευγμα που αξίζει να γιορτάσετε στα κοινωνικά δίκτυα.",
+
+        faqQues9: "Ε: Η συμμετοχή είναι δωρεάν;",
+        faqAns9: "Α: Ναι, αλλά για να παραμείνει η συμμετοχή σας αναζητήσιμη ίσως χρειαστεί να την αναδημοσιεύσετε στα κοινωνικά δίκτυα.",
+
+        faqQues10: "Ε: Ποιος είναι ο κάτοχος της φωτογραφίας που υπέβαλα;",
+        faqAns10: "Α: Οι συμμετέχοντες διατηρούν την κυριότητα των φωτογραφιών τους, αλλά μας παραχωρούν το δικαίωμα να τις συμπεριλάβουμε στο μωσαϊκό.",
+
+        faqQues11: "Ε: Πόσο καιρό θα παραμείνει η φωτογραφία μου στο μωσαϊκό;",
+        faqAns11: "Α: Οι φωτογραφίες παραμένουν επ' αόριστον, αλλά ενδέχεται να γίνουν μη αναζητήσιμες εάν ο συμμετέχων δεν ανανεώνει περιοδικά τις αναρτήσεις του στα κοινωνικά δίκτυα.",
+
+        faqQues12: "Ε: Πώς διαχειρίζεστε τη συμμόρφωση με τον GDPR;",
+        faqAns12: "Α: Συμμορφωνόμαστε πλήρως με τις απαιτήσεις του GDPR και οι συμμετέχοντες πρέπει να αποδεχτούν την πολιτική GDPR μας πριν υποβάλουν φωτογραφίες.",
+
+        faqQues13: "Ε: Μπορώ να αφαιρέσω τη φωτογραφία μου;",
+        faqAns13: "Α: Ναι, οι συμμετέχοντες μπορούν να ζητήσουν την αφαίρεση της φωτογραφίας μέσω email, και το αίτημα θα επεξεργαστεί σε παρτίδες.",
+
+        faqQues14: "Ε: Πώς μπορώ να βρω άλλες εγκαταστάσεις icons4good;",
+        faqAns14: "Α: Εργαζόμαστε σε μια εφαρμογή για να ενημερώνουμε τους χρήστες για τις κοντινές εγκαταστάσεις και ενδέχεται επίσης να συνεργαστούμε με άλλες εφαρμογές για να στέλνουμε παρόμοιες ειδοποιήσεις."
+      }
     },
     french: {
       homePage: {
@@ -259,6 +385,74 @@ function changeLanguage() {
         paymentbuttonOne: "Paiement",
         paymentBtnTwo: "Sans don",
       },
+      aboutPage: {
+        aboutTextHead: "À propos de nous",
+        aboutText1: "Chez icons4good, nous créons de nouvelles destinations à travers des œuvres d'art numériques immersives et interactives qui célèbrent des moments importants et unissent les gens autour d'expériences partagées et de bonnes causes. Notre logiciel breveté combine la réalité augmentée, le géorepérage et l'intelligence artificielle avec la puissance des photomosaïques.",
+
+        aboutText2: "Notre objectif est de sensibiliser, de construire des communautés numériques dédiées et d'inspirer un changement positif. Nous travaillons en étroite collaboration avec les communautés locales pour soutenir des initiatives qui rendent le monde meilleur.",
+
+        aboutText3: "Caractéristiques principales:",
+
+        aboutText4: "- Base de données des participants consultable par nom, hashtag ou déclaration personnelle",
+
+        aboutText5: "- Option pour ajouter des photos, des vidéos, des déclarations personnelles et des hashtags",
+
+        aboutText6: "- Expériences de réalité augmentée dans des lieux désignés",
+
+        aboutText7: "- Mises à jour des thèmes basées sur les votes de la communauté",
+
+        aboutText8: "- Conformité au RGPD et possibilité de supprimer des photos sur demande",
+
+        aboutText9: "La participation est gratuite, grâce à la générosité de nos sponsors. Cependant, maintenir la consultabilité peut nécessiter que les participants partagent leur participation sur les réseaux sociaux.",
+
+        aboutText10: "Pour toute question",
+
+        aboutText11: "veuillez nous envoyer un e-mail à",
+
+        faqHead : "FAQ",
+
+        faqQues1: "Q : Avez-vous une politique de retour à la société ?",
+        faqAns1: "R : Oui, nous travaillons en étroite collaboration avec les communautés locales pour soutenir des initiatives qui créent un impact positif.",
+
+        faqQues2: "Q : Comment puis-je rechercher des participants ?",
+        faqAns2: "R : Utilisez le bouton de recherche pour rechercher des personnes par nom, hashtag ou mots dans leurs déclarations personnelles.",
+
+        faqQues3: "Q : Dois-je m'abonner avant d'ajouter une photo ?",
+        faqAns3: "R : Non, mais vous devez vous connecter via un compte de réseau social, accepter les termes et conditions et accepter la politique GDPR.",
+
+        faqQues4: "Q : Quel type de photos est approprié ?",
+        faqAns4: "R : Toutes les photos doivent respecter les critères de décence et être approuvées avant de faire partie des mosaïques permanentes. Les téléchargements peuvent inclure des selfies, des photos filtrées ou des messages créatifs soutenant le thème.",
+
+        faqQues5: "Q : Puis-je ajouter une déclaration personnelle ou une vidéo ?",
+        faqAns5: "R : Oui, les participants peuvent ajouter une photo ou une vidéo, une déclaration personnelle positive et des hashtags pertinents.",
+
+        faqQues6: "Q : Le thème de la mosaïque peut-il être mis à jour ?",
+        faqAns6: "R : Occasionnellement, nous organisons des concours pour renouveler le thème de l'œuvre d'art en fonction des votes des participants.",
+
+        faqQues7: "Q : Comment puis-je voir autrement la mosaïque ?",
+        faqAns7: "R : Les mosaïques avec AR ne peuvent être accessibles qu'à des emplacements désignés, mais la version sans AR est disponible en ligne pour tous les visiteurs.",
+
+        faqQues8: "Q : Puis-je partager ma participation sur les réseaux sociaux ?",
+        faqAns8: "R : Oui, faire partie de la mosaïque est un accomplissement qui mérite d'être célébré sur les réseaux sociaux.",
+
+        faqQues9: "Q : La participation est-elle gratuite ?",
+        faqAns9: "R : Oui, mais maintenir la consultabilité peut nécessiter de republier la participation sur les réseaux sociaux.",
+
+        faqQues10: "Q : À qui appartient ma photo soumise ?",
+        faqAns10: "R : Les participants conservent la propriété de leurs photos mais nous accordent le droit de les inclure dans la mosaïque.",
+
+        faqQues11: "Q : Combien de temps ma photo restera-t-elle dans la mosaïque ?",
+        faqAns11: "R : Les photos restent indéfiniment, mais peuvent devenir non consultables si le participant ne renouvelle pas périodiquement ses publications sur les réseaux sociaux.",
+
+        faqQues12: "Q : Comment gérez-vous la conformité au RGPD ?",
+        faqAns12: "R : Nous respectons pleinement les exigences du RGPD et les participants doivent accepter notre politique GDPR avant de soumettre des photos.",
+
+        faqQues13: "Q : Puis-je supprimer ma photo ?",
+        faqAns13: "R : Oui, les participants peuvent demander la suppression de leur photo par e-mail, ce qui sera traité par lots.",
+
+        faqQues14: "Q : Comment puis-je trouver d'autres installations icons4good ?",
+        faqAns14: "R : Nous travaillons sur une application pour informer les utilisateurs des installations à proximité et nous pourrions également collaborer avec d'autres applications pour envoyer des notifications similaires."
+      }
     },
     spanish: {
       homePage: {
@@ -343,6 +537,74 @@ function changeLanguage() {
         paymentbuttonOne: "Pago",
         paymentBtnTwo: "Sin donación",
       },
+      aboutPage: {
+        aboutTextHead: "Sobre nosotras",
+        aboutText1: "En icons4good, creamos nuevos destinos a través de obras de arte digitales inmersivas e interactivas que celebran momentos importantes y unen a las personas en torno a experiencias compartidas y buenas causas. Nuestro software patentado combina la realidad aumentada, la geovalla y la inteligencia artificial con el poder de los fotomosaicos.",
+
+        aboutText2: "Nuestro objetivo es aumentar la conciencia, construir comunidades digitales dedicadas e inspirar un cambio positivo. Trabajamos en estrecha colaboración con las comunidades locales para apoyar iniciativas que hacen del mundo un lugar mejor.",
+
+        aboutText3: "Características clave:",
+
+        aboutText4: "- Base de datos de participantes que se puede buscar por nombre, hashtag o declaración personal",
+
+        aboutText5: "- Opción para añadir fotos, vídeos, declaraciones personales y hashtags",
+
+        aboutText6: "- Experiencias de realidad aumentada en lugares designados",
+
+        aboutText7: "- Actualizaciones del tema impulsadas por la comunidad a través de votaciones",
+
+        aboutText8: "- Cumplimiento del GDPR y posibilidad de eliminar fotos a petición",
+
+        aboutText9: "La participación es gratuita, gracias a la generosidad de nuestros patrocinadores. Sin embargo, mantener la buscabilidad puede requerir que los participantes compartan su participación en las redes sociales.",
+
+        aboutText10: "Para consultas",
+
+        aboutText11: "por favor envíenos un correo electrónico a",
+
+        faqHead : "Preguntas frecuentes",
+
+        faqQues1: "P: ¿Tienen una política de retorno a la sociedad?",
+        faqAns1: "R: Sí, trabajamos en estrecha colaboración con las comunidades locales para apoyar iniciativas que crean un impacto positivo.",
+
+        faqQues2: "P: ¿Cómo puedo buscar participantes?",
+        faqAns2: "R: Utilice el botón de búsqueda para buscar personas por nombre, hashtag o palabras en sus declaraciones personales.",
+
+        faqQues3: "P: ¿Necesito suscribirme antes de agregar una foto?",
+        faqAns3: "R: No, pero debe iniciar sesión a través de una cuenta de redes sociales, aceptar los Términos y Condiciones y aceptar la política de GDPR.",
+
+        faqQues4: "P: ¿Qué tipo de fotos son apropiadas?",
+        faqAns4: "R: Todas las fotos deben cumplir con los criterios de decencia y ser aprobadas antes de formar parte de los mosaicos permanentes. Las cargas pueden incluir selfies, fotos filtradas o mensajes creativos que apoyen el tema.",
+
+        faqQues5: "P: ¿Puedo añadir una declaración personal o un video?",
+        faqAns5: "R: Sí, los participantes pueden añadir una foto o video, una declaración personal positiva y hashtags relevantes.",
+
+        faqQues6: "P: ¿Se puede actualizar el tema del mosaico?",
+        faqAns6: "R: Ocasionalmente, organizamos concursos para renovar el tema de la obra de arte según los votos de los participantes.",
+
+        faqQues7: "P: ¿Cómo más puedo ver el mosaico?",
+        faqAns7: "R: Los mosaicos habilitados para AR solo se pueden acceder en lugares designados, pero la versión sin AR está disponible en línea para todos los visitantes.",
+
+        faqQues8: "P: ¿Puedo compartir mi participación en las redes sociales?",
+        faqAns8: "R: Sí, formar parte del mosaico es un logro que vale la pena celebrar en las redes sociales.",
+
+        faqQues9: "P: ¿La participación es gratuita?",
+        faqAns9: "R: Sí, pero mantener la buscabilidad puede requerir volver a publicar la participación en las redes sociales.",
+
+        faqQues10: "P: ¿Quién es el dueño de mi foto enviada?",
+        faqAns10: "R: Los participantes conservan la propiedad de sus fotos, pero nos otorgan el derecho de incluirlas en el mosaico.",
+
+        faqQues11: "P: ¿Cuánto tiempo permanecerá mi foto en el mosaico?",
+        faqAns11: "R: Las fotos permanecen indefinidamente, pero pueden volverse no buscables si el participante no renueva periódicamente sus publicaciones en las redes sociales.",
+
+        faqQues12: "P: ¿Cómo manejan el cumplimiento del GDPR?",
+        faqAns12: "R: Cumplimos plenamente con los requisitos del GDPR y los participantes deben aceptar nuestra política de GDPR antes de enviar fotos.",
+
+        faqQues13: "P: ¿Puedo eliminar mi foto?",
+        faqAns13: "R: Sí, los participantes pueden solicitar la eliminación de su foto por correo electrónico, que se procesará en lotes.",
+
+        faqQues14: "P: ¿Cómo puedo encontrar otras instalaciones de icons4good?",
+        faqAns14: "R: Estamos trabajando en una aplicación para notificar a los usuarios sobre instalaciones cercanas y también podríamos colaborar con otras aplicaciones para enviar notificaciones similares."
+      }
     },
     german: {
       homePage: {
@@ -428,6 +690,74 @@ function changeLanguage() {
         paymentbuttonOne: "Zahlung",
         paymentBtnTwo: "Ohne Spende",
       },
+      aboutPage: {
+        aboutTextHead: "Über uns",
+        aboutText1: "Bei icons4good schaffen wir neue Ziele durch immersive, interaktive digitale Kunstwerke, die wichtige Momente feiern und Menschen rund um gemeinsame Erlebnisse und gute Zwecke vereinen. Unsere patentierte Software kombiniert Augmented Reality, Geofencing und künstliche Intelligenz mit der Kraft von Fotomosaiken.",
+
+        aboutText2: "Unser Ziel ist es, das Bewusstsein zu schärfen, engagierte digitale Gemeinschaften aufzubauen und positiven Wandel zu inspirieren. Wir arbeiten eng mit lokalen Gemeinschaften zusammen, um Initiativen zu unterstützen, die die Welt zu einem besseren Ort machen.",
+
+        aboutText3: "Hauptmerkmale:",
+
+        aboutText4: "- Durchsuchbare Teilnehmerdatenbank nach Name, Hashtag oder persönlicher Aussage",
+
+        aboutText5: "- Möglichkeit, Fotos, Videos, persönliche Aussagen und Hashtags hinzuzufügen",
+
+        aboutText6: "- Augmented-Reality-Erlebnisse an ausgewiesenen Standorten",
+
+        aboutText7: "- Von der Gemeinschaft getragene Themenaktualisierungen durch Abstimmung",
+
+        aboutText8: "- Einhaltung der DSGVO und Möglichkeit, Fotos auf Anfrage zu entfernen",
+
+        aboutText9: "Die Teilnahme ist dank der Großzügigkeit unserer Sponsoren kostenlos. Die Aufrechterhaltung der Suchbarkeit kann jedoch erfordern, dass Teilnehmer ihre Beteiligung in sozialen Medien teilen.",
+
+        aboutText10: "Für Anfragen",
+
+        aboutText11: "bitte senden Sie uns eine E-Mail an",
+
+        faqHead : "FAQs",
+
+        faqQues1: "F: Haben Sie eine Politik des sozialen Engagements?",
+        faqAns1: "A: Ja, wir arbeiten eng mit lokalen Gemeinschaften zusammen, um Initiativen zu unterstützen, die positive Auswirkungen haben.",
+
+        faqQues2: "F: Wie kann ich Teilnehmer suchen?",
+        faqAns2: "A: Verwenden Sie die Suchschaltfläche, um Personen nach Name, Hashtag oder Wörtern in ihren persönlichen Aussagen zu suchen.",
+
+        faqQues3: "F: Muss ich mich anmelden, bevor ich ein Foto hinzufügen kann?",
+        faqAns3: "A: Nein, aber Sie müssen sich über ein soziales Medienkonto anmelden, die Allgemeinen Geschäftsbedingungen akzeptieren und der DSGVO-Richtlinie zustimmen.",
+
+        faqQues4: "F: Welche Art von Fotos sind angemessen?",
+        faqAns4: "A: Alle Fotos müssen den Anstandskriterien entsprechen und genehmigt werden, bevor sie Teil der permanenten Mosaike werden. Uploads können Selfies, gefilterte Fotos oder kreative Nachrichten enthalten, die das Thema unterstützen.",
+
+        faqQues5: "F: Kann ich eine persönliche Erklärung oder ein Video hinzufügen?",
+        faqAns5: "A: Ja, Teilnehmer können ein Foto oder Video, eine positive persönliche Erklärung und relevante Hashtags hinzufügen.",
+
+        faqQues6: "F: Kann das Mosaikthema aktualisiert werden?",
+        faqAns6: "A: Gelegentlich veranstalten wir Wettbewerbe, um das Kunstwerk-Thema basierend auf den Stimmen der Teilnehmer zu erneuern.",
+
+        faqQues7: "F: Wie kann ich das Mosaik sonst noch sehen?",
+        faqAns7: "A: Die AR-unterstützten Mosaike sind nur an ausgewiesenen Standorten zugänglich, aber die nicht-AR-Version ist online für alle Besucher verfügbar.",
+
+        faqQues8: "F: Kann ich meine Teilnahme in sozialen Medien teilen?",
+        faqAns8: "A: Ja, ein Teil des Mosaiks zu werden, ist ein Erfolg, den es in sozialen Medien zu feiern gilt.",
+
+        faqQues9: "F: Ist die Teilnahme kostenlos?",
+        faqAns9: "A: Ja, aber die Aufrechterhaltung der Suchbarkeit kann erfordern, die Teilnahme in sozialen Medien erneut zu posten.",
+
+        faqQues10: "F: Wer besitzt mein eingereichtes Foto?",
+        faqAns10: "A: Die Teilnehmer behalten das Eigentum an ihren Fotos, gewähren uns jedoch das Recht, sie in das Mosaik aufzunehmen.",
+
+        faqQues11: "F: Wie lange bleibt mein Foto im Mosaik?",
+        faqAns11: "A: Fotos bleiben auf unbestimmte Zeit, können jedoch unauffindbar werden, wenn der Teilnehmer seine Beiträge in sozialen Medien nicht regelmäßig erneuert.",
+
+        faqQues12: "F: Wie handhaben Sie die DSGVO-Konformität?",
+        faqAns12: "A: Wir erfüllen die Anforderungen der DSGVO vollständig, und die Teilnehmer müssen unserer DSGVO-Richtlinie zustimmen, bevor sie Fotos einreichen.",
+
+        faqQues13: "F: Kann ich mein Foto entfernen?",
+        faqAns13: "A: Ja, Teilnehmer können die Entfernung ihres Fotos per E-Mail anfordern, die in Chargen bearbeitet wird.",
+
+        faqQues14: "F: Wie kann ich andere icons4good-Installationen finden?",
+        faqAns14: "A: Wir arbeiten an einer App, um Benutzer über nahegelegene Installationen zu benachrichtigen, und könnten auch mit anderen Apps zusammenarbeiten, um ähnliche Benachrichtigungen zu versenden."
+      }
     },
     italian: {
       homePage: {
@@ -512,6 +842,74 @@ function changeLanguage() {
         paymentbuttonOne: "Pagamento",
         paymentBtnTwo: "Senza donazione",
       },
+      aboutPage: {
+        aboutTextHead: "Chi siamo",
+        aboutText1: "Su icons4good, creiamo nuove destinazioni attraverso opere d'arte digitali immersive e interattive che celebrano momenti importanti e uniscono le persone attorno a esperienze condivise e cause nobili. Il nostro software in fase di brevetto combina la realtà aumentata, il geofencing e l'intelligenza artificiale con il potere dei fotomosaici.",
+
+        aboutText2: "Il nostro obiettivo è aumentare la consapevolezza, costruire comunità digitali dedicate e ispirare cambiamenti positivi. Lavoriamo a stretto contatto con le comunità locali per supportare iniziative che rendano il mondo un posto migliore.",
+
+        aboutText3: "Caratteristiche principali:",
+
+        aboutText4: "- Database di partecipanti ricercabile per nome, hashtag o dichiarazione personale",
+
+        aboutText5: "- Opzione per aggiungere foto, video, dichiarazioni personali e hashtag",
+
+        aboutText6: "- Esperienze in realtà aumentata in luoghi designati",
+
+        aboutText7: "- Aggiornamenti del tema basati sulla partecipazione della comunità attraverso votazioni",
+
+        aboutText8: "- Conformità al GDPR e possibilità di rimuovere foto su richiesta",
+
+        aboutText9: "La partecipazione è gratuita, grazie alla generosità dei nostri sponsor. Tuttavia, mantenere la ricercabilità può richiedere ai partecipanti di condividere il loro coinvolgimento sui social media.",
+
+        aboutText10: "Per richieste",
+
+        aboutText11: "si prega di inviarci un'e-mail a",
+
+        faqHead : "Domande frequenti",
+
+        faqQues1: "D: Avete una politica di ritorno alla società?",
+        faqAns1: "R: Sì, lavoriamo a stretto contatto con le comunità locali per supportare iniziative che creano un impatto positivo.",
+
+        faqQues2: "D: Come posso cercare i partecipanti?",
+        faqAns2: "R: Utilizza il pulsante di ricerca per cercare persone per nome, hashtag o parole nelle loro dichiarazioni personali.",
+
+        faqQues3: "D: Devo iscrivermi prima di aggiungere una foto?",
+        faqAns3: "R: No, ma devi effettuare l'accesso tramite un account sui social media, accettare i Termini e Condizioni e aderire alla politica GDPR.",
+
+        faqQues4: "D: Quali tipi di foto sono appropriati?",
+        faqAns4: "R: Tutte le foto devono soddisfare i criteri di decenza e essere approvate prima di diventare parte dei mosaici permanenti. I caricamenti possono includere selfie, foto filtrate o messaggi creativi a sostegno del tema.",
+
+        faqQues5: "D: Posso aggiungere una dichiarazione personale o un video?",
+        faqAns5: "R: Sì, i partecipanti possono aggiungere una foto o un video, una dichiarazione personale positiva e hashtag pertinenti.",
+
+        faqQues6: "D: Il tema del mosaico può essere aggiornato?",
+        faqAns6: "R: Occasionalmente, organizziamo concorsi per rinnovare il tema dell'opera d'arte basandoci sui voti dei partecipanti.",
+
+        faqQues7: "D: Come posso visualizzare il mosaico in altro modo?",
+        faqAns7: "R: I mosaici abilitati alla AR possono essere accessibili solo in luoghi designati, ma la versione non AR è disponibile online per tutti i visitatori.",
+
+        faqQues8: "D: Posso condividere la mia partecipazione sui social media?",
+        faqAns8: "R: Sì, diventare parte del mosaico è un successo che vale la pena celebrare sui social media.",
+
+        faqQues9: "D: La partecipazione è gratuita?",
+        faqAns9: "R: Sì, ma mantenere la ricercabilità può richiedere la ripubblicazione della partecipazione sui social media.",
+
+        faqQues10: "D: Chi possiede la mia foto inviata?",
+        faqAns10: "R: I partecipanti mantengono la proprietà delle loro foto ma ci concedono il diritto di includerle nel mosaico.",
+
+        faqQues11: "D: Quanto tempo rimarrà la mia foto nel mosaico?",
+        faqAns11: "R: Le foto rimangono indefinitamente, ma potrebbero diventare non ricercabili se il partecipante non rinnova periodicamente i propri post sui social media.",
+
+        faqQues12: "D: Come gestite la conformità al GDPR?",
+        faqAns12: "R: Rispettiamo completamente i requisiti del GDPR e i partecipanti devono accettare la nostra politica GDPR prima di inviare le foto.",
+
+        faqQues13: "D: Posso rimuovere la mia foto?",
+        faqAns13: "R: Sì, i partecipanti possono richiedere la rimozione della foto via e-mail, che verrà elaborata in batch.",
+
+        faqQues14: "D: Come posso trovare altre installazioni icons4good?",
+        faqAns14: "R: Stiamo lavorando a un'app per notificare gli utenti delle installazioni vicine e potremmo anche collaborare con altre app per inviare notifiche simili."
+      }
     },
   };
 
@@ -642,6 +1040,62 @@ function changeLanguage() {
   $(".centerParaCLsInfo")
     .empty()
     .append(languages[value]?.signInInfoPage?.center);
+  
+  $(".about-text-head").empty().append(languages[value]?.aboutPage?.aboutTextHead);
+  $(".about-text-1").empty().append(languages[value]?.aboutPage?.aboutText1);
+  $(".about-text-2").empty().append(languages[value]?.aboutPage?.aboutText2);
+  $(".about-text-3").empty().append(languages[value]?.aboutPage?.aboutText3);
+  $(".about-text-4").empty().append(languages[value]?.aboutPage?.aboutText4);
+  $(".about-text-5").empty().append(languages[value]?.aboutPage?.aboutText5);
+  $(".about-text-6").empty().append(languages[value]?.aboutPage?.aboutText6);
+  $(".about-text-7").empty().append(languages[value]?.aboutPage?.aboutText7);
+  $(".about-text-8").empty().append(languages[value]?.aboutPage?.aboutText8);
+  $(".about-text-9").empty().append(languages[value]?.aboutPage?.aboutText9);
+  $(".about-text-10").empty().append(languages[value]?.aboutPage?.aboutText10);
+  $(".about-text-11").empty().append(languages[value]?.aboutPage?.aboutText11);
+  $(".faq-head").empty().append(languages[value]?.aboutPage?.faqHead);
+
+  $(".faq-ques-1").empty().append(languages[value]?.aboutPage?.faqQues1);
+  $(".faq-ans-1").empty().append(languages[value]?.aboutPage?.faqAns1);
+
+  $(".faq-ques-2").empty().append(languages[value]?.aboutPage?.faqQues2);
+  $(".faq-ans-2").empty().append(languages[value]?.aboutPage?.faqAns2);
+
+  $(".faq-ques-3").empty().append(languages[value]?.aboutPage?.faqQues3);
+  $(".faq-ans-3").empty().append(languages[value]?.aboutPage?.faqAns3);
+
+  $(".faq-ques-4").empty().append(languages[value]?.aboutPage?.faqQues4);
+  $(".faq-ans-4").empty().append(languages[value]?.aboutPage?.faqAns4);
+
+  $(".faq-ques-5").empty().append(languages[value]?.aboutPage?.faqQues5);
+  $(".faq-ans-5").empty().append(languages[value]?.aboutPage?.faqAns5);
+
+  $(".faq-ques-6").empty().append(languages[value]?.aboutPage?.faqQues6);
+  $(".faq-ans-6").empty().append(languages[value]?.aboutPage?.faqAns6);
+
+  $(".faq-ques-7").empty().append(languages[value]?.aboutPage?.faqQues7);
+  $(".faq-ans-7").empty().append(languages[value]?.aboutPage?.faqAns7);
+
+  $(".faq-ques-8").empty().append(languages[value]?.aboutPage?.faqQues8);
+  $(".faq-ans-8").empty().append(languages[value]?.aboutPage?.faqAns8);
+
+  $(".faq-ques-9").empty().append(languages[value]?.aboutPage?.faqQues9);
+  $(".faq-ans-9").empty().append(languages[value]?.aboutPage?.faqAns9);
+
+  $(".faq-ques-10").empty().append(languages[value]?.aboutPage?.faqQues10);
+  $(".faq-ans-10").empty().append(languages[value]?.aboutPage?.faqAns10);
+
+  $(".faq-ques-11").empty().append(languages[value]?.aboutPage?.faqQues11);
+  $(".faq-ans-11").empty().append(languages[value]?.aboutPage?.faqAns11);
+
+  $(".faq-ques-12").empty().append(languages[value]?.aboutPage?.faqQues12);
+  $(".faq-ans-12").empty().append(languages[value]?.aboutPage?.faqAns12);
+
+  $(".faq-ques-13").empty().append(languages[value]?.aboutPage?.faqQues13);
+  $(".faq-ans-13").empty().append(languages[value]?.aboutPage?.faqAns13);
+
+  $(".faq-ques-14").empty().append(languages[value]?.aboutPage?.faqQues14);
+  $(".faq-ans-14").empty().append(languages[value]?.aboutPage?.faqAns14);
 
   localStorage.setItem("storedLanguage", value);
 }

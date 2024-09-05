@@ -379,3 +379,11 @@ footer div {
   font-size: 16px;
   margin-bottom: 8px !important;
 }
+
+.liked {
+  background-color: red !important;
+}
+
+.followed {
+  background-color: red !important;
+}

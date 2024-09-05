@@ -125,35 +125,6 @@
       margin-top: 40px;
     }
 
-
-    .thing {
-      width: unset !important;
-    }
-
-    #otherthing {
-      text-align: center;
-      background-color: #fff;
-      border: 2px solid #222;
-      padding: 20px;
-      display: none;
-      position: absolute;
-      bottom: 0;
-      width: 100%;
-    }
-
-
-
-    .crossThing {
-      position: absolute;
-      right: 0;
-      top: 0;
-      left: 0;
-      width: 100% !important;
-      background: #fa3737;
-      border-radius: 0;
-      color: #fff;
-    }
-
     .icon {
       display: inline-block;
       width: 20px;
@@ -277,9 +248,19 @@
       display: flex;
       border-radius: 50px;
       margin: 5px;
-      /* background-color: #00000091; */
-      /* padding: 4px; */
+    }
 
+    .search-box img {
+      float: right;
+      background-color: #5d6039;
+      padding: 6px;
+      border-radius: 24px;
+      width: 48px;
+      height: 48px;
+    }
+
+    .search-box:hover img {
+      border-radius: 0px 24px 24px 0px;
     }
 
     .search-box-input {
@@ -292,8 +273,6 @@
     .search-box-btn {
       display: flex;
       border-radius: 50%;
-      /* width: 30px;
-	height: 30px; */
       background: white;
       transition: .3s;
     }
@@ -370,7 +349,7 @@
     .like-button {
       display: flex;
       align-items: center;
-      padding: 5px 10px;
+      padding: 5px 5px;
       border-radius: 35px;
       background-color: #000000a1;
       font-family: Arial, sans-serif;
@@ -397,32 +376,31 @@
     /* Heart icon styles */
     .heart-icon {
       font-size: 16px;
-      /* Adjust size as needed */
-      margin-right: 5px;
       background-color: #F3F0E6;
       border-radius: 30px;
       padding: 7px;
-      margin-left: -5px;
     }
 
     /* Likes count styles */
     .likes-count {
       font-weight: bold;
       color: #fff;
+      padding: 0px 5px;
+      font-size: 15px;
     }
 
     /* Button hover and focus effects */
-    .like-button:not(:disabled):hover,
+    /* .like-button:not(:disabled):hover,
     .like-button:not(:disabled):focus {
       background-color: #d82b2b;
       border-color: #ccc;
-    }
+    } */
 
     /* Button active (clicked) effect */
-    .like-button:not(:disabled):active {
+    /* .like-button:not(:disabled):active {
       background-color: #c41919;
       border-color: #bbb;
-    }
+    } */
 
     /* Optional: Change color of the heart icon and text on hover */
     .like-button:hover .heart-icon,
@@ -520,9 +498,10 @@
 
     .searchResetClass {
       position: absolute;
-      bottom: 7em;
-      /* right: 3em; */
+      bottom: 110.5px;
       width: 100%;
+      display: flex;
+      justify-content: space-between;
     }
 
     .loader-container {
@@ -622,18 +601,17 @@
         <button id="zoomIn">Zoom In</button>
         <button id="zoomOut">Zoom Out</button>
     </div> -->
-  <div class="row w-100 searchResetClass mx-0">
-    <div class="col-9">
+  <div class="w-100 searchResetClass mx-0">
+    <div class="col-9s">
       <div class="search-box m-1">
         <!-- <input type="text" class="search-box-input" id="searchInput" placeholder="What are you looking for ?"> -->
         <input type="text" class="search-box-input" id="searchInput" placeholder="Search by names or themes.">
         <button class="search-box-btn">
-          <img src="images/searchToggle.png" onclick="searchimage()" class=""
-            style="float: right; background-color: #494948;padding: 4px;border-radius: 20px;" alt="Image 1" />
+          <img src="images/searchToggle.png" onclick="searchimage()" alt="Image 1" />
         </button>
       </div>
     </div>
-    <div class="col-3 d-flex justify-content-end">
+    <div class="col-3s d-flex justify-content-end">
       <img class="m-1" src="images/resize2.png" onclick="resize()" style="width: 48px;" alt="Image 1" />
     </div>
   </div>
@@ -656,19 +634,6 @@
 
   <footer>
     <div class="footer-button-wrapper">
-      <!-- <a onclick="map()" class="footer-btn"><img src="images/MapIcon.png"><br><span>Map</span></a>
-      <a  onclick="checkLocation()" class="footer-btn scanBtnCls" >Scan</a>
-      <a onclick="profile()" class="footer-btn"><img src="images/ProfileIcon.png">Profile</a> -->
-
-      <!-- <a onclick="map()" class="footer-btn">
-        <img src="images/MapBtn.png">
-      </a>
-      <a onclick="profile()" class="footer-btn">
-        <img src="images/addMosiacBtn.png">
-      </a>
-      <a onclick="share()" style="opacity: .5;pointer-events: none;" class="footer-btn">
-        <img src="images/shareBtn.png">
-      </a> -->
       <button onclick="map()" class="footer-btn">
         <span class="button-icon">
           <span class="material-symbols-outlined">
@@ -696,6 +661,7 @@
       </button>
     </div>
   </footer>
+
   <div class="modal" id="fullScreenModal" style="background-color: #000000a1;">
     <div class="modal-dialog " style="margin: 2em;">
       <div class="modal-content" style="background-color: #d0d9da;">
@@ -818,7 +784,6 @@
             <input type="text" class="search-box-input" id="carousalNameInput" placeholder="Enter Carousal Name">
             <button class="search-box-btn save-button" title="Save Carousel"
               style="border-radius: 5px;width: 60px;display: flex;justify-content: center;">
-              <!-- <img src="images/searchToggle.png" onclick="searchimage()" class="" style="float: right; background-color: #494948;padding: 4px;border-radius: 20px;" alt="Image 1"> -->
               <span class="hover-hidden">
                 save
               </span>
@@ -837,7 +802,11 @@
     <div class="loader"></div>
   </div>
   <script>
+    // Get the userId from localStorage
+    var userId = localStorage.getItem("userId");
+
     $(document).ready(function () {
+
       var option = ""
       for (let i = 0; i < languagesArry.length; i++) {
         option += "<option value='" + languagesArry[i]?.code + "'>" + languagesArry[i]?.name + "</option>"
@@ -845,9 +814,6 @@
       $("#selectLanguageId").empty().append(option);
       $("#selectLanguageId").val(localStorage.getItem('storedLanguage') ? localStorage.getItem('storedLanguage') : 'english')
       changeLanguage();
-
-      // Get the userId from localStorage
-      let userId = localStorage.getItem("userId");
 
       // Check if userId exists
       if (userId != null) {
@@ -866,10 +832,6 @@
       }, 5000)
 
     })
-
-    $(".thing").click(function () {
-      $("#otherthing").slideToggle("slow");
-    });
 
     function zoomFuncIn() {
       $("#zoomPopView").fadeIn()
@@ -932,16 +894,8 @@
       $("#fullScreenModal2").fadeOut()
     }
 
-    function signInInfo() {
-      window.location.href = "signInInfo.html";
-    }
-
     function map() {
       window.location.href = "viewMap.html";
-    }
-
-    function addMosiac() {
-      window.location.href = "signInInfo.html";
     }
 
     function share() {
@@ -1067,6 +1021,8 @@
           $(".p1Class").empty().append(data?.imagename);
           $(".p2Class").empty().append(data?.caption);
           $(".p3Class").empty().append(data?.tags.replace("[", "").replace("]", "").replace(/,\s*/g, ', '));
+          $("#like-btn").attr("onclick", `imageLikeDislike(this, ${data?.imageid}, 'U')`);
+          // $("#likes-count").empty().append(userId ? data?.likecount : "");
           $("#likes-count").empty().append(data?.likecount);
           $("#follow-count").empty().append(data?.followcount);
           $("#fullScreenModal").fadeIn()
@@ -1093,6 +1049,8 @@
           $(".p1Class2").empty().append(data?.imagename);
           $(".p2Class2").empty().append(data?.caption);
           $(".p3Class2").empty().append(data?.tags.replace("[", "").replace("]", "").replace(/,\s*/g, ', '));
+          $("#like-btn2").attr("onclick", `imageLikeDislike(this, ${data?.imageid}, 'U')`);
+          // $("#likes-count2").empty().append(userId ? data?.likecount : "");
           $("#likes-count2").empty().append(data?.likecount);
           $("#follow-count2").empty().append(data?.followcount);
           $("#fullScreenModal2").fadeIn()
@@ -1198,7 +1156,7 @@
     }
 
     function profile() {
-      window.location.href = "signIn_new.html";
+      window.location.href = userId ? "mosiac_second.html" : "signIn_new.html";
     }
 
     function sponseredImage() {
@@ -1337,49 +1295,6 @@
         },
       })
     }
-
-
-    let userId = localStorage.getItem("userId");
-
-    // Check if userId exists
-    if (userId != null) {
-      document.getElementById("carousal-save-btn").style.display = "flex";
-    } else {
-      // If userId doesn't exist, disable the like and follow buttons using Vanilla JavaScript
-      document.getElementById("carousal-save-btn").style.display = "none";
-    }
-
-    // const handleSubmitSaveCarousel = () => {
-    //   if (userId) {
-    //     let carousalName = $("#carousalNameInput").val().trim();
-    //     let request = {
-    //       carouselname: carousalName,
-    //       location: storedData?.locationid,
-    //       searchkeyword: localStorage.getItem("searchkeyword"),
-    //       searchresponse: `${localStorage.getItem("carousel_response")}`,
-    //       userid: userId
-    //     }
-    //     $.ajax({
-    //       url: 'https://2024api.icons4good.com/addCarousel',
-    //       data: JSON.stringify(request),
-    //       async: false,
-    //       contentType: "application/json",
-    //       type: 'post',
-    //       success: function (res) {
-    //         if (res?.statusCode === 0) {
-    //           toastr["error"](res?.message);
-    //         } else {
-
-    //         }
-    //       },
-    //       error: function (err) {
-    //         toastr["error"](err?.responseJSON?.message);
-    //       },
-    //     })
-    //   } else {
-
-    //   }
-    // }
 
     const handleSubmitSaveCarousel = () => {
       if (userId) {
@@ -1547,6 +1462,41 @@
       });
     }
 
+    function imageLikeDislike(button, imageId, state) {
+      const toggleState = state === "L" ? "U" : "L";
+      const request = {
+        userid: userId,
+        imageid: imageId,
+        state: state,
+      };
+
+      $.ajax({
+        url: 'https://2024api.icons4good.com/likedislike',
+        data: JSON.stringify(request),
+        async: false,
+        contentType: "application/json",
+        type: 'POST',
+        success: function (res) {
+          if (res?.statusCode === 0) {
+            toastr.error(res?.message);
+          } else {
+            const newState = res.result.state === "L" ? "U" : "L";
+            button.setAttribute("onclick", `imageLikeDislike(this, ${imageId}, '${newState}')`);
+
+            if (res.result.state === "L") {
+              button.classList.add("liked");
+              toastr["success"]("Photo Liked successfully!");
+            } else {
+              button.classList.remove("liked");
+              toastr["success"]("Photo Unliked successfully!");
+            }
+          }
+        },
+        error: function (err) {
+          toastr.error(err?.responseJSON?.message || "An error occurred while saving the carousel.");
+        },
+      });
+    }
 
   </script>
 </body>
