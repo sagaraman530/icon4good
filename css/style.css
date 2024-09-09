@@ -111,6 +111,7 @@ footer div {
   align-items: center;
   justify-content: center;
   width: 70px;
+  height: 65px;
   background: #f0f0f0;
 }
 
@@ -386,4 +387,50 @@ footer div {
 
 .followed {
   background-color: red !important;
+}
+
+.modal.show .modal-dialog {
+  background-color: rgba(65, 65, 65, 0.75);
+}
+
+.sidebarMenuWrapper {
+  padding: 10px;
+  background-color: #ffffff;
+  width: 280px;
+  position: absolute;
+  top: 0;
+  left: -281px;
+  height: 100vh;
+  z-index: 999;
+  transition: 0.5s;
+}
+
+.sidebarMenuWrapper.active {
+  left: 0px !important;
+}
+
+.sidebarMenuWrapper button {
+  background-color: transparent;
+  outline: none;
+  border: none;
+}
+
+.sidebarMenuList ul {
+  list-style: none;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 400;
+  padding-left: 2px;
+}
+
+.sidebarMenuList ul li {
+  padding: 7px 10px;
+}
+
+.sidebarMenuList ul li a {
+  color: #111;
+}
+
+.sidebarMenuList ul li a:hover {
+  text-decoration: none;
 }

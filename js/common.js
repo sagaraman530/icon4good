@@ -11,7 +11,7 @@ function changeLanguage() {
     english: {
       homePage: {
         topBar: "",
-        centerMsg: "can you manifest the spirit of Olympia?",
+        centerMsg: "Can you find the mosaic?",
         buttonOne: "Click and Target",
         buttonTwo: "About Us",
         mapButton: "Map",
@@ -32,7 +32,7 @@ function changeLanguage() {
         buttonText: "Be a part of the mosaic",
         addImageMosaicButton: "Add image to mosaic",
         shareButton: "Share",
-        mosiacButton: "Mosiac"
+        mosiacButton: "Be a part of the mosaic"
       },
       signInInfoPage: {
         signInBtn: " Sign In",
@@ -105,7 +105,7 @@ function changeLanguage() {
         aboutText10: "For inquiries",
         aboutText11: "please email us at",
 
-        faqHead : "FAQs",
+        faqHead: "FAQs",
 
         faqQues1: "Q: Do you have a give-back-to-society policy?",
         faqAns1: "A: Yes, we work closely with local communities to support initiatives that create positive impact.",
@@ -153,7 +153,7 @@ function changeLanguage() {
     greek: {
       homePage: {
         topBar: "",
-        centerMsg: "μπορείτε να εκδηλώσετε το πνεύμα της Ολυμπίας;",
+        centerMsg: "Μπορείτε να βρείτε το μωσαϊκό;",
         buttonOne: "Κάντε κλικ και στόχευση",
         buttonTwo: "Σχετικά με εμάς",
         mapButton: "Χάρτης",
@@ -175,7 +175,7 @@ function changeLanguage() {
         buttonText: "Γίνετε μέρος του μωσαϊκού",
         addImageMosaicButton: "Προσθήκη εικόνας στο μωσαϊκό",
         shareButton: "Μερίδιο",
-        mosiacButton: "Mosiac"
+        mosiacButton: "Γίνετε μέρος του μωσαϊκού"
       },
       signInInfoPage: {
         signInBtn: "Συνδεθείτε",
@@ -259,7 +259,7 @@ function changeLanguage() {
 
         aboutText11: "παρακαλώ στείλτε μας email στο",
 
-        faqHead : "Συχνές ερωτήσεις",
+        faqHead: "Συχνές ερωτήσεις",
 
         faqQues1: "Ε: Έχετε πολιτική προσφοράς στην κοινωνία;",
         faqAns1: "Α: Ναι, συνεργαζόμαστε στενά με τις τοπικές κοινότητες για να υποστηρίξουμε πρωτοβουλίες που δημιουργούν θετικό αντίκτυπο.",
@@ -307,7 +307,7 @@ function changeLanguage() {
     french: {
       homePage: {
         topBar: "",
-        centerMsg: "pouvez-vous manifester l’esprit d’Olympia ?",
+        centerMsg: "Pouvez-vous trouver la mosaïque ?",
         buttonOne: "Cliquez et ciblez",
         buttonTwo: "À propos de nous",
         mapButton: "Carte",
@@ -329,7 +329,7 @@ function changeLanguage() {
         buttonText: "Faites partie de la mosaïque",
         addImageMosaicButton: "Ajouter une image à la mosaïque",
         shareButton: "Partager",
-        mosiacButton: "Mosaïque"
+        mosiacButton: "Faites partie de la mosaïque"
       },
       signInInfoPage: {
         signInBtn: " Se connecter",
@@ -412,7 +412,7 @@ function changeLanguage() {
 
         aboutText11: "veuillez nous envoyer un e-mail à",
 
-        faqHead : "FAQ",
+        faqHead: "FAQ",
 
         faqQues1: "Q : Avez-vous une politique de retour à la société ?",
         faqAns1: "R : Oui, nous travaillons en étroite collaboration avec les communautés locales pour soutenir des initiatives qui créent un impact positif.",
@@ -460,7 +460,7 @@ function changeLanguage() {
     spanish: {
       homePage: {
         topBar: "",
-        centerMsg: "¿Puedes manifestar el espíritu de Olimpia?",
+        centerMsg: "¿Puedes encontrar el mosaico?",
         buttonOne: "Haga clic y apunte",
         buttonTwo: "Sobre nosotros",
         mapButton: "Mapa",
@@ -481,7 +481,7 @@ function changeLanguage() {
         buttonText: "Sé parte del mosaico",
         addImageMosaicButton: "Agregar imagen al mosaico",
         shareButton: "Compartir",
-        mosiacButton: "Mosaico"
+        mosiacButton: "Sé parte del mosaico"
       },
       signInInfoPage: {
         signInBtn: " Iniciar sesión",
@@ -565,7 +565,7 @@ function changeLanguage() {
 
         aboutText11: "por favor envíenos un correo electrónico a",
 
-        faqHead : "Preguntas frecuentes",
+        faqHead: "Preguntas frecuentes",
 
         faqQues1: "P: ¿Tienen una política de retorno a la sociedad?",
         faqAns1: "R: Sí, trabajamos en estrecha colaboración con las comunidades locales para apoyar iniciativas que crean un impacto positivo.",
@@ -613,7 +613,7 @@ function changeLanguage() {
     german: {
       homePage: {
         topBar: "",
-        centerMsg: "Können Sie den Geist von Olympia manifestieren?",
+        centerMsg: "Kannst du das Mosaik finden?",
         buttonOne: "Klicken und zielen",
         buttonTwo: "Über uns",
         mapButton: "Karte",
@@ -635,7 +635,7 @@ function changeLanguage() {
         buttonText: "Werden Sie Teil des Mosaiks",
         addImageMosaicButton: "Bild zum Mosaik hinzufügen",
         shareButton: "Aktie",
-        mosiacButton: "Mosiac"
+        mosiacButton: "Werden Sie Teil des Mosaiks"
       },
       signInInfoPage: {
         signInBtn: "Anmelden",
@@ -719,7 +719,7 @@ function changeLanguage() {
 
         aboutText11: "bitte senden Sie uns eine E-Mail an",
 
-        faqHead : "FAQs",
+        faqHead: "FAQs",
 
         faqQues1: "F: Haben Sie eine Politik des sozialen Engagements?",
         faqAns1: "A: Ja, wir arbeiten eng mit lokalen Gemeinschaften zusammen, um Initiativen zu unterstützen, die positive Auswirkungen haben.",
@@ -767,7 +767,7 @@ function changeLanguage() {
     italian: {
       homePage: {
         topBar: "",
-        centerMsg: "puoi manifestare lo spirito di Olympia?",
+        centerMsg: "Riesci a trovare il mosaico?",
         buttonOne: "Fai clic e scegli come target",
         buttonTwo: "Chi siamo",
         mapButton: "Carta geografica",
@@ -788,7 +788,7 @@ function changeLanguage() {
         buttonText: "Diventa parte del mosaico",
         addImageMosaicButton: "Aggiungi l'immagine al mosaico",
         shareButton: "Condividere",
-        mosiacButton: "Mosaico"
+        mosiacButton: "Diventa parte del mosaico"
       },
       signInInfoPage: {
         signInBtn: "Registrazione",
@@ -872,7 +872,7 @@ function changeLanguage() {
 
         aboutText11: "si prega di inviarci un'e-mail a",
 
-        faqHead : "Domande frequenti",
+        faqHead: "Domande frequenti",
 
         faqQues1: "D: Avete una politica di ritorno alla società?",
         faqAns1: "R: Sì, lavoriamo a stretto contatto con le comunità locali per supportare iniziative che creano un impatto positivo.",
@@ -1046,7 +1046,7 @@ function changeLanguage() {
   $(".centerParaCLsInfo")
     .empty()
     .append(languages[value]?.signInInfoPage?.center);
-  
+
   $(".about-text-head").empty().append(languages[value]?.aboutPage?.aboutTextHead);
   $(".about-text-1").empty().append(languages[value]?.aboutPage?.aboutText1);
   $(".about-text-2").empty().append(languages[value]?.aboutPage?.aboutText2);
@@ -1107,3 +1107,59 @@ function changeLanguage() {
 
   localStorage.setItem("storedLanguage", value);
 }
+
+// Cache DOM elements
+const sidebarMenuOpenBtn = document.getElementById("sidebarMenuOpenBtn");
+const sidebarMenuCloseBtn = document.getElementById("sidebarMenuCloseBtn");
+const sidebarMenuWrapper = document.getElementById("sidebarMenuWrapper");
+const signUpBtn = document.getElementById("signUpBtn");
+const logOutBtn = document.getElementById("logOutBtn");
+
+// Toggle sidebar menu visibility
+if (sidebarMenuOpenBtn) {
+  sidebarMenuOpenBtn.addEventListener("click", () => {
+    if (sidebarMenuWrapper) {
+      sidebarMenuWrapper.classList.add("active");
+    }
+  });
+}
+
+if (sidebarMenuCloseBtn) {
+  sidebarMenuCloseBtn.addEventListener("click", () => {
+    if (sidebarMenuWrapper) {
+      sidebarMenuWrapper.classList.remove("active");
+    }
+  });
+}
+
+// Retrieve stored data securely
+const storedDatas = JSON.parse(localStorage.getItem('storedData')) || {};
+const locationname = storedDatas.locationname ? encodeURIComponent(storedDatas.locationname) : '';
+const user_Id = localStorage.getItem('userId');
+
+if (user_Id) {
+  if (signUpBtn) {
+    signUpBtn.remove();
+  }
+} else {
+  if (logOutBtn) {
+    logOutBtn.remove();
+  }
+}
+
+// Log out the user securely
+function logOut() {
+  // Remove sensitive data from local storage
+  localStorage.removeItem("userId");
+
+  // Redirect to the index page with the location name as a query parameter
+  window.location.href = `index.html?${locationname}`;
+}
+
+// Attach logOut function to the logOutBtn
+if (logOutBtn) {
+  logOutBtn.addEventListener("click", logOut);
+}
+
+
+

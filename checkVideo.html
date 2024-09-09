@@ -41,13 +41,18 @@
 
     .circleWrapper img {
       width: 50px;
+    } 
+
+    .footer-button-wrapper button {
+      width: auto;
+      height: 65px;
     }
   </style>
 </head>
 
 <body>
   <div class="backCls" style="background-size: cover">
-    <div class="d-flex justify-content-center align-items-center h-100 px-3">
+    <div class="d-flex justify-content-center align-items-start pt-5 h-100 px-3">
       <div class="bg-white w-100 px-1 pb-0 pt-1 rounded-3">
         <video id="avatarModel" class="w-100" autoplay playsinline>
           <source id="avatarSource" src="" type="video/mp4" />
@@ -57,23 +62,23 @@
     <!-- Close the div.backCls -->
   </div>
 
-  <footer>
+  <footer class="d-flex justify-content-center">
     <div class="footer-button-wrapper">
-      <button onclick="map()" id="map-btn" class="footer-btn">
+      <!-- <button onclick="map()" id="map-btn" class="footer-btn">
         <span class="button-icon">
           <span class="material-symbols-outlined">map</span>
         </span>
         <span class="button-text mapButton">Map</span>
-      </button>
+      </button> -->
       <button onclick="mosiac()" class="footer-btn">
-        <span class="button-text mosiacButton">Mosiac</span>
+        <span class="button-text mosiacButton">Be a part of the mosaic</span>
       </button>
-      <button onclick="profile()" id="profile-btn" class="footer-btn">
+      <!-- <button onclick="profile()" id="profile-btn" class="footer-btn">
         <span class="button-icon">
           <span class="material-symbols-outlined">account_circle</span>
         </span>
         <span class="button-text profileButton">Profile</span>
-      </button>
+      </button> -->
     </div>
   </footer>
 
@@ -133,7 +138,6 @@
           location.replace('/mosiac.html?loc=' + name);
           // You can execute any code here, such as showing a message or performing an action
         };
-
       }
     });
   </script>

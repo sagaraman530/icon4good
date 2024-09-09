@@ -136,10 +136,10 @@
         });
       };
 
-      // const followersReq = { "followedby": userId };
-      // const followingsReq = { "userid": userId };
-      const followersReq = { "followedby": 1 };
-      const followingsReq = { "userid": 1 };
+      const followersReq = { "followedby": userId };
+      const followingsReq = { "userid": userId };
+      // const followersReq = { "followedby": 1 };
+      // const followingsReq = { "userid": 1 };
 
       // Fetch followers and followings concurrently
       Promise.all([

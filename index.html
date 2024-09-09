@@ -48,18 +48,46 @@
 <body>
   <div class="backCls" style="background-size: cover">
     <!-- <div class="topBarCls"> -->
-    <div class="w-100 mx-0" style="display: flex;justify-content: space-between;padding: 10px;position: absolute;top: 0px;left: 0;z-index: 999;">
+    <div class="w-100 mx-0"
+      style="display: flex;justify-content: space-between;padding: 10px;position: absolute;top: 0px;left: 0;z-index: 999;">
       <div class="circleWrapper">
-        <i class="fa fa-info-circle" style="color: #fff;font-size: 55px !important;cursor: pointer;width: 50px;height: 50px;display: flex;align-items: center;justify-content: center;line-height: 1;"
-          onclick="myGreeting1()" aria-hidden="true"></i>
+        <!-- <i class="fa fa-info-circle"
+          style="color: #fff;font-size: 55px !important;cursor: pointer;width: 50px;height: 50px;display: flex;align-items: center;justify-content: center;line-height: 1;"
+          onclick="myGreeting1()" aria-hidden="true"></i> -->
+        <i id="sidebarMenuOpenBtn" class="fa fa-bars"
+          style="color: #000;font-size: 30px !important;cursor: pointer;width: 50px;height: 50px;display: flex;align-items: center;justify-content: center;line-height: 1;padding: 5px;background: #ffffff;"
+          aria-hidden="true"></i>
       </div>
       <div class="circleWrapper">
         <img onclick="aboutPage()" src="images/scanGoodsicon.png" alt="images/scanGoodsicon.png">
       </div>
       <div class="circleWrapper">
-        <select id="selectLanguageId" onchange="changeLanguage()" style="border-radius: 30px;height: 50px;z-index: 1;width: 50px;border: none;padding: 3px;"></select>
+        <select id="selectLanguageId" onchange="changeLanguage()"
+          style="border-radius: 30px;height: 50px;z-index: 1;width: 50px;border: none;padding: 3px;"></select>
       </div>
     </div>
+
+    <nav id="sidebarMenuWrapper" class="sidebarMenuWrapper">
+      <div class="sidebarMenu">
+        <div class="sidebarMenuClose">
+          <button id="sidebarMenuCloseBtn"
+            style="color: #111111;font-size: 30px !important;cursor: pointer;width: 40px;height: 40px;display: flex;align-items: center;justify-content: center;line-height: 1;padding: 5px;">
+            <i class="fa fa-times" aria-hidden="true"></i>
+          </button>
+        </div>
+        <div class="sidebarMenuList">
+          <ul>
+            <li><a href="#">Starting Page</a></li>
+            <li><a href="./profile.html">Profile</a></li>
+            <li><a href="./community.html">Community</a></li>
+            <li><a href="./viewMap.html">Map</a></li>
+            <li><a href="./aboutUs.html">About icon$good</a></li>
+            <li id="signUpBtn"><a href="./signIn_new.html">SignIn / SignUp</a></li>
+            <li id="logOutBtn"><a onclick="logOut()" type="button">LogOut</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
 
     <div class="" style="font-weight: 700;">
       <div>
@@ -158,7 +186,7 @@
       getLocations();
 
       setTimeout(() => {
-        checkLocation()
+        // checkLocation()
       }, 20000);
 
       let userId = localStorage.getItem("userId");

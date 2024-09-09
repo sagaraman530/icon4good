@@ -37,11 +37,9 @@
       width: 20px;
     }
 
-
     .thing {
       width: unset !important;
     }
-
 
     #otherthing {
       text-align: center;
@@ -52,8 +50,6 @@
       position: absolute;
       bottom: 0;
     }
-
-
 
     .crossThing {
       position: absolute;
@@ -499,8 +495,8 @@
     <div class="backClsWhite">
       <section>
         <div class="text-center textAreaCls mosiacSecondTagHead">Select Tags For Your Upload</div>
-        <div class="md-chips">
-          <input type="checkbox" name="tags" value="#paris" id="1">
+        <div id="hastags-box" class="md-chips">
+          <!-- <input type="checkbox" name="tags" value="#paris" id="1">
           <label for="1" class="md-chip md-chip-clickable md-chip-hover">#paris</label>
           <input type="checkbox" name="tags" value="#love" id="2">
           <label for="2" class="md-chip md-chip-clickable md-chip-hover">#love</label>
@@ -511,7 +507,7 @@
           <input type="checkbox" name="tags" value="#Games" id="5">
           <label for="5" class="md-chip md-chip-clickable md-chip-hover">#Games</label>
           <input type="checkbox" name="tags" value="#Peace" id="6">
-          <label for="6" class="md-chip md-chip-clickable md-chip-hover">#Peace</label>
+          <label for="6" class="md-chip md-chip-clickable md-chip-hover">#Peace</label> -->
         </div>
 
       </section>
@@ -530,8 +526,9 @@
         <div class="text-center">
           <img src="images/thankYou.png" onclick="closePop()" class="w-5opx" lt="Image 1" />
           <p class="">for adding your image or video to the mosaic. It will soon be visible and remain for 24
-          hours. <br><br>If you want your image or video to remain findable permanently then contribute to the mosaic to
-          become a mosaic supporter
+            hours. <br><br>If you want your image or video to remain findable permanently then contribute to the mosaic
+            to
+            become a mosaic supporter
           </p>
         </div>
         <div class="paymentBtnBlock">
@@ -594,7 +591,23 @@
   }
 
   var storedData = JSON.parse(localStorage.getItem('storedData'));
-  let userId = localStorage.getItem('userId')
+  var hastags = storedData?.hashtag.split(",") || [];
+
+  const userId = localStorage.getItem('userId');
+
+  if (!userId) {
+    window.location.replace('signin_new.html');
+  }
+
+  var hastags_text = ``;
+  for (let i = 0; i < hastags.length; i++) {
+    hastags_text += `<input type="checkbox" name="tags" value="${hastags[i]}" id="${i}">
+          <label for="${i}" class="md-chip md-chip-clickable md-chip-hover">${hastags[i]}</label>`;
+  }
+
+  $("#hastags-box").html(hastags_text);
+
+
   var src = storedData?.picturemosaiclink;
   $("#mosiacId iframe").attr("src", src)
   function map() {
@@ -604,11 +617,13 @@
   function addPhoto() {
     var tagsArray = []
     var checkboxes = document.getElementsByName('tags');
+
     for (var i = 0, n = checkboxes.length; i < n; i++) {
       if (checkboxes[i].checked === true) {
         tagsArray.push(checkboxes[i].value)
       }
     }
+
     const formData = new FormData();
     var photo = base64
     var caption = $("#caption").val();
@@ -618,6 +633,7 @@
     // 	$("#photo").trigger();
     // 	return false;
     // }
+
     if (caption == "" || caption == "undefined") {
       toastr["error"]("Please enter caption.");
       $("#caption").focus();
@@ -646,16 +662,16 @@
       // headers: { 'Content-Type': 'application/json' },
       // body: JSON.stringify(Object.fromEntries(formData))
     }).then(response => {
-        if (response?.status === 200) {
-          toastr["success"]("image saved Successfully.");
-          window.location.href = "thank.html";
-        } else {
-          toastr["error"](err?.responseJSON?.message);
-        }
+      if (response?.status === 200) {
+        toastr["success"]("image saved Successfully.");
+        window.location.href = "thank.html";
+      } else {
+        toastr["error"](err?.responseJSON?.message);
+      }
     }).then(data => {
-        toastr["error"](err?.responseJSON?.message);
+      toastr["error"](err?.responseJSON?.message);
     }).catch(error => {
-        toastr["error"](err?.responseJSON?.message);
+      toastr["error"](err?.responseJSON?.message);
     });
     //   $.ajax({
     //   url:'https://2024api.icons4good.com/addimage',
@@ -676,20 +692,16 @@
   }
 
   function enableBtn() {
-
     var val = $('#checkVal').is(':checked')
     if (val) {
       $("#btnClicked").attr("disabled", false)
     } else {
       $("#btnClicked").attr("disabled", true)
     }
-
-
   }
 
   function closePop() {
     $("#uploadModal").fadeOut()
-
   }
 
   function isFileAdded(formData, key) {
@@ -700,10 +712,11 @@
     }
     return false;
   }
-  function addPayment() {
 
+  function addPayment() {
     window.location.href = "payment.html";
   }
+
   document.querySelectorAll(".drop-zone__input").forEach((inputElement) => {
     const dropZoneElement = inputElement.closest(".drop-zone");
 
@@ -778,4 +791,5 @@
 </script>
 
 </body>
+
 </html>

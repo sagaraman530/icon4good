@@ -4,7 +4,9 @@
 <head>
   <meta charset="utf-8" />
   <!-- <meta name="viewport" content="width=device-width, height=device-height,  initial-scale=1.0, user-scalable=no;user-scalable=0" /> -->
-  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=no" />
+  <!-- <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=no" /> -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
 
   <!-- <link href="css/bootstrapv5.3.1.css" rel="stylesheet">
   <link href="css/bootstrapv3.1.4.css" rel="stylesheet"> -->
@@ -340,8 +342,35 @@
     }
 
     .p1Class {
+      color: #ffffff;
+      background: #000000;
       font-weight: bold;
-      background: #F3F0E6;
+      padding: 7px;
+    }
+
+    .pClassBox {
+      padding: 7px;
+      background: rgb(225, 225, 225);
+    }
+
+    .pClassBox1 {
+      padding: 7px;
+      background: #ffffff;
+      border-radius: 5px;
+      font-weight: 600;
+    }
+
+    .p1Class {
+      color: #ffffff;
+      background: #000000;
+      font-weight: bold;
+      padding: 7px;
+    }
+
+    .p1Class2 {
+      color: #ffffff;
+      background: #000000;
+      font-weight: bold;
       padding: 7px;
     }
 
@@ -363,13 +392,13 @@
 
     .button-left {
       position: absolute;
-      bottom: 9em;
+      bottom: 1em;
       left: 5px;
     }
 
     .button-right {
       position: absolute;
-      bottom: 9em;
+      bottom: 1em;
       right: 5px;
     }
 
@@ -540,6 +569,12 @@
     #carouselDiv {
       z-index: 999;
     }
+
+    #div::-webkit-scrollbar {
+      display: none;
+      scrollbar-width: none;
+      -ms-overflow-style: none
+    }
   </style>
 </head>
 
@@ -586,11 +621,11 @@
       <!-- Add more data as needed -->
     </div>
   </div>
-  <div id="">
-    <div class="text-center" style="    margin: 0px 15px;" id="mosiacId">
+  <div class="w-100 h-100" id="">
+    <div class="w-100 h-100 text-center" style="padding:15px;" id="mosiacId">
       <!-- <img src="images/image2.png" class="w-100" alt="Image 1" /> -->
-      <br>
-      <div id="div" style="overflow: scroll; width: 100%; height: 87vh;">
+      <!-- <br> -->
+      <div class="w-100" id="div" style="overflow: scroll;height: calc(100% - 160px);">
         <canvas id="mosaicCanvas"></canvas>
       </div>
       <!--REMOVING THE FOLLOWING CREDIT IS A VIOLATION OF YOUR TERMS OF USE
@@ -649,7 +684,7 @@
           Add image to mosaic
         </span>
       </button>
-      <button onclick="share()" class="footer-btn disabled">
+      <button onclick="share()" class="footer-btn">
         <span class="button-icon">
           <span class="material-symbols-outlined">
             account_circle
@@ -670,19 +705,24 @@
         </div>
         <div class="modal-body p-0">
           <div class="text-center">
-            <div id="pushMosiacImage" style="max-height: 70vh;overflow: auto;"><img style="  width:100%" src=""></a>
+            <div id="pushMosiacImage" style="max-height: 60vh;overflow: hidden;position: relative;">
+              <img id="imageModel1" style="width:100%" src="">
+              <button id="like-btn" class="like-button button-left">
+                <span class="heart-icon"><img src="images/HeartBlank.png"></span>
+                <span id="likes-count" class="likes-count">120</span>
+              </button>
+              <button type="button" id="follow-btn" class="like-button button-right">
+                <span class="heart-icon"><img src="images/Follow.png"></span>
+                <span id="follow-count" class="likes-count">76</span>
+              </button>
             </div>
-            <button id="like-btn" class="like-button button-left">
-              <span class="heart-icon"><img src="images/HeartBlank.png"></span>
-              <span id="likes-count" class="likes-count">120</span>
-            </button>
-            <button id="follow-btn" class="like-button button-right ">
-              <span class="heart-icon"><img src="images/Follow.png"></span>
-              <span id="follow-count" class="likes-count">76</span>
-            </button>
-            <p class="p1Class">Anna</p>
-            <p class="p2Class">Hey, I was here Too</p>
-            <p class="p3Class">#love,#paris</p>
+            <p id="modalUsername" class="p1Class mb-0">Anna</p>
+            <div class="pClassBox">
+              <div class="pClassBox1">
+                <p class="p2Class mb-0">Hey, I was here Too</p>
+                <p class="p3Class mb-0">#love,#paris</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -696,19 +736,26 @@
         </div>
         <div class="modal-body p-0">
           <div class="text-center">
-            <div id="pushMosiacImage2" style="max-height: 70vh;overflow: auto;"><img style="  width:100%" src=""></a>
+            <div id="pushMosiacImage2" style="max-height: 60vh;overflow: hidden;position: relative;">
+              <img id="imageModel2" style="width:100%" src="">
+              <button id="like-btn2" class="like-button button-left">
+                <span class="heart-icon">
+                  <img src="images/HeartBlank.png">
+                </span>
+                <span id="likes-count2" class="likes-count">120</span>
+              </button>
+              <button id="follow-btn2" class="like-button button-right ">
+                <span class="heart-icon"><img src="images/Follow.png"></span>
+                <span id="follow-count2" class="likes-count">76</span>
+              </button>
             </div>
-            <button id="like-btn2" class="like-button button-left">
-              <span class="heart-icon"><img src="images/HeartBlank.png"></span>
-              <span id="likes-count2" class="likes-count">120</span>
-            </button>
-            <button id="follow-btn2" class="like-button button-right ">
-              <span class="heart-icon"><img src="images/Follow.png"></span>
-              <span id="follow-count2" class="likes-count">76</span>
-            </button>
-            <p class="p1Class2">Anna</p>
-            <p class="p2Class2">Hey, I was here Too</p>
-            <p class="p3Class2">#love,#paris</p>
+            <p id="modalUsername2" class="p1Class2 mb-0">Anna</p>
+            <div class="pClassBox">
+              <div class="pClassBox1">
+                <p class="p2Class2 mb-0">Hey, I was here Too</p>
+                <p class="p3Class2 mb-0">#love,#paris</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -797,6 +844,23 @@
       </div>
     </div>
   </div>
+  <!-- Modal -->
+  <div class="modal fade" id="alertModal" tabindex="-1" aria-labelledby="alertModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content mx-4">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="alertModalLabel">Please sign in / sign up</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <h1>Thank you!</h1>
+          <h6>You will be redirected now</h6>
+        </div>
+        <!-- <div class="modal-footer">
+          <a href="./signIn_new.html" class="btn btn-secondary">Sign In</a>
+        </div> -->
+      </div>
+    </div>
   </div>
   <div class="loader-container">
     <div class="loader"></div>
@@ -816,20 +880,34 @@
       changeLanguage();
 
       // Check if userId exists
-      if (userId != null) {
+      const buttonsToModify = [
+        "like-btn",
+        "follow-btn",
+        "like-btn2",
+        "follow-btn2"
+      ];
+
+      if (userId !== null) {
         document.getElementById("carousal-save-btn").style.display = "flex";
       } else {
-        // If userId doesn't exist, disable the like and follow buttons using Vanilla JavaScript
+        // Hide the save button
         document.getElementById("carousal-save-btn").style.display = "none";
-        document.getElementById("like-btn").disabled = true; // Disable the like button
-        document.getElementById("follow-btn").disabled = true; // Disable the follow button
-        document.getElementById("like-btn2").disabled = true; // Disable the like button
-        document.getElementById("follow-btn2").disabled = true; // Disable the follow button
+
+        // Iterate over each button to disable and set attributes
+        buttonsToModify.forEach(id => {
+          const button = document.getElementById(id);
+          if (button) {
+            // button.disabled = true; // Disable the button
+            button.setAttribute("data-bs-toggle", "modal");
+            button.setAttribute("data-bs-target", "#alertModal");
+          }
+        });
       }
+
 
       setTimeout(() => {
         $("#viewAfterSeconds1").fadeOut();
-      }, 5000)
+      }, 10000)
 
     })
 
@@ -885,8 +963,8 @@
 
     function closePop() {
       $("#zoomPopView").fadeOut()
-      $("#infoBlock,#fullScreenModal,#carouselDiv").fadeOut()
-      $("#pushMosiacImage img").attr("src", "")
+      $("#infoBlock,#fullScreenModal,#carouselDiv, #viewAfterSeconds1").fadeOut()
+      $("#pushMosiacImage #imageModel1").attr("src", "")
       $("#searchInput").val('');
     }
 
@@ -898,9 +976,27 @@
       window.location.href = "viewMap.html";
     }
 
+    // function share() {
+    //   window.location.href = "mosiac_second.html";
+    // }
+
     function share() {
-      window.location.href = "mosiac_second.html";
+      if (navigator.share) {
+        let shareData = {
+          title: 'Check out this mosaic!',
+          text: 'I created a cool mosaic. Take a look!',
+          url: window.location.href
+        };
+
+        navigator.share(shareData)
+          .then(() => console.log('Successfully shared'))
+          .catch((error) => console.error('Error sharing:', error));
+      } else {
+        alert('Sharing is not supported on this device.');
+      }
     }
+
+
 
     function handleCredentialResponse(response) {
       var base64 = response.credential;
@@ -911,6 +1007,7 @@
     const canvas = document.getElementById('mosaicCanvas');
 
     const div = document.getElementById('div');
+
     const offsetHeight = div.offsetHeight;
     const offsetWidth = div.offsetWidth;
     const clientHeight = div.clientHeight;
@@ -930,6 +1027,7 @@
     const backgroundImage = new Image();
 
     backgroundImage.src = storedData?.mosiacimagepath; // Replace with your mosaic image path mosiacimagepath
+
     // let storedScale =  offsetHeight/backgroundImage.height;
     let storedScale = 0.100;
     let scale = storedScale
@@ -943,16 +1041,57 @@
       }
     }
 
+    // function drawMosaic() {
+    //   ctx.clearRect(0, 0, canvas.width, canvas.height);
+    //   ctx.save();
+    //   ctx.scale(scale, scale);
+    //   ctx.translate(offsetX, offsetY);
+    //   ctx.drawImage(backgroundImage, 0, 0, backgroundImage.width, backgroundImage.height);
+    //   tileData.forEach(tile => {
+    //     // ctx.strokeRect(tile.x, tile.y, tileSize, tileSize);
+    //   });
+    //   ctx.restore();
+    // }
+
     function drawMosaic() {
+      // Clear the canvas
       ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      // Calculate the aspect ratios
+      const imgAspectRatio = backgroundImage.width / backgroundImage.height;
+      const canvasAspectRatio = canvas.width / canvas.height;
+
+      let drawWidth, drawHeight, offsetX, offsetY;
+
+      // Determine the scaled dimensions and offsets for the image
+      if (imgAspectRatio > canvasAspectRatio) {
+        // Image is wider relative to its height than the canvas
+        drawWidth = canvas.width;
+        drawHeight = canvas.width / imgAspectRatio;
+        offsetX = 0;
+        offsetY = (canvas.height - drawHeight) / 2;  // Center vertically
+      } else {
+        // Image is taller relative to its width than the canvas
+        drawWidth = canvas.height * imgAspectRatio;
+        drawHeight = canvas.height;
+        offsetX = (canvas.width - drawWidth) / 2;  // Center horizontally
+        offsetY = 0;
+      }
+
+      // Save the context state before transforming
       ctx.save();
+
+      // Apply scaling and translation
       ctx.scale(scale, scale);
-      ctx.translate(offsetX, offsetY);
-      ctx.drawImage(backgroundImage, 0, 0, backgroundImage.width, backgroundImage.height); tileData.forEach(tile => {
-        // ctx.strokeRect(tile.x, tile.y, tileSize, tileSize);
-      });
+      ctx.translate(offsetX / scale, offsetY / scale);
+
+      // Draw the scaled and centered image
+      ctx.drawImage(backgroundImage, 0, 0, drawWidth / scale, drawHeight / scale);
+
+      // Restore the context to its original state
       ctx.restore();
     }
+
 
     // function zoomIn() {
     //     scale *= 1.1;
@@ -1017,11 +1156,15 @@
         type: 'post',
         success: function (res) {
           var data = res?.result[0]
-          $("#pushMosiacImage img").attr("src", data?.imagepath);
+          $("#pushMosiacImage #imageModel1").attr("src", data?.imagepath);
           $(".p1Class").empty().append(data?.imagename);
           $(".p2Class").empty().append(data?.caption);
           $(".p3Class").empty().append(data?.tags.replace("[", "").replace("]", "").replace(/,\s*/g, ', '));
-          $("#like-btn").attr("onclick", `imageLikeDislike(this, ${data?.imageid}, 'U')`);
+          $("#like-btn").attr("onclick", `imageLikeDislike(this, ${data?.imageid}, 'L')`);
+          $("#follow-btn").attr("onclick", `userFollowUnfollow(this, ${data?.userid})`);
+          $("#modalUsername").attr("onclick", `userProfile(${data?.userid})`);
+          $("#like-btn").removeClass("liked");
+          $("#follow-btn").removeClass("liked");
           // $("#likes-count").empty().append(userId ? data?.likecount : "");
           $("#likes-count").empty().append(data?.likecount);
           $("#follow-count").empty().append(data?.followcount);
@@ -1045,20 +1188,28 @@
         type: 'post',
         success: function (res) {
           var data = res?.result[0]
-          $("#pushMosiacImage2 img").attr("src", data?.imagepath);
+          $("#pushMosiacImage2 #imageModel2").attr("src", data?.imagepath);
           $(".p1Class2").empty().append(data?.imagename);
           $(".p2Class2").empty().append(data?.caption);
           $(".p3Class2").empty().append(data?.tags.replace("[", "").replace("]", "").replace(/,\s*/g, ', '));
-          $("#like-btn2").attr("onclick", `imageLikeDislike(this, ${data?.imageid}, 'U')`);
+          $("#like-btn2").attr("onclick", `imageLikeDislike(this, ${data?.imageid}, 'L')`);
+          $("#follow-btn2").attr("onclick", `userFollowUnfollow(this, ${data?.userid})`);
+          $("#like-btn2").removeClass("liked");
+          $("#follow-btn2").removeClass("liked");
           // $("#likes-count2").empty().append(userId ? data?.likecount : "");
           $("#likes-count2").empty().append(data?.likecount);
           $("#follow-count2").empty().append(data?.followcount);
           $("#fullScreenModal2").fadeIn()
+          $("#modalUsername2").attr("onclick", `userProfile(${data?.userid})`);
         },
         error: function (err) {
           toastr["error"](err?.responseJSON?.message);
         },
       })
+    }
+
+    function userProfile(user_id) {
+      window.location.href = "profile.html?user=" + user_id;
     }
 
     function onTouchStart(event) {
@@ -1117,7 +1268,7 @@
       $("#viewAfterSeconds1").fadeIn();
       setTimeout(() => {
         $("#viewAfterSeconds1").fadeOut();
-      }, 5000)
+      }, 10000)
       // setTimeout(setTimeout(zoomFuncIn, 3000));
       // setTimeout(setTimeout(searchFuncIn, 11000));
       // setTimeout(setTimeout(resizeFuncIn, 7000));
@@ -1463,6 +1614,8 @@
     }
 
     function imageLikeDislike(button, imageId, state) {
+      if (!userId) return;
+
       const toggleState = state === "L" ? "U" : "L";
       const request = {
         userid: userId,
@@ -1473,30 +1626,65 @@
       $.ajax({
         url: 'https://2024api.icons4good.com/likedislike',
         data: JSON.stringify(request),
-        async: false,
         contentType: "application/json",
         type: 'POST',
         success: function (res) {
           if (res?.statusCode === 0) {
             toastr.error(res?.message);
-          } else {
-            const newState = res.result.state === "L" ? "U" : "L";
-            button.setAttribute("onclick", `imageLikeDislike(this, ${imageId}, '${newState}')`);
-
-            if (res.result.state === "L") {
-              button.classList.add("liked");
-              toastr["success"]("Photo Liked successfully!");
-            } else {
-              button.classList.remove("liked");
-              toastr["success"]("Photo Unliked successfully!");
-            }
+            return;
           }
+
+          // Update button attributes and styles based on the new state
+          button.setAttribute("onclick", `imageLikeDislike(this, ${imageId}, '${toggleState}')`);
+          button.classList.toggle("liked", state === "L");
+          button.children[1].innerText = parseInt(res?.result?.count);
+
+          const message = state === "L" ? "Photo Liked successfully!" : "Photo Unliked successfully!";
+          toastr.success(message);
         },
         error: function (err) {
-          toastr.error(err?.responseJSON?.message || "An error occurred while saving the carousel.");
+          toastr.error(err?.responseJSON?.message || "An error occurred while processing your request.");
         },
       });
     }
+
+    function userFollowUnfollow(button, followUserId) {
+      if (!followUserId) return;
+
+      // const toggleState = state === "L" ? "U" : "L";
+      const request = {
+        followedby: followUserId,
+        userid: userId,
+      };
+
+      $.ajax({
+        url: 'https://2024api.icons4good.com/addFollower',
+        data: JSON.stringify(request),
+        contentType: "application/json",
+        type: 'POST',
+        success: function (res) {
+          if (res?.statusCode === 0) {
+            toastr.error(res?.message);
+            return;
+          }
+
+          // Update button attributes and styles based on the new state
+          button.setAttribute("onclick", `userFollowUnfollow(this, ${followUserId})`);
+          // button.classList.toggle("liked", state === "L");
+          if (!button.classList.contains("liked")) {
+            button.children[1].innerText = parseInt(button.children[1].innerText) + 1;
+            button.classList.add("liked");
+          }
+
+          // const message = state === "L" ? "Photo Liked successfully!" : "Photo Unliked successfully!";
+          // toastr.success(message);
+        },
+        error: function (err) {
+          toastr.error(err?.responseJSON?.message || "An error occurred while processing your request.");
+        },
+      });
+    }
+
 
   </script>
 </body>
