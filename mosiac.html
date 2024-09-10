@@ -19,7 +19,6 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
   <script src="js/toaster.js"></script>
-  <script src="js/common.js"></script>
   <link rel="stylesheet"
     href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
@@ -579,6 +578,17 @@
 </head>
 
 <body class="backCls" style="backdrop-filter: blur(5px);background-size: cover;">
+  <div class="w-100 mx-0"
+    style="display: flex;justify-content: space-between;padding: 10px;position: absolute;top: 0px;left: 0;z-index: 999;">
+    <div class="circleWrapper">
+      <i id="sidebarMenuOpenBtn" class="fa fa-bars"
+        style="color: #000;font-size: 30px !important;cursor: pointer;width: 50px;height: 50px;display: flex;align-items: center;justify-content: center;line-height: 1;padding: 5px;background: #ffffff;"
+        aria-hidden="true"></i>
+    </div>
+  </div>
+  <nav id="sidebarMenuWrapper" class="sidebarMenuWrapper">
+
+  </nav>
   <div id="zoomPopView">
     <div class="data">
       <div class="d-flex">
@@ -625,7 +635,7 @@
     <div class="w-100 h-100 text-center" style="padding:15px;" id="mosiacId">
       <!-- <img src="images/image2.png" class="w-100" alt="Image 1" /> -->
       <!-- <br> -->
-      <div class="w-100" id="div" style="overflow: scroll;height: calc(100% - 160px);">
+      <div class="w-100" id="div" style="overflow: scroll;height: calc(100% - 210px);margin-top: 50px;">
         <canvas id="mosaicCanvas"></canvas>
       </div>
       <!--REMOVING THE FOLLOWING CREDIT IS A VIOLATION OF YOUR TERMS OF USE
@@ -844,27 +854,10 @@
       </div>
     </div>
   </div>
-  <!-- Modal -->
-  <div class="modal fade" id="alertModal" tabindex="-1" aria-labelledby="alertModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content mx-4">
-        <div class="modal-header">
-          <h1 class="modal-title fs-5" id="alertModalLabel">Please sign in / sign up</h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <h1>Thank you!</h1>
-          <h6>You will be redirected now</h6>
-        </div>
-        <!-- <div class="modal-footer">
-          <a href="./signIn_new.html" class="btn btn-secondary">Sign In</a>
-        </div> -->
-      </div>
-    </div>
-  </div>
   <div class="loader-container">
     <div class="loader"></div>
   </div>
+  <script src="js/common.js"></script>
   <script>
     // Get the userId from localStorage
     var userId = localStorage.getItem("userId");
@@ -879,29 +872,23 @@
       $("#selectLanguageId").val(localStorage.getItem('storedLanguage') ? localStorage.getItem('storedLanguage') : 'english')
       changeLanguage();
 
-      // Check if userId exists
-      const buttonsToModify = [
-        "like-btn",
-        "follow-btn",
-        "like-btn2",
-        "follow-btn2"
-      ];
+      // // Check if userId exists
+      // const buttonsToModify = [
+      //   "like-btn",
+      //   "follow-btn",
+      //   "like-btn2",
+      //   "follow-btn2"
+      // ];
 
       if (userId !== null) {
-        document.getElementById("carousal-save-btn").style.display = "flex";
+        const url = new URL(window.location.href);
+        const carouselId = url.searchParams.get("caraousal");
+        if (!carouselId) {
+          document.getElementById("carousal-save-btn").style.display = "flex";
+        }
       } else {
         // Hide the save button
-        document.getElementById("carousal-save-btn").style.display = "none";
-
-        // Iterate over each button to disable and set attributes
-        buttonsToModify.forEach(id => {
-          const button = document.getElementById(id);
-          if (button) {
-            // button.disabled = true; // Disable the button
-            button.setAttribute("data-bs-toggle", "modal");
-            button.setAttribute("data-bs-target", "#alertModal");
-          }
-        });
+        $("#carousal-save-btn").attr("onclick", `showAlert("Please sign in / sign up", "you have to have a profile to be able to like images or follow others users.", "./signin_new.html")`);
       }
 
 
@@ -962,6 +949,11 @@
     }
 
     function closePop() {
+      const url = new URL(window.location.href);
+      const carouselId = url.searchParams.get("caraousal");
+      if (carouselId) {
+        window.location.href = "./profile.html"
+      }
       $("#zoomPopView").fadeOut()
       $("#infoBlock,#fullScreenModal,#carouselDiv, #viewAfterSeconds1").fadeOut()
       $("#pushMosiacImage #imageModel1").attr("src", "")
@@ -1041,56 +1033,56 @@
       }
     }
 
-    // function drawMosaic() {
-    //   ctx.clearRect(0, 0, canvas.width, canvas.height);
-    //   ctx.save();
-    //   ctx.scale(scale, scale);
-    //   ctx.translate(offsetX, offsetY);
-    //   ctx.drawImage(backgroundImage, 0, 0, backgroundImage.width, backgroundImage.height);
-    //   tileData.forEach(tile => {
-    //     // ctx.strokeRect(tile.x, tile.y, tileSize, tileSize);
-    //   });
-    //   ctx.restore();
-    // }
-
     function drawMosaic() {
-      // Clear the canvas
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-      // Calculate the aspect ratios
-      const imgAspectRatio = backgroundImage.width / backgroundImage.height;
-      const canvasAspectRatio = canvas.width / canvas.height;
-
-      let drawWidth, drawHeight, offsetX, offsetY;
-
-      // Determine the scaled dimensions and offsets for the image
-      if (imgAspectRatio > canvasAspectRatio) {
-        // Image is wider relative to its height than the canvas
-        drawWidth = canvas.width;
-        drawHeight = canvas.width / imgAspectRatio;
-        offsetX = 0;
-        offsetY = (canvas.height - drawHeight) / 2;  // Center vertically
-      } else {
-        // Image is taller relative to its width than the canvas
-        drawWidth = canvas.height * imgAspectRatio;
-        drawHeight = canvas.height;
-        offsetX = (canvas.width - drawWidth) / 2;  // Center horizontally
-        offsetY = 0;
-      }
-
-      // Save the context state before transforming
       ctx.save();
-
-      // Apply scaling and translation
       ctx.scale(scale, scale);
-      ctx.translate(offsetX / scale, offsetY / scale);
-
-      // Draw the scaled and centered image
-      ctx.drawImage(backgroundImage, 0, 0, drawWidth / scale, drawHeight / scale);
-
-      // Restore the context to its original state
+      ctx.translate(offsetX, offsetY);
+      ctx.drawImage(backgroundImage, 0, 0, backgroundImage.width, backgroundImage.height);
+      tileData.forEach(tile => {
+        // ctx.strokeRect(tile.x, tile.y, tileSize, tileSize);
+      });
       ctx.restore();
     }
+
+    // function drawMosaic() {
+    //   // Clear the canvas
+    //   ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    //   // Calculate the aspect ratios
+    //   const imgAspectRatio = backgroundImage.width / backgroundImage.height;
+    //   const canvasAspectRatio = canvas.width / canvas.height;
+
+    //   let drawWidth, drawHeight, offsetX, offsetY;
+
+    //   // Determine the scaled dimensions and offsets for the image
+    //   if (imgAspectRatio > canvasAspectRatio) {
+    //     // Image is wider relative to its height than the canvas
+    //     drawWidth = canvas.width;
+    //     drawHeight = canvas.width / imgAspectRatio;
+    //     offsetX = 0;
+    //     offsetY = (canvas.height - drawHeight) / 2;  // Center vertically
+    //   } else {
+    //     // Image is taller relative to its width than the canvas
+    //     drawWidth = canvas.height * imgAspectRatio;
+    //     drawHeight = canvas.height;
+    //     offsetX = (canvas.width - drawWidth) / 2;  // Center horizontally
+    //     offsetY = 0;
+    //   }
+
+    //   // Save the context state before transforming
+    //   ctx.save();
+
+    //   // Apply scaling and translation
+    //   ctx.scale(scale, scale);
+    //   ctx.translate(offsetX / scale, offsetY / scale);
+
+    //   // Draw the scaled and centered image
+    //   ctx.drawImage(backgroundImage, 0, 0, drawWidth / scale, drawHeight / scale);
+
+    //   // Restore the context to its original state
+    //   ctx.restore();
+    // }
 
 
     // function zoomIn() {
@@ -1160,8 +1152,6 @@
           $(".p1Class").empty().append(data?.imagename);
           $(".p2Class").empty().append(data?.caption);
           $(".p3Class").empty().append(data?.tags.replace("[", "").replace("]", "").replace(/,\s*/g, ', '));
-          $("#like-btn").attr("onclick", `imageLikeDislike(this, ${data?.imageid}, 'L')`);
-          $("#follow-btn").attr("onclick", `userFollowUnfollow(this, ${data?.userid})`);
           $("#modalUsername").attr("onclick", `userProfile(${data?.userid})`);
           $("#like-btn").removeClass("liked");
           $("#follow-btn").removeClass("liked");
@@ -1169,6 +1159,14 @@
           $("#likes-count").empty().append(data?.likecount);
           $("#follow-count").empty().append(data?.followcount);
           $("#fullScreenModal").fadeIn()
+
+          if (userId) {
+            $("#like-btn").attr("onclick", `imageLikeDislike(this, ${data?.imageid}, 'L')`);
+            $("#follow-btn").attr("onclick", `userFollowUnfollow(this, ${data?.userid})`);
+          } else {
+            $("#like-btn").attr("onclick", `showAlert("Please sign in / sign up", "You have to have a profile to be able to like images or follow others users.", "./signin_new.html")`);
+            $("#follow-btn").attr("onclick", `showAlert("Please sign in / sign up", "You have to have a profile to be able to like images or follow others users.", "./signin_new.html")`);
+          }
         },
         error: function (err) {
           toastr["error"](err?.responseJSON?.message);
@@ -1192,14 +1190,21 @@
           $(".p1Class2").empty().append(data?.imagename);
           $(".p2Class2").empty().append(data?.caption);
           $(".p3Class2").empty().append(data?.tags.replace("[", "").replace("]", "").replace(/,\s*/g, ', '));
-          $("#like-btn2").attr("onclick", `imageLikeDislike(this, ${data?.imageid}, 'L')`);
-          $("#follow-btn2").attr("onclick", `userFollowUnfollow(this, ${data?.userid})`);
           $("#like-btn2").removeClass("liked");
           $("#follow-btn2").removeClass("liked");
           // $("#likes-count2").empty().append(userId ? data?.likecount : "");
           $("#likes-count2").empty().append(data?.likecount);
           $("#follow-count2").empty().append(data?.followcount);
           $("#fullScreenModal2").fadeIn()
+
+          if (userId) {
+            $("#like-btn2").attr("onclick", `imageLikeDislike(this, ${data?.imageid}, 'L')`);
+            $("#follow-btn2").attr("onclick", `userFollowUnfollow(this, ${data?.userid})`);
+          } else {
+            $("#like-btn2").attr("onclick", `showAlert("Please sign in / sign up", "You have to have a profile to be able to like images or follow others users.", "./signin_new.html")`);
+            $("#follow-btn2").attr("onclick", `showAlert("Please sign in / sign up", "You have to have a profile to be able to like images or follow others users.", "./signin_new.html")`);
+          }
+
           $("#modalUsername2").attr("onclick", `userProfile(${data?.userid})`);
         },
         error: function (err) {
@@ -1375,9 +1380,10 @@
         contentType: "application/json",
         type: 'post',
         success: function (res) {
-
           if (res?.statusCode === 0) {
-            toastr["error"](res?.message);
+            // toastr["error"](res?.message);
+            $("#searchInput").val("")
+            showAlert("No Results", "Your search term did not deliver any results. Please try again.");
           } else {
             localStorage.setItem("carousel_response", JSON.stringify(res));
             let row = ''
@@ -1488,7 +1494,7 @@
           },
         });
       } else {
-        toastr["error"]("User ID is missing. Please log in.");
+        // toastr["error"]("User ID is missing. Please log in.");
       }
     };
 

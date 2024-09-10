@@ -12,7 +12,6 @@
   <script src="js/bootstrap.js"></script>
   <script src="js/toaster.js"></script>
   <script src="js/LZ4.js"></script>
-  <script src="js/common.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
     integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -465,7 +464,20 @@
 </head>
 
 <body class="backCls" style="background:#ddd;">
-  <div class="container mt-4 ">
+  <div class="container">
+    <div class="w-100 mx-0 px-0"
+      style="display: flex;justify-content: space-between;padding: 10px;position: relative;top: 0px;left: 0;z-index: 999;">
+      <div class="circleWrapper">
+        <i id="sidebarMenuOpenBtn" class="fa fa-bars"
+          style="color: #000;font-size: 30px !important;cursor: pointer;width: 50px;height: 50px;display: flex;align-items: center;justify-content: center;line-height: 1;padding: 5px;background: #ffffff;"
+          aria-hidden="true"></i>
+      </div>
+    </div>
+    <nav id="sidebarMenuWrapper" class="sidebarMenuWrapper">
+
+    </nav>
+  </div>
+  <div class="container">
     <div class="d-flex align-items-center backClsWhite">
       <div class="drop-zone">
         <span class="drop-zone__prompt mosiacSecondUploadBtn">
@@ -546,249 +558,249 @@
     <button type="button" class="btn btn-submit mosiacSecondAddPhotoBtn" id="btnClicked"
       onclick="addPhoto()">Submit</button>
   </div>
-</body>
 
-<script>
-  $(document).ready(function () {
-    changeLanguage();
-  })
+  <script src="js/common.js"></script>
+  <script>
+    $(document).ready(function () {
+      changeLanguage();
+    })
 
-  $(".thing").click(function () {
-    $("#otherthing").slideToggle("slow");
-  });
+    $(".thing").click(function () {
+      $("#otherthing").slideToggle("slow");
+    });
 
-  function openPop() {
-    $("#uploadModal").fadeIn()
-  }
-
-  var ctx = canvas.getContext("2d");
-  var cw = canvas.width;
-  var ch = canvas.height;
-  var maxW = 100;
-  var maxH = 100;
-  var base64;
-  var files;
-  var input = document.getElementById('photo');
-  var output = document.getElementById('file_output');
-  input.addEventListener('change', handleFiles);
-
-  function handleFiles(e) {
-    files = e.target.files[0];
-    var img = new Image;
-    img.onload = function () {
-      var iw = img.width;
-      var ih = img.height;
-      var scale = Math.min((maxW / iw), (maxH / ih));
-      var iwScaled = iw * scale;
-      var ihScaled = ih * scale;
-      canvas.width = iwScaled;
-      canvas.height = ihScaled;
-      ctx.drawImage(img, 0, 0, iwScaled, ihScaled);
-      console.log(canvas.toDataURL("image/jpeg", 0.5))
-      base64 = canvas.toDataURL("image/jpeg", 0.5)
+    function openPop() {
+      $("#uploadModal").fadeIn()
     }
-    img.src = URL.createObjectURL(e.target.files[0]);
-  }
 
-  var storedData = JSON.parse(localStorage.getItem('storedData'));
-  var hastags = storedData?.hashtag.split(",") || [];
+    var ctx = canvas.getContext("2d");
+    var cw = canvas.width;
+    var ch = canvas.height;
+    var maxW = 100;
+    var maxH = 100;
+    var base64;
+    var files;
+    var input = document.getElementById('photo');
+    var output = document.getElementById('file_output');
+    input.addEventListener('change', handleFiles);
 
-  const userId = localStorage.getItem('userId');
+    function handleFiles(e) {
+      files = e.target.files[0];
+      var img = new Image;
+      img.onload = function () {
+        var iw = img.width;
+        var ih = img.height;
+        var scale = Math.min((maxW / iw), (maxH / ih));
+        var iwScaled = iw * scale;
+        var ihScaled = ih * scale;
+        canvas.width = iwScaled;
+        canvas.height = ihScaled;
+        ctx.drawImage(img, 0, 0, iwScaled, ihScaled);
+        console.log(canvas.toDataURL("image/jpeg", 0.5))
+        base64 = canvas.toDataURL("image/jpeg", 0.5)
+      }
+      img.src = URL.createObjectURL(e.target.files[0]);
+    }
 
-  if (!userId) {
-    window.location.replace('signin_new.html');
-  }
+    var storedData = JSON.parse(localStorage.getItem('storedData'));
+    var hastags = storedData?.hashtag.split(",") || [];
 
-  var hastags_text = ``;
-  for (let i = 0; i < hastags.length; i++) {
-    hastags_text += `<input type="checkbox" name="tags" value="${hastags[i]}" id="${i}">
+    const userId = localStorage.getItem('userId');
+
+    if (!userId) {
+      window.location.replace('signin_new.html');
+    }
+
+    var hastags_text = ``;
+    for (let i = 0; i < hastags.length; i++) {
+      hastags_text += `<input type="checkbox" name="tags" value="${hastags[i]}" id="${i}">
           <label for="${i}" class="md-chip md-chip-clickable md-chip-hover">${hastags[i]}</label>`;
-  }
+    }
 
-  $("#hastags-box").html(hastags_text);
+    $("#hastags-box").html(hastags_text);
 
 
-  var src = storedData?.picturemosaiclink;
-  $("#mosiacId iframe").attr("src", src)
-  function map() {
-    window.location.href = "viewMap.html";
-  }
+    var src = storedData?.picturemosaiclink;
+    $("#mosiacId iframe").attr("src", src)
+    function map() {
+      window.location.href = "viewMap.html";
+    }
 
-  function addPhoto() {
-    var tagsArray = []
-    var checkboxes = document.getElementsByName('tags');
+    function addPhoto() {
+      var tagsArray = []
+      var checkboxes = document.getElementsByName('tags');
 
-    for (var i = 0, n = checkboxes.length; i < n; i++) {
-      if (checkboxes[i].checked === true) {
-        tagsArray.push(checkboxes[i].value)
+      for (var i = 0, n = checkboxes.length; i < n; i++) {
+        if (checkboxes[i].checked === true) {
+          tagsArray.push(checkboxes[i].value)
+        }
+      }
+
+      const formData = new FormData();
+      var photo = base64
+      var caption = $("#caption").val();
+
+      // if(photo == "" || photo == "undefined"){
+      // 	toastr["error"]("Please upload photo.");
+      // 	$("#photo").trigger();
+      // 	return false;
+      // }
+
+      if (caption == "" || caption == "undefined") {
+        toastr["error"]("Please enter caption.");
+        $("#caption").focus();
+        return false;
+      }
+
+      // if(!tagsArray?.length == "" ){
+      // 	toastr["error"]("Please enter tags.");
+      // 	$("#tags").trigger();
+      // 	return false;
+      // }
+
+      formData.append('campaignid', storedData?.campaignsid);
+      formData.append('caption', caption);
+      formData.append('imagepath', files);
+      formData.append('locationid', storedData?.locationid);
+      formData.append('tags', JSON.stringify(tagsArray));
+      // formData.append('userid', 1);
+      formData.append('userid', userId);
+      formData.append('mosiacid', storedData?.mosiacid);
+
+      fetch('https://2024api.icons4good.com/addimage', { // Replace with your API endpoint
+        method: 'POST',
+        body: formData, // Use the FormData object directly
+        // Optional: If you need to send JSON, convert FormData to an object and stringify it
+        // headers: { 'Content-Type': 'application/json' },
+        // body: JSON.stringify(Object.fromEntries(formData))
+      }).then(response => {
+        if (response?.status === 200) {
+          toastr["success"]("image saved Successfully.");
+          window.location.href = "thank.html";
+        } else {
+          toastr["error"](err?.responseJSON?.message);
+        }
+      }).then(data => {
+        toastr["error"](err?.responseJSON?.message);
+      }).catch(error => {
+        toastr["error"](err?.responseJSON?.message);
+      });
+      //   $.ajax({
+      //   url:'https://2024api.icons4good.com/addimage',
+      //   data:formData,
+      //   async:false,
+      //   type:'post',
+      //   success: function (res) {
+      //     toastr["success"]("image saved Successfully.");
+      //     setTimeout(function() {
+      //       $("#uploadModal").fadeIn()
+      //                   }, 2000);
+      //   },
+      //   error: function (err) {
+      //     toastr["error"](err?.responseJSON?.message);
+      //   },
+      // })
+
+    }
+
+    function enableBtn() {
+      var val = $('#checkVal').is(':checked')
+      if (val) {
+        $("#btnClicked").attr("disabled", false)
+      } else {
+        $("#btnClicked").attr("disabled", true)
       }
     }
 
-    const formData = new FormData();
-    var photo = base64
-    var caption = $("#caption").val();
+    function closePop() {
+      $("#uploadModal").fadeOut()
+    }
 
-    // if(photo == "" || photo == "undefined"){
-    // 	toastr["error"]("Please upload photo.");
-    // 	$("#photo").trigger();
-    // 	return false;
-    // }
-
-    if (caption == "" || caption == "undefined") {
-      toastr["error"]("Please enter caption.");
-      $("#caption").focus();
+    function isFileAdded(formData, key) {
+      for (const [formKey, value] of formData.entries()) {
+        if (formKey === key && value instanceof File) {
+          return true;
+        }
+      }
       return false;
     }
 
-    // if(!tagsArray?.length == "" ){
-    // 	toastr["error"]("Please enter tags.");
-    // 	$("#tags").trigger();
-    // 	return false;
-    // }
-
-    formData.append('campaignid', storedData?.campaignsid);
-    formData.append('caption', caption);
-    formData.append('imagepath', files);
-    formData.append('locationid', storedData?.locationid);
-    formData.append('tags', JSON.stringify(tagsArray));
-    // formData.append('userid', 1);
-    formData.append('userid', userId);
-    formData.append('mosiacid', storedData?.mosiacid);
-
-    fetch('https://2024api.icons4good.com/addimage', { // Replace with your API endpoint
-      method: 'POST',
-      body: formData, // Use the FormData object directly
-      // Optional: If you need to send JSON, convert FormData to an object and stringify it
-      // headers: { 'Content-Type': 'application/json' },
-      // body: JSON.stringify(Object.fromEntries(formData))
-    }).then(response => {
-      if (response?.status === 200) {
-        toastr["success"]("image saved Successfully.");
-        window.location.href = "thank.html";
-      } else {
-        toastr["error"](err?.responseJSON?.message);
-      }
-    }).then(data => {
-      toastr["error"](err?.responseJSON?.message);
-    }).catch(error => {
-      toastr["error"](err?.responseJSON?.message);
-    });
-    //   $.ajax({
-    //   url:'https://2024api.icons4good.com/addimage',
-    //   data:formData,
-    //   async:false,
-    //   type:'post',
-    //   success: function (res) {
-    //     toastr["success"]("image saved Successfully.");
-    //     setTimeout(function() {
-    //       $("#uploadModal").fadeIn()
-    //                   }, 2000);
-    //   },
-    //   error: function (err) {
-    //     toastr["error"](err?.responseJSON?.message);
-    //   },
-    // })
-
-  }
-
-  function enableBtn() {
-    var val = $('#checkVal').is(':checked')
-    if (val) {
-      $("#btnClicked").attr("disabled", false)
-    } else {
-      $("#btnClicked").attr("disabled", true)
+    function addPayment() {
+      window.location.href = "payment.html";
     }
-  }
 
-  function closePop() {
-    $("#uploadModal").fadeOut()
-  }
+    document.querySelectorAll(".drop-zone__input").forEach((inputElement) => {
+      const dropZoneElement = inputElement.closest(".drop-zone");
 
-  function isFileAdded(formData, key) {
-    for (const [formKey, value] of formData.entries()) {
-      if (formKey === key && value instanceof File) {
-        return true;
-      }
-    }
-    return false;
-  }
+      dropZoneElement.addEventListener("click", (e) => {
+        inputElement.click();
+      });
 
-  function addPayment() {
-    window.location.href = "payment.html";
-  }
+      inputElement.addEventListener("change", (e) => {
+        if (inputElement.files.length) {
+          updateThumbnail(dropZoneElement, inputElement.files[0]);
+        }
+      });
 
-  document.querySelectorAll(".drop-zone__input").forEach((inputElement) => {
-    const dropZoneElement = inputElement.closest(".drop-zone");
+      dropZoneElement.addEventListener("dragover", (e) => {
+        e.preventDefault();
+        dropZoneElement.classList.add("drop-zone--over");
+      });
 
-    dropZoneElement.addEventListener("click", (e) => {
-      inputElement.click();
-    });
+      ["dragleave", "dragend"].forEach((type) => {
+        dropZoneElement.addEventListener(type, (e) => {
+          dropZoneElement.classList.remove("drop-zone--over");
+        });
+      });
 
-    inputElement.addEventListener("change", (e) => {
-      if (inputElement.files.length) {
-        updateThumbnail(dropZoneElement, inputElement.files[0]);
-      }
-    });
+      dropZoneElement.addEventListener("drop", (e) => {
+        e.preventDefault();
 
-    dropZoneElement.addEventListener("dragover", (e) => {
-      e.preventDefault();
-      dropZoneElement.classList.add("drop-zone--over");
-    });
+        if (e.dataTransfer.files.length) {
+          inputElement.files = e.dataTransfer.files;
+          updateThumbnail(dropZoneElement, e.dataTransfer.files[0]);
+        }
 
-    ["dragleave", "dragend"].forEach((type) => {
-      dropZoneElement.addEventListener(type, (e) => {
         dropZoneElement.classList.remove("drop-zone--over");
       });
     });
 
-    dropZoneElement.addEventListener("drop", (e) => {
-      e.preventDefault();
+    /**
+     * Updates the thumbnail on a drop zone element.
+     *
+     * @param {HTMLElement} dropZoneElement
+     * @param {File} file
+     */
+    function updateThumbnail(dropZoneElement, file) {
+      let thumbnailElement = dropZoneElement.querySelector(".drop-zone__thumb");
 
-      if (e.dataTransfer.files.length) {
-        inputElement.files = e.dataTransfer.files;
-        updateThumbnail(dropZoneElement, e.dataTransfer.files[0]);
+      // First time - remove the prompt
+      if (dropZoneElement.querySelector(".drop-zone__prompt")) {
+        dropZoneElement.querySelector(".drop-zone__prompt").remove();
       }
 
-      dropZoneElement.classList.remove("drop-zone--over");
-    });
-  });
+      // First time - there is no thumbnail element, so lets create it
+      if (!thumbnailElement) {
+        thumbnailElement = document.createElement("div");
+        thumbnailElement.classList.add("drop-zone__thumb");
+        dropZoneElement.appendChild(thumbnailElement);
+      }
 
-  /**
-   * Updates the thumbnail on a drop zone element.
-   *
-   * @param {HTMLElement} dropZoneElement
-   * @param {File} file
-   */
-  function updateThumbnail(dropZoneElement, file) {
-    let thumbnailElement = dropZoneElement.querySelector(".drop-zone__thumb");
+      thumbnailElement.dataset.label = file.name;
 
-    // First time - remove the prompt
-    if (dropZoneElement.querySelector(".drop-zone__prompt")) {
-      dropZoneElement.querySelector(".drop-zone__prompt").remove();
+      // Show thumbnail for image files
+      if (file.type.startsWith("image/")) {
+        const reader = new FileReader();
+
+        reader.readAsDataURL(file);
+        reader.onload = () => {
+          thumbnailElement.style.backgroundImage = `url('${reader.result}')`;
+        };
+      } else {
+        thumbnailElement.style.backgroundImage = null;
+      }
     }
-
-    // First time - there is no thumbnail element, so lets create it
-    if (!thumbnailElement) {
-      thumbnailElement = document.createElement("div");
-      thumbnailElement.classList.add("drop-zone__thumb");
-      dropZoneElement.appendChild(thumbnailElement);
-    }
-
-    thumbnailElement.dataset.label = file.name;
-
-    // Show thumbnail for image files
-    if (file.type.startsWith("image/")) {
-      const reader = new FileReader();
-
-      reader.readAsDataURL(file);
-      reader.onload = () => {
-        thumbnailElement.style.backgroundImage = `url('${reader.result}')`;
-      };
-    } else {
-      thumbnailElement.style.backgroundImage = null;
-    }
-  }
-</script>
+  </script>
 
 </body>
 

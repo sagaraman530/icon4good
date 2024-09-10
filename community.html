@@ -48,13 +48,24 @@
 </head>
 
 <body>
-  <div class="w-100 position-relative">
+  <!-- <div class="w-100 position-relative">
     <i class="fa-solid fa-chevron-left py-3 px-3 position-absolute" onclick="back()" style="font-size: 25px;"
       aria-hidden="true"></i>
     <div class="w-100 text-center fw-bolder">
       <p class="p-3 mb-0">Community</p>
     </div>
+  </div> -->
+  <div class="w-100 mx-0"
+    style="display: flex;justify-content: space-between;padding: 10px;position: relative;top: 0px;left: 0;z-index: 999;">
+    <div class="circleWrapper">
+      <i id="sidebarMenuOpenBtn" class="fa fa-bars"
+        style="color: #000;font-size: 30px !important;cursor: pointer;width: 50px;height: 50px;display: flex;align-items: center;justify-content: center;line-height: 1;padding: 5px;background: #ffffff;"
+        aria-hidden="true"></i>
+    </div>
   </div>
+  <nav id="sidebarMenuWrapper" class="sidebarMenuWrapper">
+
+  </nav>
   <div class="container">
     <div class="w-100">
       <div class="d-flex flex-column align-items-center">
@@ -94,6 +105,8 @@
       </div><!-- /.col-lg-4 -->
     </div>
   </div>
+
+  <script src="js/common.js"></script>
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"
     integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 

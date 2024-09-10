@@ -1109,57 +1109,169 @@ function changeLanguage() {
 }
 
 // Cache DOM elements
-const sidebarMenuOpenBtn = document.getElementById("sidebarMenuOpenBtn");
-const sidebarMenuCloseBtn = document.getElementById("sidebarMenuCloseBtn");
-const sidebarMenuWrapper = document.getElementById("sidebarMenuWrapper");
-const signUpBtn = document.getElementById("signUpBtn");
-const logOutBtn = document.getElementById("logOutBtn");
-
-// Toggle sidebar menu visibility
-if (sidebarMenuOpenBtn) {
-  sidebarMenuOpenBtn.addEventListener("click", () => {
-    if (sidebarMenuWrapper) {
-      sidebarMenuWrapper.classList.add("active");
-    }
-  });
-}
-
-if (sidebarMenuCloseBtn) {
-  sidebarMenuCloseBtn.addEventListener("click", () => {
-    if (sidebarMenuWrapper) {
-      sidebarMenuWrapper.classList.remove("active");
-    }
-  });
-}
 
 // Retrieve stored data securely
 const storedDatas = JSON.parse(localStorage.getItem('storedData')) || {};
 const locationname = storedDatas.locationname ? encodeURIComponent(storedDatas.locationname) : '';
-const user_Id = localStorage.getItem('userId');
+const sidebarMenuWrapper = document.getElementById("sidebarMenuWrapper");
+const menuBurger = `<div class="sidebarMenu">
+        <div class="sidebarMenuClose">
+          <button id="sidebarMenuCloseBtn"
+            style="color: #111111;font-size: 30px !important;cursor: pointer;width: 40px;height: 40px;display: flex;align-items: center;justify-content: center;line-height: 1;padding: 5px;">
+            <i class="fa fa-times" aria-hidden="true"></i>
+          </button>
+        </div>
+        <div class="sidebarMenuList">
+          <ul>
+            <li><a href="./index.html?${locationname}">Home</a></li>
+            <li id="profileBtn"><a href="./profile.html">Profile</a></li>
+            <li id="communityBtn"><a href="./community.html">Community</a></li>
+            <li><a href="./viewMap.html">Map</a></li>
+            <li><a href="./aboutUs.html">About icon$good</a></li>
+            <li id="signUpBtn"><a href="./signIn_new.html">SignIn / SignUp</a></li>
+            <li id="logOutBtn"><a onclick="logOut()" type="button">LogOut</a></li>
+          </ul>
+        </div>
+      </div>`;
 
-if (user_Id) {
-  if (signUpBtn) {
-    signUpBtn.remove();
+if (sidebarMenuWrapper) {
+  sidebarMenuWrapper.innerHTML = menuBurger;
+
+  const sidebarMenuOpenBtn = document.getElementById("sidebarMenuOpenBtn");
+  const sidebarMenuCloseBtn = document.getElementById("sidebarMenuCloseBtn");
+
+  // Toggle sidebar menu visibility
+  if (sidebarMenuOpenBtn) {
+    sidebarMenuOpenBtn.addEventListener("click", () => {
+      if (sidebarMenuWrapper) {
+        sidebarMenuWrapper.classList.add("active");
+      }
+    });
   }
-} else {
+
+  if (sidebarMenuCloseBtn) {
+    sidebarMenuCloseBtn.addEventListener("click", () => {
+      if (sidebarMenuWrapper) {
+        sidebarMenuWrapper.classList.remove("active");
+      }
+    });
+  }
+
+  const user_Id = localStorage.getItem('userId');
+  const profileBtn = document.getElementById("profileBtn");
+  const communityBtn = document.getElementById("communityBtn");
+  const signUpBtn = document.getElementById("signUpBtn");
+  const logOutBtn = document.getElementById("logOutBtn");
+
+
+  if (user_Id) {
+    if (signUpBtn) {
+      signUpBtn.remove();
+    }
+  } else {
+    if (logOutBtn) {
+      logOutBtn.remove();
+    }
+    if(profileBtn) {
+      profileBtn.remove()
+    }
+    if(communityBtn) {
+      communityBtn.remove()
+    }
+  }
+
+  // Log out the user securely
+  function logOut() {
+    // Remove sensitive data from local storage
+    localStorage.removeItem("userId");
+
+    // Redirect to the index page with the location name as a query parameter
+    window.location.href = `index.html?${locationname}`;
+  }
+
+  // Attach logOut function to the logOutBtn
   if (logOutBtn) {
-    logOutBtn.remove();
+    logOutBtn.addEventListener("click", logOut);
   }
 }
 
-// Log out the user securely
-function logOut() {
-  // Remove sensitive data from local storage
-  localStorage.removeItem("userId");
+const modalHtml = `
+<div
+  class="modalWrapper"
+  id="alertModal"
+>
+  <div class="modalWrapper-dialog modalWrapper-dialog-centered">
+    <div class="modalWrapper-content mx-4">
+      <div class="modalWrapper-header">
+        <h1 class="modal-title" id="alertModalLabel">Thank you!</h1>
+        <button
+          type="button"
+          class="btn-close-x"
+        >
+          <img src="images/crossImgPop.png" alt="Image 1" />
+        </button>
+      </div>
+      <div class="modalWrapper-body">
+        <h6 id="modalBodyText">You will be redirected now</h6>
+      </div>
+      <div id="modalFooter" class="modalWrapper-footer">
+        <a id="modalFooterLink" href="./signIn_new.html" class="btn btn-secondary">Sign In</a>
+      </div>
+    </div>
+  </div>
+</div>`;
 
-  // Redirect to the index page with the location name as a query parameter
-  window.location.href = `index.html?${locationname}`;
+// Insert the modal HTML at the end of the body
+document.body.insertAdjacentHTML("afterbegin", modalHtml);
+
+function showAlert(
+  title = "Default Title",
+  bodyText = "Default body text",
+  buttonLink = ""
+) {
+  const modalLabel = document.getElementById("alertModalLabel");
+  const modalBodyText = document.getElementById("modalBodyText");
+  const modalFooter = document.getElementById("modalFooter");
+  const modalFooterLink = document.getElementById("modalFooterLink");
+
+  if (!modalLabel || !modalBodyText || !modalFooter || !modalFooterLink) {
+    console.error("Modal elements not found.");
+    return;
+  }
+
+  modalLabel.textContent = title;
+  modalBodyText.textContent = bodyText;
+
+  if (buttonLink != "") {
+    modalFooterLink.href = buttonLink;
+    modalFooter.style.display = 'flex';  // Ensure footer is visible
+  } else {
+    modalFooter.style.display = 'none';  // Hide footer if no button is needed
+  }
+
+  var modal = document.getElementById("alertModal");
+  var closeBtn = document.querySelector(".btn-close-x");
+
+  modal.classList.add("show");
+  modal.style.display = "block";
+
+  closeBtn.onclick = function () {
+    modal.classList.remove("show");
+    modal.style.display = "none";
+  }
+
+  window.onclick = function (event) {
+    if (event.target == modal) {
+      modal.classList.remove("show");
+      modal.style.display = "none";
+    }
+  }
+
+  // Initialize and show the modal
+  // const alertModal = new bootstrap.Modal(document.getElementById('alertModal'));
+  // alertModal.show();
 }
 
-// Attach logOut function to the logOutBtn
-if (logOutBtn) {
-  logOutBtn.addEventListener("click", logOut);
-}
 
 
 

@@ -9,10 +9,10 @@
   <link href="css/bootstrapv3.1.4.css" rel="stylesheet">
   <link href="css/style.css" rel="stylesheet">
   <link href="css/toaster.css" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/61e466f6b8.js" crossorigin="anonymous"></script>
   <script src="js/jquery.js"></script>
   <script src="js/bootstrap.js"></script>
   <script src="js/toaster.js"></script>
-  <script src="js/common.js"></script>
 
   <style>
     .uploadBlock {
@@ -72,22 +72,36 @@
 </head>
 
 <body>
+  <div class="w-100 mx-0"
+    style="display: flex;justify-content: space-between;padding: 10px;position: relative;top: 0px;left: 0;z-index: 999;">
+    <div class="circleWrapper">
+      <i id="sidebarMenuOpenBtn" class="fa fa-bars"
+        style="color: #000;font-size: 30px !important;cursor: pointer;width: 50px;height: 50px;display: flex;align-items: center;justify-content: center;line-height: 1;padding: 5px;background: #ffffff;"
+        aria-hidden="true"></i>
+    </div>
+  </div>
+  <nav id="sidebarMenuWrapper" class="sidebarMenuWrapper">
+
+  </nav>
   <div class="px-2 pt-4">
     <div class="data uploadBlock" style="margin-top: 0px;">
       <div class="row">
         <div class="text-center">
           <img src="images/thankYou.png" onclick="closePop()" class="w-5opx" lt="Image 1" />
-          <p class="firstthankline">for adding your image or video to the mosaic. It will soon be visible and remain for 24
-          hours.</p>
+          <p class="firstthankline">for adding your image or video to the mosaic. It will soon be visible and remain for
+            24
+            hours.</p>
           <br>
-          <p class="secondthankline">If you want your image or video to remain findable permanently then contribute to the mosaic to
-          become a mosaic supporter</p>
+          <p class="secondthankline">If you want your image or video to remain findable permanently then contribute to
+            the mosaic to
+            become a mosaic supporter</p>
         </div>
         <div class="paymentBtnBlock">
           <p class="thirdthankline">Be visible in the Mosaic and support responsible graffiti movement of Athens.</p>
           <div>
             <span>2€</span>
-            <button type="button" class="btn btn-submit makePaymentBtn" id="btnClicked" onclick="addPayment()">Make a Payment</button>
+            <button type="button" class="btn btn-submit makePaymentBtn" id="btnClicked" onclick="addPayment()">Make a
+              Payment</button>
           </div>
         </div>
       </div>
@@ -96,24 +110,20 @@
       </div>
     </div>
   </div>
+  <script src="js/common.js"></script>
+  <script>
+    $(document).ready(function () {
+      changeLanguage();
+    })
+    function cancel() {
+      window.location.href = "mosiac.html";
+    }
+    function addPayment() {
 
-  </div>
-  </div>
+      window.location.href = "payment.html";
+    }
 
-
+  </script>
 </body>
-<script>
-  $(document).ready(function () {
-    changeLanguage();
-  })
-  function cancel() {
-    window.location.href = "mosiac.html";
-  }
-  function addPayment() {
-
-    window.location.href = "payment.html";
-  }
-
-</script>
 
 </html>

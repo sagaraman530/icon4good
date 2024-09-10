@@ -68,25 +68,7 @@
     </div>
 
     <nav id="sidebarMenuWrapper" class="sidebarMenuWrapper">
-      <div class="sidebarMenu">
-        <div class="sidebarMenuClose">
-          <button id="sidebarMenuCloseBtn"
-            style="color: #111111;font-size: 30px !important;cursor: pointer;width: 40px;height: 40px;display: flex;align-items: center;justify-content: center;line-height: 1;padding: 5px;">
-            <i class="fa fa-times" aria-hidden="true"></i>
-          </button>
-        </div>
-        <div class="sidebarMenuList">
-          <ul>
-            <li><a href="#">Starting Page</a></li>
-            <li><a href="./profile.html">Profile</a></li>
-            <li><a href="./community.html">Community</a></li>
-            <li><a href="./viewMap.html">Map</a></li>
-            <li><a href="./aboutUs.html">About icon$good</a></li>
-            <li id="signUpBtn"><a href="./signIn_new.html">SignIn / SignUp</a></li>
-            <li id="logOutBtn"><a onclick="logOut()" type="button">LogOut</a></li>
-          </ul>
-        </div>
-      </div>
+      
     </nav>
 
     <div class="" style="font-weight: 700;">
@@ -168,6 +150,7 @@
   <script src="js/toaster.js"></script>
   <script src="js/common.js"></script>
   <script>
+    let userId = localStorage.getItem("userId");
     $(document).ready(function () {
       var option = "";
       for (let i = 0; i < languagesArry.length; i++) {
@@ -186,10 +169,8 @@
       getLocations();
 
       setTimeout(() => {
-        // checkLocation()
+        checkLocation()
       }, 20000);
-
-      let userId = localStorage.getItem("userId");
 
       // if (userId == null) {
       //   document.getElementById("map-btn").disabled = true;
@@ -214,6 +195,12 @@
       window.location.href = "viewMap.html";
     }
     function profile() {
+      // if(!userId) {
+      //   showAlert("Access Restricted", "To continue, please sign in to your account. If you don't have an account, sign up now to enjoy full access to our features.", "./signin_new.html");
+      //   $("#alertModal").addClass("show").css("display", "block");
+      // } else {
+      //   window.location.href = "profile.html";
+      // }
       window.location.href = "profile.html";
     }
 

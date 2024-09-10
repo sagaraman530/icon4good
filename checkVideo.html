@@ -41,7 +41,7 @@
 
     .circleWrapper img {
       width: 50px;
-    } 
+    }
 
     .footer-button-wrapper button {
       width: auto;
@@ -52,15 +52,27 @@
 
 <body>
   <div class="backCls" style="background-size: cover">
+    <div class="w-100 mx-0"
+      style="display: flex;justify-content: space-between;padding: 10px;position: absolute;top: 0px;left: 0;z-index: 999;">
+      <div class="circleWrapper">
+        <i id="sidebarMenuOpenBtn" class="fa fa-bars"
+          style="color: #000;font-size: 30px !important;cursor: pointer;width: 50px;height: 50px;display: flex;align-items: center;justify-content: center;line-height: 1;padding: 5px;background: #ffffff;"
+          aria-hidden="true"></i>
+      </div>
+    </div>
+
     <div class="d-flex justify-content-center align-items-start pt-5 h-100 px-3">
-      <div class="bg-white w-100 px-1 pb-0 pt-1 rounded-3">
+      <div class="bg-white w-100 px-1 pb-0 pt-1 rounded-3 mt-4">
         <video id="avatarModel" class="w-100" autoplay playsinline>
           <source id="avatarSource" src="" type="video/mp4" />
         </video>
       </div>
     </div>
-    <!-- Close the div.backCls -->
   </div>
+
+  <nav id="sidebarMenuWrapper" class="sidebarMenuWrapper">
+      
+  </nav>
 
   <footer class="d-flex justify-content-center">
     <div class="footer-button-wrapper">
