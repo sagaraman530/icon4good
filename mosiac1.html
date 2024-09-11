@@ -632,10 +632,10 @@
     </div>
   </div>
   <div class="w-100 h-100" id="">
-    <div class="w-100 h-100 text-center" style="padding:10px;" id="mosiacId">
+    <div class="w-100 h-100 text-center" style="padding:15px;" id="mosiacId">
       <!-- <img src="images/image2.png" class="w-100" alt="Image 1" /> -->
       <!-- <br> -->
-      <div class="w-100" id="div" style="overflow: scroll hidden; height: calc(100% - 210px); margin-top: 55px; cursor: grab;">
+      <div class="w-100" id="div" style="overflow: scroll;height: calc(100% - 210px);margin-top: 50px;">
         <canvas id="mosaicCanvas"></canvas>
       </div>
       <!--REMOVING THE FOLLOWING CREDIT IS A VIOLATION OF YOUR TERMS OF USE
@@ -988,12 +988,15 @@
       }
     }
 
+
+
     function handleCredentialResponse(response) {
       var base64 = response.credential;
       var decodedData = JSON.parse(atob(base64.split('.')[1]));
     }
 
     $(".loader-container").fadeIn()
+
 
     const canvas = document.getElementById("mosaicCanvas");
     const div = document.getElementById("div");
@@ -1041,10 +1044,8 @@
       // Scale the background image to cover the canvas area
       let drawWidth, drawHeight;
 
-      // drawWidth = (canvas.width * backgroundImage.width) / 300;
-      // drawHeight = (canvas.height * backgroundImage.height) / 450;
-      drawWidth = (canvas.width / cols) * 250;
-      drawHeight = (canvas.height / rows) * 500;
+      drawWidth = (canvas.width * backgroundImage.width) / 300;
+      drawHeight = (canvas.height * backgroundImage.height) / 450;
 
       ctx.drawImage(backgroundImage, 0, 0, drawWidth, drawHeight);
 
