@@ -32,7 +32,7 @@ function changeLanguage() {
         buttonText: "Be a part of the mosaic",
         addImageMosaicButton: "Add image to mosaic",
         shareButton: "Share",
-        mosiacButton: "Be a part of the mosaic"
+        mosiacButton: "Take me to the mosaic"
       },
       signInInfoPage: {
         signInBtn: " Sign In",
@@ -175,7 +175,7 @@ function changeLanguage() {
         buttonText: "Γίνετε μέρος του μωσαϊκού",
         addImageMosaicButton: "Προσθήκη εικόνας στο μωσαϊκό",
         shareButton: "Μερίδιο",
-        mosiacButton: "Γίνετε μέρος του μωσαϊκού"
+        mosiacButton: "Πάρε με στο μωσαϊκό"
       },
       signInInfoPage: {
         signInBtn: "Συνδεθείτε",
@@ -329,7 +329,7 @@ function changeLanguage() {
         buttonText: "Faites partie de la mosaïque",
         addImageMosaicButton: "Ajouter une image à la mosaïque",
         shareButton: "Partager",
-        mosiacButton: "Faites partie de la mosaïque"
+        mosiacButton: "Emmène-moi à la mosaïque"
       },
       signInInfoPage: {
         signInBtn: " Se connecter",
@@ -481,7 +481,7 @@ function changeLanguage() {
         buttonText: "Sé parte del mosaico",
         addImageMosaicButton: "Agregar imagen al mosaico",
         shareButton: "Compartir",
-        mosiacButton: "Sé parte del mosaico"
+        mosiacButton: "Llévame al mosaico"
       },
       signInInfoPage: {
         signInBtn: " Iniciar sesión",
@@ -635,7 +635,7 @@ function changeLanguage() {
         buttonText: "Werden Sie Teil des Mosaiks",
         addImageMosaicButton: "Bild zum Mosaik hinzufügen",
         shareButton: "Aktie",
-        mosiacButton: "Werden Sie Teil des Mosaiks"
+        mosiacButton: "Bring mich zum Mosaik"
       },
       signInInfoPage: {
         signInBtn: "Anmelden",
@@ -788,7 +788,7 @@ function changeLanguage() {
         buttonText: "Diventa parte del mosaico",
         addImageMosaicButton: "Aggiungi l'immagine al mosaico",
         shareButton: "Condividere",
-        mosiacButton: "Diventa parte del mosaico"
+        mosiacButton: "Portami al mosaico"
       },
       signInInfoPage: {
         signInBtn: "Registrazione",

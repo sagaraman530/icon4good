@@ -632,10 +632,10 @@
     </div>
   </div>
   <div class="w-100 h-100" id="">
-    <div class="w-100 h-100 text-center" style="padding:10px;" id="mosiacId">
+    <div class="w-100 h-100 text-center" id="mosiacId">
       <!-- <img src="images/image2.png" class="w-100" alt="Image 1" /> -->
       <!-- <br> -->
-      <div class="w-100" id="div" style="overflow: scroll hidden; height: calc(100% - 210px); margin-top: 55px; cursor: grab;">
+      <div class="w-100" id="div" style="overflow: scroll;height: calc(100% - 175px);cursor: grab;">
         <canvas id="mosaicCanvas"></canvas>
       </div>
       <!--REMOVING THE FOLLOWING CREDIT IS A VIOLATION OF YOUR TERMS OF USE
@@ -988,13 +988,14 @@
       }
     }
 
+
+
     function handleCredentialResponse(response) {
       var base64 = response.credential;
       var decodedData = JSON.parse(atob(base64.split('.')[1]));
     }
 
     $(".loader-container").fadeIn()
-
     const canvas = document.getElementById("mosaicCanvas");
     const div = document.getElementById("div");
 
@@ -1011,7 +1012,7 @@
 
     backgroundImage.src = storedData?.mosiacimagepath;
 
-    let storedScale = 0.1;  // Initial scale
+    let storedScale = 0.1;  // Initial scale (could be based on the image size)
     let scale = storedScale;
     canvas.width = offsetWidth;
     canvas.height = offsetHeight;
@@ -1038,13 +1039,11 @@
       ctx.scale(scale, scale);
       ctx.translate(offsetX, offsetY);
 
-      // Scale the background image to cover the canvas area
-      let drawWidth, drawHeight;
+      // Calculate the dimensions to draw the background image
+      const aspectRatio = backgroundImage.width / backgroundImage.height;
 
-      // drawWidth = (canvas.width * backgroundImage.width) / 300;
-      // drawHeight = (canvas.height * backgroundImage.height) / 450;
-      drawWidth = (canvas.width / cols) * 250;
-      drawHeight = (canvas.height / rows) * 500;
+      let drawWidth = (canvas.width / cols) * 250;
+      let drawHeight = drawWidth / aspectRatio;
 
       ctx.drawImage(backgroundImage, 0, 0, drawWidth, drawHeight);
 
@@ -1063,11 +1062,8 @@
     }
 
     function constrainOffsets() {
-      const scaledWidth = canvas.width / scale;
-      const scaledHeight = canvas.height / scale;
-
-      const maxOffsetX = scale > storedScale ? (scaledWidth - backgroundImage.width) / 2 : 0;
-      const maxOffsetY = Math.max(0, (scaledHeight - backgroundImage.height) / 2);
+      const maxOffsetX = Math.max(0, (canvas.width / scale - backgroundImage.width) / 2);
+      const maxOffsetY = Math.max(0, (canvas.height / scale - backgroundImage.height) / 2);
 
       const minOffsetX = Math.min(0, (canvas.width - backgroundImage.width * scale) / scale);
       const minOffsetY = Math.min(0, (canvas.height - backgroundImage.height * scale) / scale);
@@ -1105,11 +1101,32 @@
         const touchDist = getTouchDistance(event.touches);
         const zoomFactor = touchDist / lastTouchDist;
         lastTouchDist = touchDist;
+
+        // Calculate the focal point for zooming (the midpoint between the two touch points)
+        const touchMidX = (event.touches[0].clientX + event.touches[1].clientX) / 2;
+        const touchMidY = (event.touches[0].clientY + event.touches[1].clientY) / 2;
+
+        // Convert the focal point to canvas coordinates
+        const focalX = (touchMidX - canvas.offsetLeft) / scale - offsetX;
+        const focalY = (touchMidY - canvas.offsetTop) / scale - offsetY;
+
+        // Apply the zoom
         scale *= zoomFactor;
+
+        // Adjust the offsets so that the zoom occurs around the focal point
+        if (scale > 0.1) {
+          offsetX = (touchMidX - canvas.offsetLeft) / scale - focalX;
+          offsetY = (touchMidY - canvas.offsetTop) / scale - focalY;
+        } else {
+          offsetX = 0;
+          offsetY = 0;
+        }
+
         constrainOffsets(); // Constrain the offsets
         drawMosaic();
       }
     }
+
 
     function onTouchEnd(event) {
       if (event.touches.length < 2) {
@@ -1160,11 +1177,6 @@
     canvas.addEventListener("mousemove", onMouseMove);
     canvas.addEventListener("mouseup", onMouseUp);
     canvas.addEventListener("click", onClick);
-
-    // Initial draw
-    backgroundImage.onload = () => {
-      drawMosaic();
-    };
 
     // Existing functions
     function openImagePop(x, y) {
@@ -1547,7 +1559,8 @@
     }
 
     function handleCarouselResponse(response) {
-      $("#carousal-save-btn").hide(300);
+      // $("#carousal-save-btn").hide(300);
+      $("#carousal-save-btn").html("<button class='search-box-btn save-button' title='Save Carousel' style='border-radius: 5px;width: 60px;display: flex;justify-content: center;' onclick='shareMosiac()'>Share</button>");
       if (response?.statusCode && response?.result?.length > 0) {
         const carouselData = response.result[0];
         let res;
@@ -1568,6 +1581,23 @@
         toastr["error"]("Invalid response from server.");
       }
     }
+
+    function shareMosiac() {
+      if (navigator.share) {
+        let shareData = {
+          title: 'Check out this mosaic!',
+          text: 'I created a cool mosaic. Take a look!',
+          url: window.location.href
+        };
+
+        navigator.share(shareData)
+          .then(() => console.log('Mosaic shared successfully'))
+          .catch((error) => console.error('Failed to share mosaic:', error));
+      } else {
+        alert('Sharing is not supported on this device.');
+      }
+    }
+
 
     function handleError(err) {
       console.error("AJAX error:", err);
