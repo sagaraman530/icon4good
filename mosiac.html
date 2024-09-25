@@ -1042,10 +1042,11 @@
       // Calculate the dimensions to draw the background image
       const aspectRatio = backgroundImage.width / backgroundImage.height;
 
-      let drawWidth = (canvas.width / cols) * 250;
+      // let drawWidth = (canvas.width / cols) * 250;
+      let drawWidth = (backgroundImage.width);
       let drawHeight = drawWidth / aspectRatio;
 
-      ctx.drawImage(backgroundImage, 0, 0, drawWidth, drawHeight);
+      ctx.drawImage(backgroundImage, 0, 0, backgroundImage.width, backgroundImage.height);
 
       tileData.forEach((tile) => {
         // ctx.strokeRect(tile.x, tile.y, tileSize, tileSize);
