@@ -5,7 +5,7 @@
 }
 @font-face {
   font-family: Lexend;
-  src: url(/css/Lexend-VariableFont_wght.ttf);
+  /* src: url(/css/Lexend-VariableFont_wght.ttf); */
 }
 body {
   font-family: Lexend !important;
