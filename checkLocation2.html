@@ -103,11 +103,11 @@
 
     var storedData = JSON.parse(localStorage.getItem('storedData'));
     var modellink3dExt = storedData?.modelimagepath.match(/(.*)\.(.*)/)[2];
-    // var data = 'imageTargetSrc:' + storedData?.featurefilepath + '; filterMinCF:0.0001; filterBeta: 0.001; missTolerance: 3'
-    var data = 'imageTargetSrc:' + 'https://sagaraman530.github.io/icon4good/images/FeatureImage/santorini.ar' + '; filterMinCF:0.0001; filterBeta: 0.001; missTolerance: 3'
+    var data = 'imageTargetSrc:' + storedData?.featurefilepath + '; filterMinCF:0.0001; filterBeta: 0.001; missTolerance: 3'
+    // var data = 'imageTargetSrc:' + 'https://sagaraman530.github.io/icon4good/images/FeatureImage/santorini.ar' + '; filterMinCF:0.0001; filterBeta: 0.001; missTolerance: 3'
     $("#showScanner").attr("mindar-image", data)
-    // $("#avatarModel").attr("src", storedData?.modelimagepath)
-    $("#avatarModel").attr("src", "https://sagaraman530.github.io/icon4good/images/ModelImage/egg.glb")
+    $("#avatarModel").attr("src", storedData?.modelimagepath)
+    // $("#avatarModel").attr("src", "https://sagaraman530.github.io/icon4good/images/ModelImage/egg.glb")
     // var v = document.querySelector('#avatarModel');
     // v.src = storedData?.modelimagepath;
     // v.load();
