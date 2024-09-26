@@ -141,32 +141,6 @@
         .match(/(.*)\.(.*)/)[2]
         ?.toLowerCase();
 
-      // Add event listeners for multiple elements dynamically
-      const vrModels = [
-        "#vrmodel1",
-        "#vrmodel2",
-        "#vrmodel3",
-        "#vrmodel4",
-        "#vrmodel5",
-      ];
-      vrModels.forEach((selector) => {
-        document.querySelector(selector).addEventListener("click", function () {
-          alert("insidev1");
-          location.replace("/mosiac.html?loc=" + name);
-        });
-      });
-
-      // Add event listener for canvas after a delay
-      $(document).ready(() => {
-        setTimeout(() => {
-          document
-            .querySelector(".a-canvas")
-            .addEventListener("click", function () {
-              location.replace(`/mosiac.html?loc=${name}`);
-            });
-        }, 2000);
-      });
-
       // Set attributes and styles based on storedData
       // $("#showScanner").attr(
       //   "mindar-image",
@@ -182,6 +156,32 @@
         "src",
         "https://sagaraman530.github.io/icon4good/images/ModelImage/egg.glb"
       );
+
+      // Add event listener for canvas after a delay
+      $(document).ready(() => {
+        setTimeout(() => {
+          document
+            .querySelector(".a-canvas")
+            .addEventListener("click", function () {
+              location.replace(`/mosiac.html?loc=${name}`);
+            });
+        }, 2000);
+      });
+
+      // Add event listeners for multiple elements dynamically
+      const vrModels = [
+        "#vrmodel1",
+        "#vrmodel2",
+        "#vrmodel3",
+        "#vrmodel4",
+        "#vrmodel5",
+      ];
+      vrModels.forEach((selector) => {
+        document.querySelector(selector).addEventListener("click", function () {
+          alert("insidev1");
+          location.replace("/mosiac.html?loc=" + name);
+        });
+      });
 
       $(".backCls").css("background-image", `url(${storedData?.bgimg})`);
 
