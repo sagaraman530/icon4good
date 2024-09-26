@@ -171,13 +171,14 @@
           location.replace("/mosiac.html?loc=" + name);
         });
       $(document).ready(() => {
-        document
-          .querySelector(".a-canvas")
-          .addEventListener("click", function (evt) {
-            alert("Canvas");
-          });
+        setTimeout(() => {
+          document
+            .querySelector(".a-canvas")
+            .addEventListener("click", function (evt) {
+              alert("Canvas");
+            });
+        }, 2000);
       });
-
 
       var storedData = JSON.parse(localStorage.getItem("storedData"));
       var modellink3dExt = storedData?.modelimagepath.match(/(.*)\.(.*)/)[2];
