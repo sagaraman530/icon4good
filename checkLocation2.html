@@ -171,6 +171,14 @@
           alert("insidev1");
           location.replace("/mosiac.html?loc=" + name);
         });
+      $("document").ready(() => {
+        document
+          .querySelector(".a-canvas")
+          .addEventListener("click", function (evt) {
+            alert("Canvas");
+            location.replace("/mosiac.html?loc=" + name);
+          });
+      });
 
       var storedData = JSON.parse(localStorage.getItem("storedData"));
       var modellink3dExt = storedData?.modelimagepath.match(/(.*)\.(.*)/)[2];
@@ -185,7 +193,10 @@
       );
       // imageTargetSrc: https://icons4good.com/images/FeatureImage/santor.mind; maxTrack: 2;filterMinCF:0.0001; filterBeta: 0.001; missTolerance: 3
       // $("#avatarModel").attr("src", storedData?.modelimagepath);
-      $("#avatarModel").attr("src", 'https://sagaraman530.github.io/icon4good/images/ModelImage/egg.glb');
+      $("#avatarModel").attr(
+        "src",
+        "https://sagaraman530.github.io/icon4good/images/ModelImage/egg.glb"
+      );
 
       // $("#avatarModel").attr("src", "https://sagaraman530.github.io/icon4good/images/ModelImage/egg.glb")
       // var v = document.querySelector('#avatarModel');
