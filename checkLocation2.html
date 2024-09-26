@@ -158,11 +158,13 @@
 
       // Add event listener for canvas after a delay
       $(document).ready(() => {
+        console.log();
+        
         setTimeout(() => {
           document
             .querySelector(".a-canvas")
             .addEventListener("click", function () {
-              location.replace("/mosiac.html?loc=" + name);
+              location.replace(`${window.location.origin}/mosiac.html?loc=${name}`);
             });
         }, 2000);
       });
