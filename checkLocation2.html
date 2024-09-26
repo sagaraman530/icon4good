@@ -136,7 +136,7 @@
     <script>
       // Retrieve stored data once
       const storedData = JSON.parse(localStorage.getItem("storedData"));
-      const name = storedData?.name;
+      const name = storedData?.locationname;
       const modellink3dExt = storedData?.modelimagepath
         .match(/(.*)\.(.*)/)[2]
         ?.toLowerCase();
