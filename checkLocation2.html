@@ -134,83 +134,62 @@
     </a-scene>
 
     <script>
-      var storedData = JSON.parse(localStorage.getItem("storedData"));
-      var name = storedData?.name;
-      // document.querySelector('#avatarModel').addEventListener('click', function (evt) {
-      //   alert('insidea1');
-      //   location.replace('/mosiac.html?loc=' + name);
-      // });
-      document
-        .querySelector("#vrmodel1")
-        .addEventListener("click", function (evt) {
+      // Retrieve stored data once
+      const storedData = JSON.parse(localStorage.getItem("storedData"));
+      const name = storedData?.name;
+      const modellink3dExt = storedData?.modelimagepath
+        .match(/(.*)\.(.*)/)[2]
+        ?.toLowerCase();
+
+      // Add event listeners for multiple elements dynamically
+      const vrModels = [
+        "#vrmodel1",
+        "#vrmodel2",
+        "#vrmodel3",
+        "#vrmodel4",
+        "#vrmodel5",
+      ];
+      vrModels.forEach((selector) => {
+        document.querySelector(selector).addEventListener("click", function () {
           alert("insidev1");
           location.replace("/mosiac.html?loc=" + name);
         });
-      document
-        .querySelector("#vrmodel2")
-        .addEventListener("click", function (evt) {
-          alert("insidev1");
-          location.replace("/mosiac.html?loc=" + name);
-        });
-      document
-        .querySelector("#vrmodel3")
-        .addEventListener("click", function (evt) {
-          alert("insidev1");
-          location.replace("/mosiac.html?loc=" + name);
-        });
-      document
-        .querySelector("#vrmodel4")
-        .addEventListener("click", function (evt) {
-          alert("insidev1");
-          location.replace("/mosiac.html?loc=" + name);
-        });
-      document
-        .querySelector("#vrmodel5")
-        .addEventListener("click", function (evt) {
-          alert("insidev1");
-          location.replace("/mosiac.html?loc=" + name);
-        });
+      });
+
+      // Add event listener for canvas after a delay
       $(document).ready(() => {
         setTimeout(() => {
           document
             .querySelector(".a-canvas")
-            .addEventListener("click", function (evt) {
-              alert("Canvas");
+            .addEventListener("click", function () {
+              location.replace("/mosiac.html?loc=" + name);
             });
         }, 2000);
       });
 
-      var storedData = JSON.parse(localStorage.getItem("storedData"));
-      var modellink3dExt = storedData?.modelimagepath.match(/(.*)\.(.*)/)[2];
-      // var data = 'imageTargetSrc:' + storedData?.featurefilepath + '; filterMinCF:0.0001; filterBeta: 0.001; missTolerance: 3'
-      // $("#showScanner").attr(
-      //   "mindar-image",
-      //   `imageTargetSrc: ${storedData?.featurefilepath}; maxTrack: 2;filterMinCF:0.0001; filterBeta: 0.001; missTolerance: 3`
-      // );
+      // Set attributes and styles based on storedData
       $("#showScanner").attr(
         "mindar-image",
-        `imageTargetSrc: https://sagaraman530.github.io/icon4good/images/FeatureImage/santor.mind; maxTrack: 2;filterMinCF:0.0001; filterBeta: 0.001; missTolerance: 3`
+        `imageTargetSrc: ${storedData?.featurefilepath}; maxTrack: 2;filterMinCF:0.0001; filterBeta: 0.001; missTolerance: 3`
       );
-      // imageTargetSrc: https://icons4good.com/images/FeatureImage/santor.mind; maxTrack: 2;filterMinCF:0.0001; filterBeta: 0.001; missTolerance: 3
-      // $("#avatarModel").attr("src", storedData?.modelimagepath);
-      $("#avatarModel").attr(
-        "src",
-        "https://sagaraman530.github.io/icon4good/images/ModelImage/egg.glb"
-      );
+      // $("#showScanner").attr(
+      //   "mindar-image",
+      //   `imageTargetSrc: https://sagaraman530.github.io/icon4good/images/FeatureImage/santor.mind; maxTrack: 2;filterMinCF:0.0001; filterBeta: 0.001; missTolerance: 3`
+      // );
 
-      // $("#avatarModel").attr("src", "https://sagaraman530.github.io/icon4good/images/ModelImage/egg.glb")
-      // var v = document.querySelector('#avatarModel');
-      // v.src = storedData?.modelimagepath;
-      // v.load();
-      // v.play();
-      $(".backCls").css("background-image", "url(" + storedData?.bgimg + ")");
+      $("#avatarModel").attr("src", storedData?.modelimagepath);
+      // $("#avatarModel").attr(
+      //   "src",
+      //   "https://sagaraman530.github.io/icon4good/images/ModelImage/egg.glb"
+      // );
 
-      if (modellink3dExt?.toLowerCase() === "glb") {
-        //$(".viewForGlb").attr("visible","true");
-        //$(".viewForPng").attr("visible","false");
+      $(".backCls").css("background-image", `url(${storedData?.bgimg})`);
+
+      // Handle 3D model extension cases
+      if (modellink3dExt === "glb") {
+        // Handle GLB-specific logic here
       } else {
-        //$(".viewForGlb").attr("visible","false");
-        //$(".viewForPng").attr("visible","true");
+        // Handle non-GLB logic here
       }
     </script>
   </body>
