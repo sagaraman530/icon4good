@@ -136,7 +136,6 @@
     <script>
       var storedData = JSON.parse(localStorage.getItem("storedData"));
       var name = storedData?.name;
-      alert("outside");
       // document.querySelector('#avatarModel').addEventListener('click', function (evt) {
       //   alert('insidea1');
       //   location.replace('/mosiac.html?loc=' + name);
@@ -171,13 +170,13 @@
           alert("insidev1");
           location.replace("/mosiac.html?loc=" + name);
         });
-        $(document).ready(() => {
-          document
-            .querySelector(".a-canvas")
-            .addEventListener("click", function (evt) {
-              alert("Canvas");
-            });
-        });
+      $(document).ready(() => {
+        document
+          .querySelector(".a-canvas")
+          .addEventListener("click", function (evt) {
+            alert("Canvas");
+          });
+      });
 
 
       var storedData = JSON.parse(localStorage.getItem("storedData"));
