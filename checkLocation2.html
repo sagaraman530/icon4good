@@ -171,14 +171,14 @@
           alert("insidev1");
           location.replace("/mosiac.html?loc=" + name);
         });
-      $("document").ready(() => {
-        document
-          .querySelector(".a-canvas")
-          .addEventListener("click", function (evt) {
-            alert("Canvas");
-            location.replace("/mosiac.html?loc=" + name);
-          });
-      });
+        $(document).ready(() => {
+          document
+            .querySelector(".a-canvas")
+            .addEventListener("click", function (evt) {
+              alert("Canvas");
+            });
+        });
+
 
       var storedData = JSON.parse(localStorage.getItem("storedData"));
       var modellink3dExt = storedData?.modelimagepath.match(/(.*)\.(.*)/)[2];
