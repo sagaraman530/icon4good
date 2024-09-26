@@ -142,20 +142,20 @@
         ?.toLowerCase();
 
       // Set attributes and styles based on storedData
-      $("#showScanner").attr(
-        "mindar-image",
-        `imageTargetSrc: ${storedData?.featurefilepath}; maxTrack: 2;filterMinCF:0.0001; filterBeta: 0.001; missTolerance: 3`
-      );
-      $("#avatarModel").attr("src", storedData?.modelimagepath);
-
       // $("#showScanner").attr(
       //   "mindar-image",
-      //   `imageTargetSrc: https://sagaraman530.github.io/icon4good/images/FeatureImage/santor.mind; maxTrack: 2;filterMinCF:0.0001; filterBeta: 0.001; missTolerance: 3`
+      //   `imageTargetSrc: ${storedData?.featurefilepath}; maxTrack: 2;filterMinCF:0.0001; filterBeta: 0.001; missTolerance: 3`
       // );
-      // $("#avatarModel").attr(
-      //   "src",
-      //   "https://sagaraman530.github.io/icon4good/images/ModelImage/egg.glb"
-      // );
+      // $("#avatarModel").attr("src", storedData?.modelimagepath);
+
+      $("#showScanner").attr(
+        "mindar-image",
+        `imageTargetSrc: https://sagaraman530.github.io/icon4good/images/FeatureImage/santor.mind; maxTrack: 2;filterMinCF:0.0001; filterBeta: 0.001; missTolerance: 3`
+      );
+      $("#avatarModel").attr(
+        "src",
+        "https://sagaraman530.github.io/icon4good/images/ModelImage/egg.glb"
+      );
 
       // Add event listener for canvas after a delay
       $(document).ready(() => {
